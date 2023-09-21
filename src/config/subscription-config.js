@@ -1,0 +1,8 @@
+// FREE TRIAL ENDS AFTER X DAYS
+export const DAYS_FOR_TRIAL = 21;
+
+// MONTHLY
+export const MONTHLY_PRICE_EGP = 497;
+
+// YEARLY
+export const YEARLY_PRICE_EGP = 5000;

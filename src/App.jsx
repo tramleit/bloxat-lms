@@ -1,145 +1,310 @@
-import { Suspense } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Open_Sans } from "google-fonts";
+import { ToasterProvider } from "@/providers/toast-provider";
+import ModalProvider from "@/providers/modal-provider";
+
+// LOADING
+const Loading = lazy(() => import("@/components/loading/loading"));
+// ROOT
+const SetupLayout = lazy(() => import("@/pages/root/layout"));
+const SetupPage = lazy(() => import("@/pages/root/routes/page"));
+const Branding = lazy(() => import("@/pages/root/routes/branding/page"));
+const CreateFirstCourse = lazy(() =>
+  import("@/pages/root/routes/create-first-course/page")
+);
+// AUTH
+const AuthLayout = lazy(() => import("@/pages/auth/layout"));
+const Login = lazy(() => import("@/pages/auth/routes/login/page"));
+const Signup = lazy(() => import("@/pages/auth/routes/signup/page"));
+// DASHBOARD
+const DashboardLayout = lazy(() => import("@/pages/dashboard/layout"));
+const DashboardPage = lazy(() => import("@/pages/dashboard/routes/page"));
+const StudentsPage = lazy(() =>
+  import("@/pages/dashboard/routes/students/page")
+);
+const EditCoursePage = lazy(() => import("@/pages/dashboard/routes/edit/page"));
+const SettingsPage = lazy(() =>
+  import("@/pages/dashboard/routes/settings/page")
+);
+// SETTINGS ROUTES
+const AccountPage = lazy(() =>
+  import("@/pages/dashboard/routes/settings/_routes/account/page")
+);
+const PlanPage = lazy(() =>
+  import("@/pages/dashboard/routes/settings/_routes/plan/page")
+);
+const BrandingPage = lazy(() =>
+  import("@/pages/dashboard/routes/settings/_routes/branding/page")
+);
+const PaymentPage = lazy(() =>
+  import("@/pages/dashboard/routes/settings/_routes/payment/page")
+);
+// PAYMENT PAGE ROUTES
+// PAYMOB
+const PaymobSetupPage = lazy(() =>
+  import(
+    "@/pages/dashboard/routes/settings/_routes/payment/routes/paymob/routes/setup/page"
+  )
+);
+const PaymobIntegrationPage = lazy(() =>
+  import(
+    "@/pages/dashboard/routes/settings/_routes/payment/routes/paymob/routes/integration/page"
+  )
+);
+const PaymobCallbackPage = lazy(() =>
+  import(
+    "@/pages/dashboard/routes/settings/_routes/payment/routes/paymob/routes/callback/page"
+  )
+);
+const PaymobPage = lazy(() =>
+  import("@/pages/dashboard/routes/settings/_routes/payment/routes/paymob/page")
+);
+// INSTAPAY
+const InstapaySetupPage = lazy(() =>
+  import(
+    "@/pages/dashboard/routes/settings/_routes/payment/routes/instapay/routes/setup/page"
+  )
+);
+const InstapayPage = lazy(() =>
+  import(
+    "@/pages/dashboard/routes/settings/_routes/payment/routes/instapay/page"
+  )
+);
+// SUBSCRIPTION
+const SubscriptionLayout = lazy(() => import("@/pages/subscription/layout"));
+const TrialEnded = lazy(() =>
+  import("@/pages/subscription/routes/trial-ended/page")
+);
+const SubscriptionEndedPage = lazy(() =>
+  import("@/pages/subscription/routes/subscription-ended/page")
+);
+const PaymentRedirect = lazy(() =>
+  import("@/pages/subscription/routes/payment-redirect/page")
+);
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="overflow-x-hidden">
-        <Suspense fallback={<>loading</>}>
+      <div
+        className="overflow-x-hidden h-screen"
+        style={{ fontFamily: Open_Sans }}
+      >
+        <ToasterProvider />
+        <ModalProvider />
+        <Suspense fallback={<Loading />}>
           <Routes>
-            {/* Home */}
+            {/* Root -> Setup */}
+            {/* Step One */}
             <Route
+              exact
               path="/"
-              element={<Navigate replace to="/dashboard" />}
-              // element={<Dashboard />}
-            />
-            {/* Dashboard -> Library/ Courses (First tab) */}
-            <Route
-              path="/dashboard"
               element={
-                // <RequireAuth>
-                <div>
-                  test
-                  {/* <Header />
-                      <Dashboard /> */}
-                </div>
-                // </RequireAuth>
+                <SetupLayout>
+                  <SetupPage />
+                </SetupLayout>
               }
             />
-            {/* Profile -> Profile to access settings etc (Second tab) */}
+            {/* Dashboard */}
             <Route
-              path="/profile"
+              path="/:course_id"
               element={
-                // <RequireAuth>
-                <div>
-                  profile
-                  {/* <Header /> */}
-                  {/* <Dashboard /> */}
-                </div>
-                // </RequireAuth>
+                <DashboardLayout>
+                  <DashboardPage />
+                </DashboardLayout>
               }
             />
-            {/* Course Page */}
+            {/* Students */}
             <Route
-              path="/course/:course_slug"
+              path="/:course_id/students"
               element={
-                // <RequireAuth>
-                <div className="overflow-y-hidden h-screen">
-                  {/* <HeaderBlack /> */}
-                  {/* <Course /> */}
-                </div>
-                // </RequireAuth>
+                <DashboardLayout>
+                  <StudentsPage />
+                </DashboardLayout>
               }
             />
-            {/* Module Page */}
+            {/* Edit */}
             <Route
-              path="/course/:course_slug/:module_order/:lesson_order"
+              path="/:course_id/edit"
               element={
-                // <RequireAuth>
-                <div className="overflow-y-hidden h-screen">
-                  {/* <HeaderFocus /> */}
-                  {/* <Module /> */}
-                </div>
-                // </RequireAuth>
+                <DashboardLayout>
+                  <EditCoursePage />
+                </DashboardLayout>
               }
             />
-            {/* Checkout */}
+            {/* Settings */}
             <Route
-              path="/checkout/:course_slug"
+              path="/:course_id/settings"
               element={
-                <></>
-                // If there's no token then go to the checkout page where we login or sign up ... else go to the payment page directly
-                // !token ? (
-                //   <div className="overflow-y-hidden h-screen">
-                //     {/* <CheckoutHeader /> */}
-                //     <PaymentHeader />
-                //     <Checkout />
-                //   </div>
-                // ) : (
-                //   <div className="overflow-y-hidden h-screen">
-                //     <PaymentHeader />
-
-                //     <Payment />
-                //   </div>
-                // )
+                <DashboardLayout>
+                  <SettingsPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Settings routes */}
+            {/* Account */}
+            <Route
+              path="/:course_id/settings/account"
+              element={
+                <DashboardLayout>
+                  <AccountPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Plan */}
+            <Route
+              path="/:course_id/settings/plan"
+              element={
+                <DashboardLayout>
+                  <PlanPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Branding */}
+            <Route
+              path="/:course_id/settings/branding"
+              element={
+                <DashboardLayout>
+                  <BrandingPage />
+                </DashboardLayout>
               }
             />
             {/* Payment */}
             <Route
-              path="/payment/:course_slug"
+              path="/:course_id/settings/payment"
               element={
-                // <CheckoutRequireAuth>
-                <div className="overflow-y-hidden h-screen">
-                  {/* <PaymentHeader /> */}
-                  {/* <Payment /> */}
-                </div>
-                // </CheckoutRequireAuth>
+                <DashboardLayout>
+                  <PaymentPage />
+                </DashboardLayout>
               }
             />
-
+            {/* Payment Routes */}
+            {/* Paymob */}
+            {/* Setup */}
+            <Route
+              path="/:course_id/settings/payment/paymob/setup"
+              element={
+                <DashboardLayout>
+                  <PaymobSetupPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Paymob -> integration */}
+            <Route
+              path="/:course_id/settings/payment/paymob/integration"
+              element={
+                <DashboardLayout>
+                  <PaymobIntegrationPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Paymob -> callback */}
+            <Route
+              path="/:course_id/settings/payment/paymob/callback"
+              element={
+                <DashboardLayout>
+                  <PaymobCallbackPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Paymob Page */}
+            <Route
+              path="/:course_id/settings/payment/paymob"
+              element={
+                <DashboardLayout>
+                  <PaymobPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Instapay */}
+            {/* Setup */}
+            <Route
+              path="/:course_id/settings/payment/instapay/setup"
+              element={
+                <DashboardLayout>
+                  <InstapaySetupPage />
+                </DashboardLayout>
+              }
+            />
+            {/* Instapay page */}
+            <Route
+              path="/:course_id/settings/payment/instapay"
+              element={
+                <DashboardLayout>
+                  <InstapayPage />
+                </DashboardLayout>
+              }
+            />
+            {/* SETUP */}
+            {/* Step Two */}
+            <Route
+              exact
+              path="/branding"
+              element={
+                <SetupLayout>
+                  <Branding />
+                </SetupLayout>
+              }
+            />
+            {/* Step Three */}
+            <Route
+              exact
+              path="/create-first-course"
+              element={
+                <SetupLayout>
+                  <CreateFirstCourse />
+                </SetupLayout>
+              }
+            />
             {/* Auth */}
             <Route
               path="/login"
               element={
-                <></>
-                // !token ? (
-                //   <Login />
-                // ) : (
-                //   <div>
-                //     <Header />
-                //     <Dashboard />
-                //   </div>
-                // )
+                <AuthLayout>
+                  <Login />
+                </AuthLayout>
               }
             />
-
             <Route
               path="/signup"
               element={
-                <></>
-                // !token ? (
-                //   <Signup />
-                // ) : (
-                //   <div>
-                //     <Header />
-                //     <Dashboard />
-                //   </div>
-                // )
+                <AuthLayout>
+                  <Signup />
+                </AuthLayout>
               }
             />
-
+            {/* Forgot Password */}
             <Route
               path="/forgot-password"
+              element={<div>Forgot Password</div>}
+            />
+
+            {/* SUBSCRIPTION */}
+            {/* TRIAL ENDED */}
+            <Route
+              path="/trial-ended"
               element={
-                <></>
-                // !token ? (
-                //   <ForgotPassword />
-                // ) : (
-                //   <div>
-                //     <Header />
-                //     <Dashboard />
-                //   </div>
-                // )
+                <SubscriptionLayout>
+                  <TrialEnded />
+                </SubscriptionLayout>
+              }
+            />
+            {/* SUBSCRIPTION ENDED */}
+            <Route
+              path="/subscription-ended"
+              element={
+                <SubscriptionLayout>
+                  <SubscriptionEndedPage />
+                </SubscriptionLayout>
+              }
+            />
+            {/* PAYMENT REDIRECT PAGE */}
+            <Route
+              path="/payment-redirect"
+              element={
+                <SubscriptionLayout>
+                  <PaymentRedirect />
+                </SubscriptionLayout>
               }
             />
           </Routes>
