@@ -19,6 +19,8 @@ import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import Editor from "@/components/editor";
+import { Preview } from "@/components/preview";
 
 const formSchema = z.object({
   description: z.string().min(1, {
@@ -26,7 +28,7 @@ const formSchema = z.object({
   }),
 });
 
-export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
+export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -48,7 +50,7 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
   const onSubmit = async (values) => {
     // if the data is the same as the previous then no need to hit the server
     if (values.description == initialData?.description) {
-      toast.success("Course updated!");
+      toast.success("Lesson updated!");
       toggleEdit();
       return;
     }
@@ -58,14 +60,13 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       const response = await axios.patch(
-        `${BASE_URL}/courses/details/${courseId}`,
+        `${BASE_URL}/lesson/details/${lessonId}`,
         values
       );
-      toast.success("Course updated!");
+      toast.success("Lesson updated!");
       toggleEdit();
       // fetch the new data after success
       setData(response.data);
-      updateUI(response.data.description);
     } catch {
       toast.error("Something went wrong");
     }
@@ -87,14 +88,15 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
         </Button>
       </div>
       {!isEditing && (
-        <p
+        <div
           className={cn(
             "text-sm mt-2",
             !data?.description && "text-slate-500 italic"
           )}
         >
-          {data?.description || "No description"}
-        </p>
+          {!data?.description && "No description"}
+          {data?.description && <Preview value={data?.description} />}
+        </div>
       )}
       {isEditing && (
         <Form {...form}>
@@ -108,11 +110,7 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea
-                      disabled={isSubmitting}
-                      placeholder="eg: This course is designed to ..."
-                      {...field}
-                    />
+                    <Editor {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

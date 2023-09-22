@@ -106,3 +106,8 @@ body,
   border: 1px solid #a38fff; /* Set your desired border color */
   box-shadow: 0 0 10px rgba(164, 143, 255, 0.532); /* Adjust the values for the desired glow effect */
 }
+
+/* Quill Rich Text Editor */
+.ql-container {
+  font-size: 16px !important;
+}

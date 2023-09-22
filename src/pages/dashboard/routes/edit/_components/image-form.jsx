@@ -30,7 +30,7 @@ const formSchema = z.object({
   }),
 });
 
-export const ImageForm = ({ initialData, courseId }) => {
+export const ImageForm = ({ initialData, courseId, updateUI }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -89,6 +89,7 @@ export const ImageForm = ({ initialData, courseId }) => {
       toggleEdit();
       // fetch the new data after success
       setData(response.data);
+      updateUI(response.data.thumbnail);
       console.log("RESPONSE", value);
     } catch {
       toast.error("Something went wrong");

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import SectionTile from "./section-tile";
+import SectionTile from "./tiles/section-tile";
 import { Grid, GripVertical } from "lucide-react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
@@ -9,7 +9,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
-export const ContentList = ({ items, onReorder, onEdit }) => {
+export const ContentList = ({ items, onReorder, onEdit, updateUI }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [modules, setModules] = useState(items);
 
@@ -53,50 +53,6 @@ export const ContentList = ({ items, onReorder, onEdit }) => {
           });
         }
       }}
-      //   onDragEnd={(e) => {
-      //     //  The active card the user is pressing on
-      //     // And the card the user is pressing over
-      //     const { active, over } = e;
-      //     console.log("Active:" + active.id, "over:" + over?.id);
-
-      //     // It's not the same one .. then we can switch things around
-      //     if (active.id !== over?.id) {
-      //       setModules((items) => {
-      //         const activeIndex = items.indexOf(
-      //           items.find((item) => item.id === active.id)
-      //         );
-      //         const overIndex = items.indexOf(
-      //           items.find((item) => item.id === over?.id)
-      //         );
-
-      //         // const overIndex = items.indexOf(over?.id);
-
-      //         console.log(activeIndex);
-      //         console.log(overIndex);
-
-      //         // To update the order in the backend
-      //         const updatedModules = items.slice(activeIndex, overIndex + 1);
-
-      //         // console.log("updatedModules", updatedModules);
-
-      //         setModules(items);
-
-      //         const bulkUpdateData = updatedModules.map((module) => ({
-      //           module_id: module.id,
-      //           module_order: items.findIndex((item) => item.id === module.id),
-      //         }));
-
-      //         console.log("bulkUpdateData", bulkUpdateData);
-
-      //         onReorder(bulkUpdateData);
-
-      //         // to return
-      //         console.log(arrayMove(items, activeIndex, overIndex));
-      //         // it will override whatever vaalue our list is currenlty is
-      //         return arrayMove(items, activeIndex, overIndex);
-      //       });
-      //     }
-      //   }}
     >
       <div className="flex flex-col space-y-3">
         <SortableContext
@@ -110,7 +66,9 @@ export const ContentList = ({ items, onReorder, onEdit }) => {
               moduleId={module?.id}
               moduleOrder={module?.module_order}
               title={module?.title}
-              lessons={module?.lessons}
+              lessons={module?.lessons || []}
+              updateUI={updateUI}
+              // onLessonsReorder={onLessonsReorder}
             />
           ))}
         </SortableContext>

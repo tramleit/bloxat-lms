@@ -30,35 +30,35 @@ const useSectionsStore = create((set) => ({
     }
   },
   // Function to delete a section by module_id
-  deleteSection: async (module_id) => {
-    const token = JSON.parse(localStorage.getItem("bxAuthToken")); // Retrieve the token from local storage
+  // deleteSection: async (module_id) => {
+  //   const token = JSON.parse(localStorage.getItem("bxAuthToken")); // Retrieve the token from local storage
 
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    try {
-      // Make a DELETE request to delete the section by module_id
-      const response = await axios.delete(`${BASE_URL}/modules/${module_id}`);
+  //   try {
+  //     // Make a DELETE request to delete the section by module_id
+  //     const response = await axios.delete(`${BASE_URL}/modules/${module_id}`);
 
-      // Handle the response as needed
-      if (response.status === 200) {
-        // Optionally, update your store state or trigger other actions
-        console.log(`Section with module_id ${module_id} deleted successfully`);
+  //     // Handle the response as needed
+  //     if (response.status === 200) {
+  //       // Optionally, update your store state or trigger other actions
+  //       console.log(`Section with module_id ${module_id} deleted successfully`);
 
-        window.location.reload();
+  //       window.location.reload();
 
-        // Return a success indicator or message
-        return true;
-      }
-    } catch (error) {
-      console.error(
-        `Error deleting section with module_id ${module_id}:`,
-        error
-      );
+  //       // Return a success indicator or message
+  //       return true;
+  //     }
+  //   } catch (error) {
+  //     console.error(
+  //       `Error deleting section with module_id ${module_id}:`,
+  //       error
+  //     );
 
-      // Handle errors as needed, e.g., show an error message
-      throw new Error(`Failed to delete section with module_id ${module_id}`);
-    }
-  },
+  //     // Handle errors as needed, e.g., show an error message
+  //     throw new Error(`Failed to delete section with module_id ${module_id}`);
+  //   }
+  // },
   // Function to update a section
   updateSection: async (moduleId, sectionData) => {
     const token = JSON.parse(localStorage.getItem("bxAuthToken")); // Retrieve the token from local storage

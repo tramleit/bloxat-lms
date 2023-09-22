@@ -29,7 +29,7 @@ const iconVariants = cva("", {
       success: "text-[#889c3a]",
     },
     size: {
-      default: "h-8 w-8",
+      default: "h-5 w-5",
       sm: "h-4 w-4",
     },
   },

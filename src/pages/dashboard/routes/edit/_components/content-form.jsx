@@ -26,7 +26,7 @@ const formSchema = z.object({
   title: z.string().min(1),
 });
 
-export const ContentForm = ({ initialData, courseId }) => {
+export const ContentForm = ({ initialData, courseId, updateUI }) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -77,13 +77,14 @@ export const ContentForm = ({ initialData, courseId }) => {
       toggleCreating();
       // fetch the new data after success
       // setData(response.data);
+      // updateUI(response.data);
       fetchCourseContent(courseId);
     } catch {
       toast.error("Something went wrong");
     }
   };
 
-  // on reorder function
+  // on reorder function -> reorder modules
   const onReorder = async (updateData) => {
     console.log("updateData", updateData);
 
@@ -184,6 +185,7 @@ export const ContentForm = ({ initialData, courseId }) => {
             onEdit={() => {}}
             onReorder={onReorder}
             items={initialData?.modules || []}
+            updateUI={updateUI}
           />
         </div>
       )}

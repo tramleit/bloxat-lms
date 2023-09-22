@@ -24,6 +24,9 @@ const StudentsPage = lazy(() =>
   import("@/pages/dashboard/routes/students/page")
 );
 const EditCoursePage = lazy(() => import("@/pages/dashboard/routes/edit/page"));
+const EditLessonIdPage = lazy(() =>
+  import("@/pages/dashboard/routes/edit/lesson-id/page")
+);
 const SettingsPage = lazy(() =>
   import("@/pages/dashboard/routes/settings/page")
 );
@@ -129,6 +132,15 @@ function App() {
               element={
                 <DashboardLayout>
                   <EditCoursePage />
+                </DashboardLayout>
+              }
+            />
+            {/* Edit lesson  */}
+            <Route
+              path="/:course_id/edit/:lesson_id"
+              element={
+                <DashboardLayout>
+                  <EditLessonIdPage />
                 </DashboardLayout>
               }
             />

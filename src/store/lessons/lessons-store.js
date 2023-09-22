@@ -7,12 +7,12 @@ const useLessonsStore = create((set) => ({
   loading: false, // Initialize loading state as false
 
   // Fetch lesson by lesson_order, module_order, and course_id
-  fetchLessonByOrder: async (lessonOrder, moduleOrder, courseId) => {
+  fetchLessonById: async (courseId, lessonId) => {
     try {
       set({ loading: true }); // Set loading to true while fetching data
 
       const response = await axios.get(
-        `${BASE_URL}/lessons/order/${lessonOrder}/${moduleOrder}/${courseId}`
+        `${BASE_URL}/lessons/${courseId}/edit/${lessonId}`
       );
 
       if (response.status === 200) {
@@ -35,27 +35,27 @@ const useLessonsStore = create((set) => ({
     }
   },
   //   Add lesson
-  addLesson: async (lessonData) => {
-    try {
-      set({ loading: true }); // Set loading to true when creating a lesson
+  // addLesson: async (lessonData) => {
+  //   try {
+  //     set({ loading: true }); // Set loading to true when creating a lesson
 
-      const response = await axios.post(`${BASE_URL}/lessons`, lessonData);
+  //     const response = await axios.post(`${BASE_URL}/lessons`, lessonData);
 
-      if (response.status === 200) {
-        // Optionally, you can handle the created lesson or trigger other actions
-        console.log("Lesson created successfully:", response.data);
+  //     if (response.status === 200) {
+  //       // Optionally, you can handle the created lesson or trigger other actions
+  //       console.log("Lesson created successfully:", response.data);
 
-        window.location.reload();
+  //       // window.location.reload();
 
-        set({ loading: false }); // Set loading to false on success
-      }
-    } catch (error) {
-      console.error("Error creating lesson:", error);
+  //       set({ loading: false }); // Set loading to false on success
+  //     }
+  //   } catch (error) {
+  //     console.error("Error creating lesson:", error);
 
-      // Handle errors as needed, e.g., show an error message
-      throw new Error("Failed to create lesson");
-    }
-  },
+  //     // Handle errors as needed, e.g., show an error message
+  //     throw new Error("Failed to create lesson");
+  //   }
+  // },
   // Function to delete a lesson by lesson_id
   deleteLesson: async (lessonId) => {
     try {

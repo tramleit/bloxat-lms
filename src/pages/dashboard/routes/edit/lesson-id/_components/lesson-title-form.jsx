@@ -17,16 +17,19 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
-  description: z.string().min(1, {
-    message: "Description is required",
+  title: z.string().min(1, {
+    message: "Title is required",
   }),
 });
 
-export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
+export const LessonTitleForm = ({
+  initialData,
+
+  lessonId,
+  updateUI, // Add this prop
+}) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -39,7 +42,7 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      description: initialData?.description || "",
+      title: initialData?.title || "",
     },
   });
 
@@ -47,8 +50,8 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
 
   const onSubmit = async (values) => {
     // if the data is the same as the previous then no need to hit the server
-    if (values.description == initialData?.description) {
-      toast.success("Course updated!");
+    if (values.title == initialData?.title) {
+      toast.success("Lesson updated!");
       toggleEdit();
       return;
     }
@@ -58,14 +61,16 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
       const response = await axios.patch(
-        `${BASE_URL}/courses/details/${courseId}`,
+        `${BASE_URL}/lesson/details/${lessonId}`,
         values
       );
-      toast.success("Course updated!");
+      toast.success("Lesson updated!");
       toggleEdit();
       // fetch the new data after success
       setData(response.data);
-      updateUI(response.data.description);
+
+      // Update the state
+      updateUI(response.data);
     } catch {
       toast.error("Something went wrong");
     }
@@ -74,7 +79,7 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
   return (
     <div className="mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Description
+        Lesson title
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
@@ -86,16 +91,7 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
           )}
         </Button>
       </div>
-      {!isEditing && (
-        <p
-          className={cn(
-            "text-sm mt-2",
-            !data?.description && "text-slate-500 italic"
-          )}
-        >
-          {data?.description || "No description"}
-        </p>
-      )}
+      {!isEditing && <p className="text-sm mt-2">{data?.title}</p>}
       {isEditing && (
         <Form {...form}>
           <form
@@ -104,13 +100,13 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
           >
             <FormField
               control={form.control}
-              name="description"
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea
+                    <Input
                       disabled={isSubmitting}
-                      placeholder="eg: This course is designed to ..."
+                      placeholder="eg: How to setup your project ..."
                       {...field}
                     />
                   </FormControl>
