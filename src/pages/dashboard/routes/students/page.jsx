@@ -17,18 +17,18 @@ const StudentsPage = () => {
   const [search, setSearch] = useState("");
 
   // Get Students
-  const { enrollments, fetchEnrollments } = useStudentsStore();
+  const { enrollments, fetchDetailedEnrollments } = useStudentsStore();
 
   useEffect(() => {
     // Fetch enrollments when the component mounts
-    fetchEnrollments(course_id, 10, page, search);
+    fetchDetailedEnrollments(course_id, 7, page, search);
   }, [course_id, page, search]);
 
   // Next page function
   function nextPage() {
     if (page !== enrollments?.count - 1) {
       setPage(page + 1);
-      fetchEnrollments(course_id, page + 1, "");
+      fetchDetailedEnrollments(course_id, page + 1, "");
     }
   }
 
@@ -36,7 +36,7 @@ const StudentsPage = () => {
   function previousPage() {
     if (page >= 1) {
       setPage(page - 1);
-      fetchEnrollments(course_id, page - 1, "");
+      fetchDetailedEnrollments(course_id, page - 1, "");
     }
   }
 
@@ -78,7 +78,7 @@ const StudentsPage = () => {
           prevPage={() => {
             previousPage();
           }}
-          nextDisabled={enrollments?.rows?.length < 10 ? true : false}
+          nextDisabled={enrollments?.rows?.length < 7 ? true : false}
           prevDisabled={page === 0 ? true : false}
         />
       </div>

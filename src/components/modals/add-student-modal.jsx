@@ -18,6 +18,8 @@ export const AddStudentModal = ({ isOpen, onClose, coursePrice, currency }) => {
   // const courseId = param.courseId;
   const { course_id } = useParams();
 
+  
+
   //   Create user store
   const createUserStore = useCreateUserStore();
   //   To Enroll the created user afterwards

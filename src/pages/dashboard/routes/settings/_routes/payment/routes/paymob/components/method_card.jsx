@@ -4,7 +4,8 @@ import { EditIntegrationIdModal } from "@/components/modals/paymob-integration/e
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { Edit } from "lucide-react";
+import { Edit, Pencil } from "lucide-react";
+import { EditIntegrationIFrameModal } from "@/components/modals/paymob-integration/edit-integration-iframe";
 
 const MethodCard = ({
   title,
@@ -16,6 +17,8 @@ const MethodCard = ({
   disabledInputs,
   switchId,
   enabledName,
+  iframeRequired,
+  initialIFrameID,
 }) => {
   const [isEnabled, setIsEnabled] = useState(enabled);
 
@@ -23,6 +26,8 @@ const MethodCard = ({
   const [openAdd, setOpenAdd] = useState(false);
   // For Edit Integration Id modal
   const [openEdit, setOpenEdit] = useState(false);
+  // For Edit Integration Id + Iframe modal
+  const [openEditBoth, setOpenEditBoth] = useState(false);
 
   const handleSwitchToggle = () => {
     // if there's an integration id then we can toggle
@@ -59,6 +64,18 @@ const MethodCard = ({
         // onConfirm={onDisconnect}
         // loading={loading}
       />
+      {/* Edit Integration and Iframe if a method requries both */}
+
+      <EditIntegrationIFrameModal
+        isOpen={openEditBoth}
+        onClose={() => setOpenEditBoth(false)}
+        title={`Edit ${title} Live ID`}
+        idName={switchId}
+        initialIDValue={integrationID}
+        initialIFrameID={initialIFrameID}
+        // onConfirm={onDisconnect}
+        // loading={loading}
+      />
       <Card className="p-6 h-full hover:shadow-md transition-all duration-150 ease-in-out">
         <div className="flex flex-row items-start justify-between h-full">
           <div className="flex flex-col items-start justify-between h-full">
@@ -76,21 +93,22 @@ const MethodCard = ({
               {/* If there's an integration id already then edit */}
 
               {integrationID && (
-                <>
-                  <p className="text-muted-foreground text-sm">
-                    Integration ID: {integrationID}
-                  </p>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="ml-2"
-                    disabled={disabledInputs}
-                    onClick={() => setOpenEdit(true)}
-                  >
-                    {/* <Edit className="h-4 w-4" /> */}
-                    Edit
-                  </Button>
-                </>
+                <Button
+                  variant="ghost"
+                  size="small"
+                  className="p-2"
+                  disabled={disabledInputs}
+                  onClick={() => {
+                    if (iframeRequired) {
+                      setOpenEditBoth(true);
+                    } else {
+                      setOpenEdit(true);
+                    }
+                  }}
+                >
+                  <Pencil className="h-4 w-4 mr-2" />
+                  Edit
+                </Button>
               )}
             </div>
           </div>

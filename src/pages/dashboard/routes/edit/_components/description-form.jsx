@@ -26,7 +26,7 @@ const formSchema = z.object({
   }),
 });
 
-export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
+export const DescriptionForm = ({ initialData, courseId }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -59,14 +59,16 @@ export const DescriptionForm = ({ initialData, courseId, updateUI }) => {
 
       const response = await axios.patch(
         `${BASE_URL}/courses/details/${courseId}`,
-        values
+        {
+          description: values.description,
+        }
       );
       toast.success("Course updated!");
       toggleEdit();
       // fetch the new data after success
       setData(response.data);
-      updateUI(response.data.description);
-    } catch {
+    } catch (error) {
+      console.log(error);
       toast.error("Something went wrong");
     }
   };

@@ -7,6 +7,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { AddStudentModal } from "@/components/modals/add-student-modal";
 import useGetCourseStore from "@/store/courses/get-course-store";
 import { useParams } from "react-router-dom";
+import { useCurrentUser } from "@/hooks/use-current-user";
 // import { columns } from "./columns";
 
 export const StudentsClient = ({ data }) => {
@@ -16,6 +17,7 @@ export const StudentsClient = ({ data }) => {
 
   // Get course
   const { course, fetchCourseById } = useGetCourseStore();
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     fetchCourseById(course_id, 0);
@@ -30,7 +32,7 @@ export const StudentsClient = ({ data }) => {
         isOpen={open}
         onClose={() => setOpen(false)}
         coursePrice={course?.price}
-        currency={course?.currency}
+        currency={currentUser?.brand_currency}
         // onConfirm={onConfirm}
         // loading={userDeletionStore.isDeleting}
       />

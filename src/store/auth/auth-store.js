@@ -29,13 +29,12 @@ const useAuthStore = create((set) => ({
         // console.log(token);
         // console.log(response);
 
-        // Store the token in Zustand and localStorage
-        set({ authToken: token });
-        localStorage.setItem("bxAuthToken", JSON.stringify(token));
-
         // Redirect to a different URL upon successful login
         if (token) {
           window.location.href = "/"; // Replace with your desired URL
+          // Store the token in Zustand and localStorage
+          set({ authToken: token });
+          localStorage.setItem("bxAuthToken", JSON.stringify(token));
         } else {
           toast.error("Incorrect Email or Password");
         }
@@ -60,6 +59,14 @@ const useAuthStore = create((set) => ({
 
     // Redirect to a different URL after logout (optional)
     window.location.href = "/login"; // Replace with your desired URL
+  },
+  logoutAndChangePassword: () => {
+    // Remove the token from Zustand and localStorage
+    set({ authToken: null });
+    localStorage.removeItem("bxAuthToken");
+
+    // Redirect to a different URL after logout (optional)
+    window.location.href = "/forgot-password"; // Replace with your desired URL
   },
 }));
 

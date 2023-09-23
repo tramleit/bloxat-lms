@@ -19,10 +19,10 @@ export const useAlreadyHasCourse = () => {
       // window.location.href = `/${lastCourseId}`;
 
       navigate(`/${lastCourseId}`);
-      return;
+      // return;
       // redirect(`?courseId=${lastCourseId}`);
     }
   }
 
-  return null;
+  // return null;
 };

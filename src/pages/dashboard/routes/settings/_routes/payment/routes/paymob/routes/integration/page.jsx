@@ -21,7 +21,7 @@ import PaymobLogo from "@/assets/images/icons/paymob.webp";
 const formSchema = z.object({
   onlineCard: z.string().optional(),
   mobileWallet: z.string().optional(),
-  installment: z.string().optional(),
+  // installment: z.string().optional(),
 });
 
 const PaymobIntegrationPage = () => {
@@ -35,7 +35,7 @@ const PaymobIntegrationPage = () => {
     defaultValues: {
       onlineCard: "",
       mobileWallet: "",
-      installment: "",
+      // installment: "",
     },
   });
 
@@ -49,11 +49,7 @@ const PaymobIntegrationPage = () => {
     console.log("Form submitted with values:", values);
 
     // Check if all fields are empty then show that at least one should be there
-    if (
-      values.onlineCard === "" &&
-      values.mobileWallet === "" &&
-      values.installment === ""
-    ) {
+    if (values.onlineCard === "" && values.mobileWallet === "") {
       toast.error("Enter at least one ID");
       return;
     }
@@ -67,8 +63,8 @@ const PaymobIntegrationPage = () => {
         online_card_enabled: values.onlineCard ? true : false,
         wallet_id: values.mobileWallet ? values.mobileWallet : null,
         wallet_enabled: values.mobileWallet ? true : false,
-        installment_id: values.installment ? values.installment : null,
-        installment_enabled: values.installment ? true : false,
+        // installment_id: values.installment ? values.installment : null,
+        // installment_enabled: values.installment ? true : false,
       });
 
       setLoading(false);
@@ -143,7 +139,7 @@ const PaymobIntegrationPage = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="installment"
                   render={({ field }) => (
@@ -159,7 +155,7 @@ const PaymobIntegrationPage = () => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
               </div>
               {/* <Button disabled={loading} className="ml-auto" type="submit">
               Save changes

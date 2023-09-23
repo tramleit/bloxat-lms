@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useCourseStore from "@/store/courses/courses-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import { generateRandomSlug } from "@/lib/generate-random-slug";
+import toast from "react-hot-toast";
 
 // Form validation
 const formSchema = z.object({
@@ -41,16 +43,28 @@ const CreateModal = () => {
       // form.setIsSubmitting(true);
 
       // Transform name to lowercase and replace spaces with hyphens
-      const formattedNameToSlug = values.name
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
-        .replace(/\s+/g, "-"); // Replace spaces with hyphens
+      // const formattedNameToSlug = values.name
+      //   .toLowerCase()
+      //   .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
+      //   .replace(/\s+/g, "-"); // Replace spaces with hyphens
+
+      // Check if the course name contains Arabic characters
+      const hasArabicCharacters = /[؀-ۿ]/.test(values.name);
+
+      // Transform name to lowercase and replace spaces with hyphens
+      // Generate a random slug if the course name is in Arabic
+      const courseSlug = hasArabicCharacters
+        ? generateRandomSlug(10) // Adjust the length as needed
+        : values.name
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
+            .replace(/\s+/g, "-"); // Replace spaces with hyphens
 
       // Make the API request using the addCourse function from the Zustand store
       await addCourse({
         user_id: currentUser?.user_id,
         title: values.name,
-        course_slug: formattedNameToSlug,
+        course_slug: courseSlug,
       });
 
       console.log(currentUser?.user_id);
@@ -60,9 +74,11 @@ const CreateModal = () => {
     } catch (error) {
       console.error("Error adding course:", error);
       // Handle errors here, e.g., show an error message
+      toast.error("Course name already exists. Enter a new name");
     } finally {
       // Set loading to false after the request is complete
       // form.setIsSubmitting(false);
+      toast.error("Course name already exists. Enter a new name");
     }
   };
 
@@ -102,7 +118,7 @@ const CreateModal = () => {
                     disabled={loading}
                     variant="outline"
                     onClick={createModal.onClose}
-                    // type="button"
+                    type="button"
                   >
                     Cancel
                   </Button>

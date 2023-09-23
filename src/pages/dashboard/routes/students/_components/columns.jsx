@@ -47,29 +47,48 @@ export const columns = [
   {
     accessorKey: "phone_number",
     header: "Phone",
-    cell: ({ row }) => <span>{row.original.user.phone_number}</span>,
+    cell: ({ row }) => <span>+{row.original.user.phone_number}</span>,
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <div
-        // className={cn(
-        //   " w-fit px-2 py-1 rounded-md text-sm",
-        //   row.original.status === "Idle"
-        //     ? "bg-gray-100"
-        //     : "bg-blue-500 text-white"
-        // )}
-        className=" w-fit px-2 py-1 rounded-md text-sm bg-blue-500 text-white"
-      >
-        <span>Enrolled</span>
-      </div>
+      <>
+        {row.original.status == 1 ? (
+          <div
+            // className={cn(
+            //   " w-fit px-2 py-1 rounded-md text-sm",
+            //   row.original.status === "Idle"
+            //     ? "bg-gray-100"
+            //     : "bg-blue-500 text-white"
+            // )}
+            className=" w-fit px-2 py-1 rounded-md text-sm bg-blue-500 text-white"
+          >
+            <span>Enrolled</span>
+          </div>
+        ) : (
+          <></>
+          // <div
+          //   // className={cn(
+          //   //   " w-fit px-2 py-1 rounded-md text-sm",
+          //   //   row.original.status === "Idle"
+          //   //     ? "bg-gray-100"
+          //   //     : "bg-blue-500 text-white"
+          //   // )}
+          //   className=" w-fit px-2 py-1 rounded-md text-sm bg-red text-white"
+          // >
+          //   <span>Unpaid</span>
+          // </div>
+        )}
+      </>
     ),
   },
   {
     accessorKey: "level_progress_percentage",
     header: "Progress",
-    cell: ({ row }) => <span>{row.original.level_progress_percentage}%</span>,
+    cell: ({ row }) => (
+      <span>{Math.round(row.original.percentageCompleted)}%</span>
+    ),
   },
   {
     id: "actions",

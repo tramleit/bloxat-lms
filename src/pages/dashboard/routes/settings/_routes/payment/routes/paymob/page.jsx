@@ -78,7 +78,7 @@ const PaymobPage = () => {
         isOpen={open}
         onClose={() => setOpen(false)}
         initialApiKey={paymobIntegration?.paymob_integrations[0].api_key}
-        initialIframeId={paymobIntegration?.paymob_integrations[0].iframe_id}
+        // initialIframeId={paymobIntegration?.paymob_integrations[0].iframe_id}
         // idName={switchId}
         // initialIDValue={integrationID}
         // onConfirm={onDisconnect}
@@ -137,6 +137,10 @@ const PaymobPage = () => {
               disabledInputs={switching}
               switchId="online_card_id"
               enabledName="online_card_enabled"
+              iframeRequired={true}
+              initialIFrameID={
+                paymobIntegration?.paymob_integrations[0]?.online_card_iframe_id
+              }
             />
             {/* Mobile Wallets */}
             <MethodCard
@@ -161,6 +165,7 @@ const PaymobPage = () => {
               disabledInputs={switching}
               switchId="wallet_id"
               enabledName="wallet_enabled"
+              iframeRequired={false}
             />
             {/* Installments */}
             {/* <MethodCard

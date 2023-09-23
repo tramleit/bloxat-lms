@@ -26,13 +26,14 @@ export default function DashboardLayout({ children }) {
     const token = localStorage.getItem("bxAuthToken");
 
     // If a token exists and is not undefined, redirect to the desired page (e.g., '/')
-    if (token == "undefined" || token == null) {
+    if (token == undefined || token == null) {
       navigate("/login");
+      return;
     }
 
     // Fetch the course by its courseId
     fetchCourseById(course_id, 1); // Fetch the course by ID
-  }, [course_id, fetchCourseById]);
+  }, [course_id, fetchCourseById, currentUser]);
 
   // Loading state
   if (!course || !currentUser) {
@@ -78,7 +79,7 @@ export default function DashboardLayout({ children }) {
   // Check if the currentUser has a course under them
   // If no courses redirect to / .. which is the setup
   if (currentUser?.courses?.length == 0) {
-    navigate("/");
+    navigate("/setup");
     return;
   }
 

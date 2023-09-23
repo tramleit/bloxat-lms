@@ -17,6 +17,7 @@ import useCourseStore from "@/store/courses/courses-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { Icons } from "@/components/icons";
 import SetupHeader from "../../_components/setup-header";
+import { generateRandomSlug } from "@/lib/generate-random-slug";
 
 // Form validation
 const formSchema = z.object({
@@ -42,17 +43,23 @@ const CreateFirstCourse = () => {
       // Set loading to true before making the API request
       // form.setIsSubmitting(true);
 
+      // Check if the course name contains Arabic characters
+      const hasArabicCharacters = /[؀-ۿ]/.test(values.name);
+
       // Transform name to lowercase and replace spaces with hyphens
-      const formattedNameToSlug = values.name
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
-        .replace(/\s+/g, "-"); // Replace spaces with hyphens
+      // Generate a random slug if the course name is in Arabic
+      const courseSlug = hasArabicCharacters
+        ? generateRandomSlug(10) // Adjust the length as needed
+        : values.name
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
+            .replace(/\s+/g, "-"); // Replace spaces with hyphens
 
       // Make the API request using the addCourse function from the Zustand store
       await addCourse({
         user_id: currentUser?.user_id,
         title: values.name,
-        course_slug: formattedNameToSlug,
+        course_slug: courseSlug,
       });
 
       console.log(currentUser?.user_id);

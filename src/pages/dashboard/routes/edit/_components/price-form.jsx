@@ -41,7 +41,6 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
   //   useCourseContentStore();
 
   const [data, setData] = useState(initialData);
-  const [currency, setCurrency] = useState(initialData?.currency);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -52,13 +51,6 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
 
   const { isSubmitting, isValid } = form.formState;
 
-  // SELECT
-  // FOR THE CURRENCY
-  const handleSelectCurrency = (value) => {
-    // const { value } = event.target;
-    setCurrency(value); // Convert the string value to a boolean
-  };
-
   const onSubmit = async (values) => {
     if (!values.price) {
       toast.error("Set a price");
@@ -66,10 +58,7 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
     }
 
     // if the data is the same as the previous then no need to hit the server
-    if (
-      values.price == initialData?.price &&
-      currency == initialData?.currency
-    ) {
+    if (values.price == initialData?.price) {
       toast.success("Course updated!");
       toggleEdit();
       return;
@@ -83,7 +72,6 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
         `${BASE_URL}/courses/details/${courseId}`,
         {
           price: values.price,
-          currency: currency,
         }
       );
       toast.success("Course updated!");
@@ -148,50 +136,6 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
                   </FormItem>
                 )}
               />
-              <div className="grid gap-2">
-                {/* SELECT CURRENCY */}
-                <Select
-                  defaultValue={currency} // Convert the boolean to a string for the select value
-                  value={currency}
-                  onValueChange={handleSelectCurrency}
-                >
-                  <SelectTrigger id="currency">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="EGP">
-                      <div className="flex flex-row items-center space-x-2 pr-2">
-                        <span>EGP</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="SAR">
-                      <div className="flex flex-row items-center space-x-2 pr-2">
-                        <span>SAR</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="AED">
-                      <div className="flex flex-row items-center space-x-2 pr-2">
-                        <span>AED</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="KWD">
-                      <div className="flex flex-row items-center space-x-2 pr-2">
-                        <span>KWD</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="OMR">
-                      <div className="flex flex-row items-center space-x-2 pr-2">
-                        <span>OMR</span>
-                      </div>
-                    </SelectItem>
-                    <SelectItem value="QAR">
-                      <div className="flex flex-row items-center space-x-2 pr-2">
-                        <span>QAR</span>
-                      </div>
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
             </div>
 
             <div className="flex items-center gap-x-2">

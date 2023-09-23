@@ -12,16 +12,16 @@ import { useParams } from "react-router-dom";
 export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
   const { course_id } = useParams();
 
-  const { fetchUserById } = useStudentsStore(); // Access the fetchUserById method from your Zustand store
+  const { fetchEnrollmentById } = useStudentsStore(); // Access the fetchUserById method from your Zustand store
 
-  const [user, setUser] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     if (userId && course_id) {
       // Fetch user details when userId changes
-      fetchUserById(userId, course_id)
+      fetchEnrollmentById(userId, course_id)
         .then((userData) => {
-          setUser(userData);
+          setData(userData);
         })
         .catch((error) => {
           console.error("Error fetching user:", error);
@@ -44,7 +44,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
 
   // Function to copy phone number to clipboard
   const copyPhoneNumberToClipboard = () => {
-    const phoneNumber = user?.phone_number;
+    const phoneNumber = `+${data?.user?.phone_number}`;
 
     if (phoneNumber) {
       navigator.clipboard
@@ -62,7 +62,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
   };
 
   //   Loading state
-  if (!user || !user?.enrollments[0]) {
+  if (!data) {
     return <>loading</>;
   }
 
@@ -82,19 +82,21 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
               <AvatarImage
                 className="object-cover"
                 src={
-                  user?.avatar_url == null
-                    ? `https://avatar.vercel.sh/${user?.first_name}.png`
-                    : user?.avatar_url
+                  data?.user?.avatar_url == null
+                    ? `https://avatar.vercel.sh/${data?.user?.first_name}.png`
+                    : data?.user?.avatar_url
                 }
-                alt={user?.first_name}
+                alt={data?.user?.first_name}
               />
-              <AvatarFallback>{user?.first_name.charAt(0)}</AvatarFallback>
+              <AvatarFallback>
+                {data?.user?.first_name.charAt(0)}
+              </AvatarFallback>
             </Avatar>
             <div className="flex flex-col items-start">
               <span className="font-semibold">
-                {user?.first_name} {user?.last_name}
+                {data?.user?.first_name} {data?.user?.last_name}
               </span>
-              <span className="text-muted-foreground">{user?.email}</span>
+              <span className="text-muted-foreground">{data?.user?.email}</span>
             </div>
           </div>
 
@@ -111,11 +113,9 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
           <span>Launch Whatsapp</span> */}
           </div>
         </div>
-        <Separator />
+        {/* <Separator />
 
         <div className="grid grid-cols-2">
-          {/* <span>Current Topic</span> */}
-
           <div className="flex flex-row items-center space-x-3">
             <span className="flex items-center justify-center font-semibold border  p-8 rounded-full w-6 h-6 ">
               {" "}
@@ -132,12 +132,34 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
               </span>
             </div>
           </div>
+        </div> */}
+        {/* <Separator /> */}
+        {/* Payment */}
+        <div className="flex flex-row items-center space-x-2">
+          <span className="text-muted-foreground">Paid: </span>
+          <span>
+            {data?.userEnrollment?.price} {data?.userEnrollment?.currency}
+          </span>
+          {data?.userEnrollment?.status == 1 && <span>Success</span>}
         </div>
-        <Separator />
 
+        {data?.userEnrollment?.order_id && (
+          <>
+            {/* Paymob data */}
+            <div className="flex flex-row items-center space-x-2">
+              <span className="text-muted-foreground">Paymob data: </span>
+              <span>{data?.userEnrollment?.order_id}</span>
+              <span>{data?.userEnrollment?.transaction_id}</span>
+            </div>
+          </>
+        )}
+
+        {/* How enrolled */}
         <div className="flex flex-row items-center space-x-2">
           <span className="text-muted-foreground">Enrolled At: </span>
-          <span>{formatDate(user?.enrollments[0]?.createdAt)} </span>
+          <span>{formatDate(data?.userEnrollment.createdAt)} </span>
+          <span>via</span>
+          <span>{data?.userEnrollment?.enrolled_through}</span>
         </div>
       </div>
       {/* Bottom Options */}

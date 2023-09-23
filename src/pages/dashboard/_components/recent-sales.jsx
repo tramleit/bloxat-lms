@@ -1,4 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { formatPrice } from "@/lib/format-price";
 
 export function RecentSales({ recentData }) {
   return (
@@ -23,7 +24,9 @@ export function RecentSales({ recentData }) {
             </p>
             <p className="text-sm text-muted-foreground">{item?.user?.email}</p>
           </div>
-          <div className="ml-auto font-medium">+{item?.price}</div>
+          <div className="ml-auto font-medium">
+            +{item?.price} {item?.currency}
+          </div>
         </div>
       ))}
 

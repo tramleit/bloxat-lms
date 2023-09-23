@@ -19,28 +19,36 @@ import { Icons } from "@/components/icons";
 
 // Form validation
 const formSchema = z.object({
-  apiKey: z.string().min(1),
+  liveID: z.string().min(1),
+  iframeID: z.string().min(1),
 });
 
-export const EditConnectionModal = ({ isOpen, onClose, initialApiKey }) => {
+export const EditIntegrationIFrameModal = ({
+  isOpen,
+  onClose,
+  title,
+  //   idName, // Field name to update // online_card_id
+  initialIDValue, // null
+  initialIFrameID,
+}) => {
   const [isMounted, setIsMounted] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      apiKey: initialApiKey,
+      liveID:
+        initialIDValue?.toString() == null ? "" : initialIDValue?.toString(),
+      iframeID:
+        initialIFrameID?.toString() == null ? "" : initialIFrameID?.toString(),
     },
   });
 
   const paymentMethodsStore = usePaymentMethodsStore();
 
-  //   Submit function
   const onSubmit = async (values) => {
-    console.log("Form submitted with values:", values);
-
     // Check if the value is the same
-    if (values.apiKey == initialApiKey) {
+    if (values.liveID == initialIDValue && values.iframeID == initialIFrameID) {
       toast.success("Saved");
       onClose();
       return;
@@ -49,19 +57,26 @@ export const EditConnectionModal = ({ isOpen, onClose, initialApiKey }) => {
     try {
       setLoading(true);
 
-      // Call the updatePaymobIntegration function with the updated fields
-      const result = await paymentMethodsStore.updatePaymobIntegration({
-        api_key: values.apiKey,
-      });
+      // Construct the update object
+      const dataToUpdate = {
+        online_card_id: values.liveID,
+        online_card_iframe_id: values.iframeID,
+      };
 
-      setLoading(false);
+      // Call the updatePaymobIntegration function with the updated fields
+      const result = await paymentMethodsStore.updatePaymobIntegration(
+        dataToUpdate
+      );
 
       if (result.success) {
-        toast.success("Updated!");
+        toast.success("Added!");
+        // router.push(`/${params.courseId}/settings/payment/paymob`);
         window.location.reload();
       } else {
         toast.error("Something went wrong.");
       }
+
+      setLoading(false);
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong.");
@@ -79,26 +94,29 @@ export const EditConnectionModal = ({ isOpen, onClose, initialApiKey }) => {
 
   return (
     <Modal
-      title={"Edit Paymob Connection"}
-      description="Change your Paymob account details"
+      title={title}
+      description="Find it in your Paymob under Developers -> Payment Integrations."
       isOpen={isOpen}
       onClose={onClose}
     >
       {/* Content */}
       <div>
-        <div className="  pb-4">
+        <div className="pb-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-4  "
+            >
               <FormField
                 control={form.control}
-                name="apiKey"
+                name="liveID"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>PAYMOB API Key</FormLabel>
+                    <FormLabel>Live ID</FormLabel>
                     <FormControl>
                       <Input
                         disabled={loading}
-                        placeholder="ZXlKaGJHY2lPaUpJVXpVe..."
+                        placeholder="1996183"
                         {...field}
                       />
                     </FormControl>
@@ -107,7 +125,8 @@ export const EditConnectionModal = ({ isOpen, onClose, initialApiKey }) => {
                   </FormItem>
                 )}
               />
-              {/* <FormField
+
+              <FormField
                 control={form.control}
                 name="iframeID"
                 render={({ field }) => (
@@ -123,7 +142,8 @@ export const EditConnectionModal = ({ isOpen, onClose, initialApiKey }) => {
                     <FormMessage />
                   </FormItem>
                 )}
-              /> */}
+              />
+
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                 <Button
                   disabled={loading}

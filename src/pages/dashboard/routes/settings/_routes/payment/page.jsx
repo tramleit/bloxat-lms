@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
+import { CurrencySwitch } from "./components/currency-switch";
 
 const PaymentPage = () => {
   const { course_id } = useParams();
@@ -120,6 +121,7 @@ const PaymentPage = () => {
               description="Set up payment on your portal."
             />
           </div>
+          <CurrencySwitch />
         </div>
         <Separator />
         {/* Content */}

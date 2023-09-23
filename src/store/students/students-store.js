@@ -15,11 +15,34 @@ const useStudentsStore = create((set) => ({
       console.error(error);
     }
   },
-  // Fetch User by ID Method
-  fetchUserById: async (userId, enrolledCourseId) => {
+  // Fetch Enrollments with students details
+  fetchDetailedEnrollments: async (courseId, perPage, page, search) => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/users/${userId}?per_page=1&searchEnrollments=${enrolledCourseId}`
+        `${BASE_URL}/students-details/enrollment/${courseId}?per_page=${perPage}&page=${page}&search=${search}`
+      );
+      set({ enrollments: response.data });
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  // Fetch User by ID Method
+  // fetchUserById: async (userId, enrolledCourseId) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${BASE_URL}/users/${userId}?per_page=1&searchEnrollments=${enrolledCourseId}`
+  //     );
+  //     return response.data; // Return the user data
+  //   } catch (error) {
+  //     console.error(error);
+  //     return null; // Handle the error and return null or an appropriate value
+  //   }
+  // },
+  // Get Enrollment details by user id and course id
+  fetchEnrollmentById: async (userId, enrolledCourseId) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/enrollment/${userId}/${enrolledCourseId}`
       );
       return response.data; // Return the user data
     } catch (error) {

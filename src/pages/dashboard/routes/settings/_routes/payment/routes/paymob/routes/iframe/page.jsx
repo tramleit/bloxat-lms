@@ -21,11 +21,11 @@ import PaymobLogo from "@/assets/images/icons/paymob.webp";
 
 // Form validator
 const formSchema = z.object({
-  apiKey: z.string().min(1),
+  cardIframeID: z.string().min(1),
   // iframeID: z.string().min(1), // "iframeID" is required and should be a number
 });
 
-const PaymobSetupPage = () => {
+const PaymobIframePage = () => {
   const { course_id } = useParams();
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const PaymobSetupPage = () => {
     resolver: zodResolver(formSchema),
     // TODO: Uncomment this
     defaultValues: {
-      apiKey: "",
+      cardIframeID: "",
       // iframeID: "", // Set it to undefined initially
     },
   });
@@ -52,7 +52,7 @@ const PaymobSetupPage = () => {
 
       // Call the updatePaymobIntegration function with the updated fields
       const result = await paymentMethodsStore.updatePaymobIntegration({
-        api_key: values.apiKey,
+        online_card_iframe_id: values.cardIframeID,
         // iframe_id: values.iframeID,
       });
 
@@ -60,7 +60,7 @@ const PaymobSetupPage = () => {
 
       if (result.success) {
         toast.success("Updated!");
-        navigate(`/${course_id}/settings/payment/paymob/iframe`);
+        navigate(`/${course_id}/settings/payment/paymob/integration`);
       } else {
         toast.error("Something went wrong.");
       }
@@ -95,14 +95,14 @@ const PaymobSetupPage = () => {
               <div className="grid grid-col-3 gap-8">
                 <FormField
                   control={form.control}
-                  name="apiKey"
+                  name="cardIframeID"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>PAYMOB API Key</FormLabel>
+                      <FormLabel>CARD IFRAME ID</FormLabel>
                       <FormControl>
                         <Input
                           disable={loading}
-                          placeholder="ZXlKaGJHY2lPaUpJVXpVe..."
+                          placeholder="369734"
                           {...field}
                         />
                       </FormControl>
@@ -150,4 +150,4 @@ const PaymobSetupPage = () => {
   );
 };
 
-export default PaymobSetupPage;
+export default PaymobIframePage;

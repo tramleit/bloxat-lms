@@ -5,7 +5,7 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useController, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Link, Pencil, Plus } from "lucide-react";
+import { Link, Loader2, Pencil, Plus } from "lucide-react";
 import {
   Form,
   FormField,
@@ -160,7 +160,12 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
         }
       }}
     >
-      <div className="mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+      <div className="relative mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+        {isUpdating && (
+          <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-md flex items-center justify-center">
+            <Loader2 className="animate-spin h-6 w-6" />
+          </div>
+        )}
         <div className="font-medium flex items-center justify-between">
           Add resources
           <Button onClick={toggleAdd} variant="ghost">
