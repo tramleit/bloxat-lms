@@ -62,7 +62,7 @@ export const columns = [
             //     ? "bg-gray-100"
             //     : "bg-blue-500 text-white"
             // )}
-            className=" w-fit px-2 py-1 rounded-md text-sm bg-blue-500 text-white"
+            className=" w-fit px-2 py-1 rounded-md text-sm bg-lemonBloxLight text-[#566527]"
           >
             <span>Enrolled</span>
           </div>

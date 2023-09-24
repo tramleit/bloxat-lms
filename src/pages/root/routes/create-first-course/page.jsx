@@ -18,10 +18,13 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { Icons } from "@/components/icons";
 import SetupHeader from "../../_components/setup-header";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Form validation
 const formSchema = z.object({
-  name: z.string().min(1),
+  name: z.string().min(1, {
+    message: "Your course name is required!",
+  }),
 });
 
 const CreateFirstCourse = () => {
@@ -64,6 +67,10 @@ const CreateFirstCourse = () => {
 
       console.log(currentUser?.user_id);
 
+      //   set in local storage that we started with completing the account so we can show the bottom overlay of account completion
+      // Each zero represents a step .. so payment method, course content, share
+      // localStorage.setItem("bxCompletion", JSON.stringify([0, 0, 0]));
+
       // If the API request is successful, navigate to another route
       // router.push("/success-route"); // Replace 'success-route' with your desired route
     } catch (error) {
@@ -84,14 +91,14 @@ const CreateFirstCourse = () => {
         <div className="flex flex-row items-center h-full">
           {/* Left Side */}
           <div className="flex flex-col flex-1 items-center justify-center h-full space-y-2 text-center">
-            <h1 className="text-3xl font-bold">Create Your Course 🚀</h1>
+            <h1 className="text-3xl font-bold">Create Your First Course</h1>
             <p className="text-muted-foreground">
-              Add a new course and start getting paid.
+              Add a new course and start getting paid!
             </p>
             <div className="h-4"></div>
             {/* Content */}
             <div>
-              <div className="space-y-4 pb-4">
+              <div className="space-y-4 pb-4 w-[300px]">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)}>
                     <FormField
@@ -100,12 +107,12 @@ const CreateFirstCourse = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="flex justify-start">
-                            Name
+                            Course Name
                           </FormLabel>
                           <FormControl>
                             <Input
                               disabled={loading}
-                              placeholder="eg: Stock Market Course"
+                              placeholder="Example: Stock Market Course"
                               {...field}
                             />
                           </FormControl>
@@ -115,11 +122,11 @@ const CreateFirstCourse = () => {
                       )}
                     />
                     <div className="pt-6 space-x-2 flex items-center justify-center w-full">
-                      <Button disabled={loading} type="submit">
+                      <Button disabled={loading} type="submit" variant="blue">
                         {loading && (
                           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                         )}
-                        Add
+                        Create
                       </Button>
                     </div>
                   </form>
@@ -127,10 +134,19 @@ const CreateFirstCourse = () => {
               </div>
             </div>
           </div>
-
           {/* Right Side */}
-          <div className="bg-gray-50 dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full">
-            right [place graphic]
+          <div className="bg-[#fdfdfd] dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full ">
+            {/* bg-gray-50 */}
+            {/* right [place graphic] */}
+            <div className="flex items-center justify-center h-full">
+              <LazyLoadImage
+                className="object-cover h-full"
+                src="https://media.publit.io/file/rubikscube-3.gif"
+                effect="blur"
+                placeholderSrc="https://media.publit.io/file/rubikscube-3.gif"
+                draggable={false}
+              />
+            </div>
           </div>
         </div>
         {/* End Content */}

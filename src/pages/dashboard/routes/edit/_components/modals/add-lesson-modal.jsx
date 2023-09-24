@@ -98,7 +98,7 @@ export const AddLessonModal = ({
 
   return (
     <Modal
-      title="Add lesson 🧩"
+      title="Add lesson 🧠"
       //   description="A section is what contains many lessons."
       isOpen={isOpen}
       onClose={onClose}
@@ -114,6 +114,7 @@ export const AddLessonModal = ({
             id="title"
             type="text"
             autoCapitalize="none"
+            placeholder="Example: How to setup your application"
             autoCorrect="off"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -124,7 +125,7 @@ export const AddLessonModal = ({
         <div className="grid gap-1 w-full">
           <Label htmlFor="video" className="mb-1">
             {/* Video link (Youtube/ Vimeo/ Loom) */}
-            Video link (Youtube)
+            Video link (Youtube/ Vimeo)
           </Label>
           <Input
             id="video"

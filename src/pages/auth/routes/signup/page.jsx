@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import rotate from "@/assets/lotties/rotate.json";
 import { SignupForm } from "../../_components/signup-form";
 import Lottie from "lottie-react-web";
-import Logo from "@/assets/images/logo/bloxat-colored.webp";
+import Logo from "@/assets/images/logo/bloxat-yellow.webp";
 
 // export const metadata = {
 //   title: "Authentication",

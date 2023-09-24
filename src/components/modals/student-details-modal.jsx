@@ -133,35 +133,34 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
             </div>
           </div>
         </div> */}
-        {/* <Separator /> */}
+        <Separator />
         {/* Payment */}
         <div className="flex flex-row items-center space-x-2">
-          <span className="text-muted-foreground">Paid: </span>
+          <span className="text-muted-foreground">💵 Paid: </span>
           <span>
             {data?.userEnrollment?.price} {data?.userEnrollment?.currency}
           </span>
-          {data?.userEnrollment?.status == 1 && <span>Success</span>}
+          {/* {data?.userEnrollment?.status == 1 && <span>Success</span>} */}
         </div>
 
-        {data?.userEnrollment?.order_id && (
-          <>
-            {/* Paymob data */}
-            <div className="flex flex-row items-center space-x-2">
-              <span className="text-muted-foreground">Paymob data: </span>
-              <span>{data?.userEnrollment?.order_id}</span>
-              <span>{data?.userEnrollment?.transaction_id}</span>
-            </div>
-          </>
-        )}
-
         {/* How enrolled */}
-        <div className="flex flex-row items-center space-x-2">
-          <span className="text-muted-foreground">Enrolled At: </span>
+        <div className="flex flex-row items-center space-x-1">
+          <span className="text-muted-foreground">📅 Enrolled At: </span>
           <span>{formatDate(data?.userEnrollment.createdAt)} </span>
           <span>via</span>
           <span>{data?.userEnrollment?.enrolled_through}</span>
         </div>
       </div>
+      {data?.userEnrollment?.order_id && (
+        <>
+          {/* Paymob data */}
+          <div className="flex flex-row items-center space-x-2">
+            <span className="text-muted-foreground">Paymob data: </span>
+            <span>{data?.userEnrollment?.order_id}</span>
+            <span>{data?.userEnrollment?.transaction_id}</span>
+          </div>
+        </>
+      )}
       {/* Bottom Options */}
       <div className="space-x-2 flex items-center justify-end w-full">
         <Button variant="outline" onClick={onClose}>

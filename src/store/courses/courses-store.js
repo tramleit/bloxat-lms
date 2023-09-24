@@ -63,6 +63,35 @@ const useCourseStore = create((set) => ({
       set({ loading: false });
     }
   },
+  // GET COURSES BY USER ID BUT MINIMAL RESPONSE
+  fetchMinimalCoursesByUserId: async () => {
+    const token = JSON.parse(localStorage.getItem("bxAuthToken"));
+
+    const decodedToken = jwt_decode(token); // Decode the JWT token
+    const userId = decodedToken.id; // Extract the user ID from the decoded token
+
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    set({ loading: true });
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/courses/minimal/${userId}`,
+        // Headers
+        {
+          Authorization: `Bearer ${token}`,
+        }
+      );
+
+      set({
+        courses: response.data,
+        loading: false,
+      });
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+      set({ loading: false });
+    }
+  },
+
   // updateCourseData: async (courseId, updatedData) => {
   //   const token = JSON.parse(localStorage.getItem("bxAuthToken"));
 

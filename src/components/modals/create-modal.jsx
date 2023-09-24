@@ -85,7 +85,7 @@ const CreateModal = () => {
   return (
     <div>
       <Modal
-        title="Create course"
+        title="Create course 🧩"
         description="Add a new course and start getting paid."
         isOpen={createModal.isOpen}
         onClose={createModal.onClose}
@@ -122,7 +122,7 @@ const CreateModal = () => {
                   >
                     Cancel
                   </Button>
-                  <Button disabled={loading} type="submit">
+                  <Button disabled={loading} type="submit" variant="blue">
                     Continue
                   </Button>
                 </div>

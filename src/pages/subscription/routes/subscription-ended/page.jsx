@@ -7,7 +7,7 @@ import {
 } from "@/config/subscription-config";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { startPaymentProcess } from "@/hooks/use-paymob";
-import Logo from "@/assets/images/logo/bloxat-colored.webp";
+import Logo from "@/assets/images/logo/bloxat-blue.webp";
 
 const SubscriptionEndedPage = () => {
   const currentUser = useCurrentUser();
@@ -80,7 +80,7 @@ const SubscriptionEndedPage = () => {
         {/* MONTH */}
         <PlanCard
           duration="Monthly"
-          color={"bg-[#CCFCFF]"}
+          color={"bg-lemonBloxLight"}
           price="497"
           onClick={() => {
             setMonthlyLoading(true);
@@ -105,7 +105,7 @@ const SubscriptionEndedPage = () => {
         {/* YEAR */}
         <PlanCard
           duration="Yearly"
-          color={"bg-[#FFF387]"}
+          color={"bg-yellowBloxLight"}
           price="5,000"
           onClick={() => {
             setYearlyLoading(true);

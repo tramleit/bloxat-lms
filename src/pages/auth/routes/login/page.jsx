@@ -5,7 +5,7 @@ import Lottie from "lottie-react-web";
 import rotate from "@/assets/lotties/rotate.json";
 import { LoginForm } from "../../_components/login-form";
 import { Link } from "react-router-dom";
-import Logo from "@/assets/images/logo/bloxat-colored.webp";
+import Logo from "@/assets/images/logo/bloxat-yellow.webp";
 // import Lottie from "lottie-react-web";
 // import { buttonVariants } from "@/registry/new-york/ui/button"
 // import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"

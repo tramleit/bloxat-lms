@@ -54,7 +54,7 @@ const LessonTile = ({ lesson }) => {
               {/* Edit button */}
               <div>
                 <Button
-                  variant="secondary"
+                  variant="yellow"
                   size="sm"
                   onClick={() => {
                     navigate(`/${course_id}/edit/${lesson?.lesson_id}`);

@@ -1,91 +1,49 @@
-import { useEffect, useState } from "react";
-import { SalesChart } from "@/components/sales-chart";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import { formatter } from "@/lib/utils";
-import {
-  Box,
-  Boxes,
-  CreditCard,
-  DollarSign,
-  Edit,
-  ExternalLink,
-  Plus,
-  Trash,
-  User,
-} from "lucide-react";
-import useStudentsStore from "@/store/students/students-store";
-import Loading from "@/components/loading/loading";
+import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCreateModal } from "@/hooks/use-create-modal";
+import { CreditCard, Eye, Pencil, Plus } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import { RecentSales } from "../_components/recent-sales";
-// import { getGraphRevenue } from "@/actions/get-graph-revenue";
 import WarningsBanners from "../_components/warnings-banners";
 import { useWarnings } from "@/hooks/use-warnings";
+import Loading from "@/components/loading/loading";
 import { PORTAL_URL } from "@/config/url-config";
-import { CompareChart } from "@/components/compare-chart";
-import { useCompareAnalytics } from "@/hooks/use-compare-analytics";
-import { formatPrice } from "@/lib/format-price";
-import currentMonth from "@/lib/get-current-month";
-import { useCurrentUser } from "@/hooks/use-current-user";
+import { useCourseTitle } from "@/queries/courses/course-queries";
+import useTourStore from "@/store/tour.store";
+import StartTourModal from "@/components/modals/start-tour-modal";
+import { useEffect } from "react";
 
-const DashboardPage = () => {
+const QuickPage = () => {
   const { course_id } = useParams();
   const navigate = useNavigate();
 
-  //  Get the graph data
-  // State to store the graph data
-  // const [graphRevenue, setGraphRevenue] = useState(null);
-
   const currentUser = useCurrentUser();
 
-  const { enrollments, fetchEnrollments } = useStudentsStore();
+  const createModal = useCreateModal();
+
+  // get the current course title and slug
+  const { data: course, isLoading: courseLoading } = useCourseTitle(course_id);
+
   // Use the custom hook to fetch warnings
-  const { data: warnings, isLoading, isError } = useWarnings(course_id);
+  const { data: warnings, isLoading } = useWarnings(course_id);
 
-  const {
-    data: compareAnalytics,
-    isLoading: analyticsLoading,
-    isError: error,
-  } = useCompareAnalytics();
+  //Start tour modal state check if it's enabled or not
+  const showStartTourModal = useTourStore((state) => state.showStartTourModal);
+  const enableShowStartTourModal = useTourStore(
+    (state) => state.enableShowStartTourModal
+  );
 
+  // Get local storage data
+  // If start tour modal has been shown
+  const tourModalPopped = localStorage.getItem("tourModalPopped");
+
+  // to show the tour modal if first time visit
   useEffect(() => {
-    // Call the fetchEnrollments method when the component mounts or whenever needed
-    fetchEnrollments(course_id, "", 0, "");
-  }, []); // Add any dependencies if needed
+    if (tourModalPopped !== "true") {
+      enableShowStartTourModal();
+    }
+  }, []);
 
-  // Get current month
-  // Get the current date and extract the month
-
-  // Fetch the graph data when the component mounts
-  // useEffect(() => {
-  //   async function fetchGraphRevenue() {
-  //     try {
-  //       // const rowsArray = Array.from(enrollments?.rows || []);
-
-  //       const data = await getGraphRevenue(enrollments?.rows);
-  //       setGraphRevenue(data);
-  //       console.log("data passed", enrollments?.rows);
-  //     } catch (error) {
-  //       console.error("Error fetching graph data:", error);
-  //     }
-  //   }
-
-  //   fetchGraphRevenue();
-  // }, [enrollments]);
-
-  // console.log("enrollments", enrollments?.count);
-  // console.log("enrollments", enrollme  nts?.rows);
-
-  // Loading
-  if (isLoading || analyticsLoading) {
+  if (!currentUser || isLoading || courseLoading) {
     return (
       <>
         <Loading />
@@ -93,190 +51,81 @@ const DashboardPage = () => {
     );
   }
 
-  console.log("warnings", enrollments);
+  console.log("course", course);
 
   return (
     <>
+      {/* Tour Modal if the user got here for the first time .. or manually toggled it from the support hover */}
+      {showStartTourModal && <StartTourModal />}
+      {/* Warning banners if something is missing */}
       <WarningsBanners warnings={warnings} courseId={course_id} />
-      <div className="flex-col">
-        <div className="flex-1 space-y-4 p-8 pt-6">
-          <div className="flex items-center justify-between">
-            <Heading title="Dashboard" description="Overview of your course." />
-            <div className="flex flex-row items-center space-x-3">
-              <Button
-                onClick={() => {
-                  navigate(`/${course_id}/edit`);
-                }}
-              >
-                <Box className="mr-2 h-4 w-4" />
-                Edit course
-              </Button>
-              <Button
-                // disabled={loading}
-                variant="outline"
-                className="space-x-2"
-                onClick={() => {
-                  // Open portal of the brand in a new tab
-                  window.open(`${PORTAL_URL}/${warnings?.brandSlug}`, "_blank");
-                }}
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span>View</span>
-              </Button>
-            </div>
+      <div className="flex flex-col items-center justify-center h-[80vh] text-center">
+        {/* <h1 className="text-4xl font-bold tracking-tight">
+          Welcome back, {currentUser?.first_name}!{" "}
+          <span className="wave">👋</span>
+        </h1> */}
+        <h2 className="text-lg font-normal mb-1 tracking-tight">
+          Welcome back, {currentUser?.first_name}!{" "}
+          <span className="wave">👋</span>
+        </h2>
+        <h1 className="text-4xl font-bold tracking-tight w-[550px] ">
+          {course?.title}
+        </h1>
+        <p className="text-muted-foreground mt-3">
+          Quickly access what you need
+        </p>
+        <div className="flex flex-col space-y-5 mt-10 w-[350px]">
+          <Button
+            variant="blue"
+            size="lg"
+            className="w-full"
+            onClick={() => {
+              createModal.onOpen();
+            }}
+          >
+            <Plus className="h-4 w-4 mr-2" />
+            Create course
+          </Button>
+          <Button
+            variant="lemon"
+            size="lg"
+            className="w-full"
+            onClick={() => {
+              navigate(`/${course_id}/edit`);
+            }}
+          >
+            <Pencil className="h-4 w-4 mr-2" />
+            Course content
+          </Button>
+          <Button
+            variant="yellow"
+            size="lg"
+            className="w-full"
+            onClick={() => {
+              navigate(`/${course_id}/settings/payment`);
+            }}
+          >
+            <CreditCard className="h-4 w-4 mr-2" />
+            Payment method
+          </Button>
+          <div className="flex flex-row items-center space-x-5">
+            <Button
+              variant="outline"
+              size="lg"
+              className="w-full"
+              onClick={() => {
+                // Open portal of the brand in a new tab
+                window.open(`${PORTAL_URL}/${warnings?.brandSlug}`, "_blank");
+              }}
+            >
+              <Eye className="h-4 w-4 mr-2" />
+              View my portal
+            </Button>
           </div>
-
-          <Separator />
-          <div className="grid gap-4 grid-cols-4">
-            {/* Card */}
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Total Sales
-                  {/* All Courses Revenue */}
-                </CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              {/* Card Content */}
-              <CardContent>
-                <div className="text-2xl font-bold">
-                  {formatPrice(
-                    compareAnalytics?.totalRevenue,
-                    currentUser?.brand_currency
-                  )}
-                </div>
-                <p className="text-sm mt-2 bg-sky w-fit px-2 py-1 rounded-md text-black font-medium">
-                  All courses
-                </p>
-              </CardContent>
-            </Card>
-            {/* End Card */}
-            {/* Card */}
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Total Sales
-                  {/* All Courses Revenue */}
-                </CardTitle>
-                <DollarSign className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              {/* Card Content */}
-              <CardContent>
-                <div className="text-2xl font-bold">
-                  {formatPrice(
-                    enrollments?.totalSum,
-                    currentUser?.brand_currency
-                  )}
-                </div>
-                {/* <p className="text-sm text-muted-foreground mt-2">
-                  This course
-                </p> */}
-                <p className="text-sm mt-2 bg-yellow-200 w-fit px-2 py-1 rounded-md text-black font-medium">
-                  This course
-                </p>
-              </CardContent>
-            </Card>
-            {/* End Card */}
-            {/* Card */}
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Sales this month
-                </CardTitle>
-
-                <CreditCard className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              {/* Card Content */}
-              <CardContent>
-                {/* <div className="text-2xl font-bold">+{enrollments?.count}</div> */}
-                <div className="text-2xl font-bold">
-                  +
-                  {formatPrice(
-                    enrollments?.totalSumThisMonth,
-                    currentUser?.brand_currency
-                  )}
-                </div>
-
-                {/* <p className="text-sm text-muted-foreground mt-2">
-                  This course
-                </p> */}
-
-                <p className="text-sm mt-2 bg-yellow-200 w-fit px-2 py-1 rounded-md text-black font-medium">
-                  This course
-                </p>
-              </CardContent>
-            </Card>
-            {/* End Card */}
-            {/* Card */}
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  {/* Enrolled Students */}
-                  Students
-                </CardTitle>
-
-                <User className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              {/* Card Content */}
-              <CardContent>
-                <div className="text-2xl font-bold">
-                  {enrollments?.count - 1}
-                  {/* We substract 1 because when the user creates a course he auto enrolls .. so technically he's not a paying student .. so we remove him from the count */}
-                </div>
-                {/* <p className="text-sm text-muted-foreground mt-2">
-                  This course
-                </p> */}
-
-                <p className="text-sm mt-2 bg-yellow-200 w-fit px-2 py-1 rounded-md text-black font-medium">
-                  This course
-                </p>
-              </CardContent>
-            </Card>
-            {/* End Card */}
-          </div>
-          {/* Chart */}
-          <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-7 w-full">
-            {/* Graph */}
-            <div className="flex-1 col-span-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-md font-medium">
-                    {/* Overview */}
-                    Compare courses
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pl-2">
-                  {/* <SalesChart data={graphRevenue} /> */}
-                  <CompareChart
-                    data={compareAnalytics?.data}
-                    currency={currentUser?.brand_currency}
-                  />
-                </CardContent>
-              </Card>
-            </div>
-            {/* recent sales */}
-            <Card className="col-span-3">
-              <CardHeader>
-                <CardTitle className="text-md font-medium">
-                  Recent Sales
-                </CardTitle>
-                {/* <CardDescription>You made 265 sales this month.</CardDescription> */}
-                <CardDescription>
-                  This course made {enrollments?.count - 1} sales.
-                </CardDescription>
-              </CardHeader>
-              {/* <Separator className="mt-[-10px] mb-5" /> */}
-
-              <CardContent>
-                <RecentSales recentData={enrollments?.rows} />
-              </CardContent>
-            </Card>
-          </div>
-          {/*  */}
         </div>
       </div>
     </>
   );
 };
 
-export default DashboardPage;
+export default QuickPage;

@@ -105,17 +105,16 @@ export function UserNav() {
             }}
           >
             Account
-            {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
           </DropdownMenuItem>
           {/* <DropdownMenuItem>
             Billing
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem> */}
-          <DropdownMenuItem
+          {/* <DropdownMenuItem
             onClick={() => navigate(`/${course_id}/settings/payment`)}
           >
             Payment
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
 
           <DropdownMenuItem
             onClick={() => navigate(`/${course_id}/settings/branding`)}

@@ -72,6 +72,7 @@ const PlanCard = ({
             onClick={onClick}
             disabled={disabled}
             className="w-full mt-6 space-x-2"
+            // variant="blue"
           >
             {/* if it's loading the show spinner */}
             {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}

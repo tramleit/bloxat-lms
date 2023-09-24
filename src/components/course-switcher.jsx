@@ -30,6 +30,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
   const formattedItems = items?.rows?.map((item) => ({
     label: item.title,
     id: item.course_id,
+    published: item.published,
   }));
 
   //   Which course is currently selected
@@ -62,9 +63,21 @@ export default function CourseSwicher({ className, loading, items = [] }) {
           role="combobox"
           aria-expanded={open}
           aria-label="Select a course"
-          className={cn("w-[200px] justify-between", className)}
+          className={cn("w-[250px] justify-between", className)}
+          // for tour
+          data-tour="1"
         >
+          {/* it was 200px */}
           {/* <Box className="mr-2 h-4 w-4 " /> */}
+
+          <div
+            className={cn(
+              "w-3 h-3 rounded-full mr-2",
+              currentCourse?.published
+                ? "bg-lemonBloxDark "
+                : "bg-yellowBloxDark "
+            )}
+          />
           <span className="line-clamp-1 text-start w-full">
             {" "}
             {currentCourse?.label}
@@ -72,7 +85,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[250px] p-0">
         <Command>
           <CommandList>
             <CommandInput placeholder="Search course..." />
@@ -84,8 +97,16 @@ export default function CourseSwicher({ className, loading, items = [] }) {
                   onSelect={() => {
                     onCourseSelect(course);
                   }}
-                  className="text-sm"
+                  className="text-sm py-2"
                 >
+                  <div
+                    className={cn(
+                      "w-3 h-3 flex p-1 rounded-full mr-2",
+                      course?.published
+                        ? "bg-lemonBloxDark "
+                        : "bg-yellowBloxDark "
+                    )}
+                  />
                   {/* <Box className="mr-2 h-4 w-4" /> */}
                   <span className="line-clamp-1 text-start w-full">
                     {course.label}

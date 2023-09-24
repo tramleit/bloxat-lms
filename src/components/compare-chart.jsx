@@ -18,7 +18,7 @@ export const CompareChart = ({ data, currency }) => {
           axisLine={false}
           tickFormatter={(value) => `${currency} ${value}`}
         />
-        <Bar dataKey="total" fill="#3498db" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="total" fill="#3f80fe" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

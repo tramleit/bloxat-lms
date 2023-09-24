@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Plus } from "lucide-react";
+import { Copy, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
@@ -8,9 +8,12 @@ import { AddStudentModal } from "@/components/modals/add-student-modal";
 import useGetCourseStore from "@/store/courses/get-course-store";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import Loading from "@/components/loading/loading";
+import { copyText } from "@/lib/copy-text";
+import { PORTAL_URL } from "@/config/url-config";
 // import { columns } from "./columns";
 
-export const StudentsClient = ({ data }) => {
+export const StudentsClient = () => {
   const { course_id } = useParams();
 
   const [open, setOpen] = useState(false);
@@ -24,7 +27,11 @@ export const StudentsClient = ({ data }) => {
   }, []);
 
   if (!course) {
-    return <>loading</>;
+    return (
+      <>
+        <Loading />
+      </>
+    );
   }
   return (
     <>
@@ -38,10 +45,23 @@ export const StudentsClient = ({ data }) => {
       />
       <div className="flex items-center justify-between">
         <Heading title="Students" description="View your students details." />
-        <Button onClick={() => setOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" />
-          Add new
-        </Button>
+        <div className="flex flex-row space-x-2">
+          <Button
+            variant="outline"
+            onClick={() =>
+              copyText(
+                `${PORTAL_URL}/${currentUser?.brand_slug}/${course?.course_slug}/checkout`
+              )
+            }
+          >
+            <Copy className="mr-2 h-4 w-4" />
+            Payment link
+          </Button>
+          <Button variant="blue" onClick={() => setOpen(true)}>
+            <Plus className="mr-2 h-4 w-4" />
+            Add student
+          </Button>
+        </div>
       </div>
       <Separator />
     </>

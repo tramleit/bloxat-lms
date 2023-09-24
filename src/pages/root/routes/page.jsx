@@ -25,7 +25,7 @@ const RootPage = () => {
   // Check if the currentUser has a course under them
   // If no courses redirect to / .. which is the setup
   if (currentUser?.courses?.length == 0) {
-    navigate("/setup");
+    navigate("/lang-setup");
     return;
   }
 

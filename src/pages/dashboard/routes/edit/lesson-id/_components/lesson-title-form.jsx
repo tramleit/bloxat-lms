@@ -77,7 +77,7 @@ export const LessonTitleForm = ({
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+    <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Lesson title
         <Button onClick={toggleEdit} variant="ghost">
@@ -91,7 +91,7 @@ export const LessonTitleForm = ({
           )}
         </Button>
       </div>
-      {!isEditing && <p className="text-sm mt-2">{data?.title}</p>}
+      {!isEditing && <p className="mt-2">{data?.title}</p>}
       {isEditing && (
         <Form {...form}>
           <form

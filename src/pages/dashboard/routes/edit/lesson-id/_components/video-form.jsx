@@ -26,6 +26,8 @@ import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import VideoPlayer from "./video-player";
 import { Icons } from "@/components/icons";
+import YoutubeIcon from "@/assets/images/icons/youtube.webp";
+import VimeoIcon from "@/assets/images/icons/vimeo.webp";
 
 const formSchema = z.object({
   lesson_video_url: z.string().min(1, {
@@ -33,7 +35,7 @@ const formSchema = z.object({
   }),
 });
 
-export const VideoForm = ({ initialData,  lessonId }) => {
+export const VideoForm = ({ initialData, lessonId }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -78,9 +80,9 @@ export const VideoForm = ({ initialData,  lessonId }) => {
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+    <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between mb-2">
-        Lesson Video
+        Video URL
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && data?.lesson_video_url && (
@@ -102,14 +104,25 @@ export const VideoForm = ({ initialData,  lessonId }) => {
       {isEditing && (
         <div>
           <div className="flex flex-col items-center justify-center h-[340px] border border-dashed border-[#b2b2b2] dark:border-[#424242] rounded-lg space-y-3">
-            <div className="flex flex-row items-center justify-center space-x-4 ">
-              <UploadCloud />
-              <Youtube />
+            <div className="flex flex-row items-center justify-center space-x-4 mb-2">
+              <img
+                src={YoutubeIcon}
+                alt="Youtube"
+                className="w-[50px] h-auto"
+                draggable={false}
+              />
+              <span>or</span>
+              <img
+                src={VimeoIcon}
+                alt="Vimeo"
+                className="w-[40px] h-auto"
+                draggable={false}
+              />
             </div>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="flex flex-col  items-center justify-center "
+                className="flex flex-col items-center justify-center "
               >
                 <FormField
                   control={form.control}
@@ -118,6 +131,7 @@ export const VideoForm = ({ initialData,  lessonId }) => {
                     <FormItem>
                       <FormControl>
                         <Input
+                          className="w-[300px]"
                           disabled={isSubmitting}
                           placeholder="https://www.youtube.com/watch?v=aqncZ2yKMnw"
                           {...field}
@@ -129,17 +143,21 @@ export const VideoForm = ({ initialData,  lessonId }) => {
                 />
 
                 <div className="flex items-center mt-3">
-                  <Button disabled={!isValid || isSubmitting} type="submit">
+                  <Button
+                    disabled={!isValid || isSubmitting}
+                    type="submit"
+                    variant="yellow"
+                  >
                     {isSubmitting && (
                       <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                     )}
-                    Update
+                    Update URL
                   </Button>
                 </div>
               </form>
             </Form>
             <span className="text-sm text-muted-foreground">
-              Add a Video URL from Youtube/ Vimeo/ Wistia
+              💡 Add a Video URL from Youtube/ Vimeo
             </span>
           </div>
         </div>

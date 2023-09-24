@@ -5,6 +5,13 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTour } from "@reactour/tour";
+import useTourStore from "@/store/tour.store";
+import { HelpCircle } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { CompletionStepsHover } from "./_components/completion-steps-hover";
+import { cn } from "@/lib/utils";
+import SupportHover from "./_components/support-hover";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 
 export default function DashboardLayout({ children }) {
@@ -126,9 +133,18 @@ export default function DashboardLayout({ children }) {
 
   return (
     <>
+      {/* Here if we're in the account completion process then overflow-y-clip because the hover goes to bottom-[20px] */}
       {/* {remainingDays <= 2 && <></>} */}
       {/* {trialRemainingDays <= 2 && <></>} */}
       <Navbar />
+
+      {/* Account completion bottom overlay */}
+      <CompletionStepsHover />
+
+      {/* Support Floating on the bottom right */}
+      <SupportHover />
+
+      {/* Actual pages */}
       {children}
     </>
   );

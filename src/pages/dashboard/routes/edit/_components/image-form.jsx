@@ -6,7 +6,14 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { ImageIcon, Pencil, PlusIcon, UploadCloud } from "lucide-react";
+import {
+  Edit,
+  ImageIcon,
+  Pencil,
+  Plus,
+  PlusIcon,
+  UploadCloud,
+} from "lucide-react";
 import useCourseContentStore from "@/store/courses/course-content";
 import {
   Form,
@@ -97,10 +104,27 @@ export const ImageForm = ({ initialData, courseId, updateUI }) => {
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+    <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4 w-full">
       <div className="font-medium flex items-center justify-between mb-2">
         Thumbnail
-        <Button onClick={toggleEdit} variant="ghost">
+        {!data?.thumbnail && !isEditing && (
+          <Button onClick={toggleEdit} variant="yellow">
+            <Plus className="h-4 w-4 mr-2" />
+            Add
+          </Button>
+        )}
+        {isEditing && (
+          <Button onClick={toggleEdit} variant="ghost">
+            Cancel
+          </Button>
+        )}
+        {!isEditing && data?.thumbnail && (
+          <Button onClick={toggleEdit} variant="ghost">
+            <Edit className="h-4 w-4 mr-2" />
+            Edit
+          </Button>
+        )}
+        {/* <Button onClick={toggleEdit} variant="ghost">
           {isEditing && <>Cancel</>}
           {!isEditing && !data?.thumbnail && (
             <>
@@ -114,33 +138,33 @@ export const ImageForm = ({ initialData, courseId, updateUI }) => {
               Edit
             </>
           )}
-        </Button>
+        </Button> */}
       </div>
       {!isEditing &&
         (!data?.thumbnail ? (
-          <div className="flex items-center justify-center h-60 bg-slate-200 dark:bg-[#292929] rounded-md">
-            <ImageIcon className="h-10 w-10 text-slate-500 dark:text-[#4d4d4d] " />
+          <div className="flex items-center justify-center h-[220px] bg-[#edeef1] border dark:bg-[#292929] rounded-md">
+            <ImageIcon className="h-10 w-10 text-[#aaaaaa] dark:text-[#4d4d4d] " />
           </div>
         ) : (
           <div className="relative  mt-2">
             <img
               src={data?.thumbnail}
               alt="Upload"
-              className="object-cover rounded-md h-[320px] w-full"
+              className="object-cover rounded-md h-[220px] w-full"
             />
           </div>
         ))}
       {isEditing && (
         <div>
           <div className="flex flex-col items-center justify-center h-[220px] border border-dashed border-[#b2b2b2] dark:border-[#424242] rounded-lg space-y-3">
-            <UploadCloud className="h-12 w-12 text-[#b2b2b2] dark:text-[#424242] " />
-            <Button onClick={() => widgetRef.current.open()}>
+            <UploadCloud className="h-12 w-12 text-[#c0c0c0] dark:text-[#424242] " />
+            <Button onClick={() => widgetRef.current.open()} variant="yellow">
               Upload Image
             </Button>
             <span className="text-sm text-muted-foreground">Image (4MB)</span>
           </div>
           <div className="text-xs text-muted-foreground mt-4">
-            16:9 aspect ratio recommended
+            💡 16:9 aspect ratio recommended
           </div>
         </div>
       )}

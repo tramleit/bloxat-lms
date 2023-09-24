@@ -18,6 +18,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        blue: "bg-blueBlox text-white hover:bg-blueBloxLight ",
+        yellow: "bg-yellowBlox text-black hover:bg-yellowBloxLight ",
+        lemon: "bg-lemonBlox text-black hover:bg-lemonBloxLight ",
+        purple: "bg-purpleBlox text-black hover:bg-purpleBloxLight ",
       },
       size: {
         default: "h-10 px-4 py-2",

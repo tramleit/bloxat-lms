@@ -21,6 +21,9 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { ContentList } from "./content-list";
 import Loading from "@/components/loading/loading";
+import { useTheme } from "next-themes";
+import EmptyLight from "@/assets/images/empty-light.webp";
+import EmptyDark from "@/assets/images/empty-dark.webp";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -29,6 +32,8 @@ const formSchema = z.object({
 export const ContentForm = ({ initialData, courseId, updateUI }) => {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+
+  const { theme } = useTheme();
 
   const toggleCreating = () => setIsCreating((current) => !current);
 
@@ -57,7 +62,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
       const token = JSON.parse(localStorage.getItem("bxAuthToken"));
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      const response = await axios.post(`${BASE_URL}/modules`, {
+      await axios.post(`${BASE_URL}/modules`, {
         course_id: courseId,
         title: values.title,
         module_order:
@@ -73,7 +78,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
       //   `${BASE_URL}/courses/details/${courseId}`,
       //   values
       // );
-      toast.success("Module Added!");
+      toast.success("Section Added!");
       toggleCreating();
       // fetch the new data after success
       // setData(response.data);
@@ -99,7 +104,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
         list: updateData,
       });
 
-      toast.success("Modules reordered");
+      toast.success("Sections reordered");
 
       // update the state instead of fetching the data
       setCourseState(res.data);
@@ -110,6 +115,8 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
     }
   };
 
+  console.log("theme", theme);
+
   // loading
   if (loading || !courseContent) {
     return (
@@ -119,7 +126,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
     );
   }
   return (
-    <div className="relative mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+    <div className="relative mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-md flex items-center justify-center">
           <Loader2 className="animate-spin h-6 w-6" />
@@ -127,17 +134,23 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
       )}
 
       <div className="font-medium flex items-center justify-between mb-5">
-        Course content
-        <Button onClick={toggleCreating} variant="ghost">
-          {isCreating ? (
-            <>Cancel</>
-          ) : (
-            <>
-              <PlusIcon className="h-4 w-4 mr-2" />
-              Add a section
-            </>
-          )}
-        </Button>
+        Sections and lessons
+        <span></span>
+        {isCreating ? (
+          <Button onClick={toggleCreating} variant="ghost">
+            Cancel
+          </Button>
+        ) : (
+          <Button
+            onClick={toggleCreating}
+            variant="ghost"
+            size="sm"
+            className="border-2  border-blueBloxLight text-blueBloxLight hover:text-white hover:bg-blueBloxLight"
+          >
+            <PlusIcon className="h-4 w-4 mr-2" />
+            Add a section
+          </Button>
+        )}
       </div>
       {isCreating && (
         <Form {...form}>
@@ -176,10 +189,21 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
         <div
           className={cn(
             "text-sm mt-2",
-            !initialData?.modules?.length && "text-muted-foregound italic"
+            !initialData?.modules?.length && "text-muted-foreground italic"
           )}
         >
-          {!initialData?.modules?.length && "No sections"}
+          {!initialData?.modules?.length && (
+            <div className="flex flex-col items-center justify-center">
+              <img
+                src={theme === "dark" ? EmptyDark : EmptyLight}
+                alt="Empty"
+                className="w-[200px] h-auto"
+                draggable={false}
+              />
+
+              <span>No sections yet</span>
+            </div>
+          )}
           {/* TODO: ADD A LIST OF LESSONS AND CONTAIN THE IN SECTIONS */}
           <ContentList
             onEdit={() => {}}
@@ -190,9 +214,11 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
         </div>
       )}
       {!isCreating && (
-        <p className="text-xs text-muted-foreground mt-4">
-          Drag and drop to reorder the lessons
-        </p>
+        <div className="flex flex-col ">
+          <p className="text-xs text-muted-foreground mt-4">
+            💡 Drag and drop to reorder the sections or lessons.
+          </p>
+        </div>
       )}
     </div>
   );

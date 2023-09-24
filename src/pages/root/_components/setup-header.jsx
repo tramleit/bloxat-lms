@@ -1,4 +1,4 @@
-import Logo from "@/assets/images/logo/bloxat-colored.webp";
+import Logo from "@/assets/images/logo/bloxat-blue.webp";
 
 const SetupHeader = () => {
   return (

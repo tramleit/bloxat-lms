@@ -2,7 +2,9 @@ import * as React from "react";
 import {
   BoxIcon,
   CreditCard,
+  DollarSign,
   Edit2,
+  Pencil,
   PencilRuler,
   Plus,
   Rocket,
@@ -97,7 +99,7 @@ export function MainSearch() {
               }}
             >
               <CommandItem>
-                <BoxIcon className="mr-2 h-4 w-4" />
+                <Pencil className="mr-2 h-4 w-4" />
                 <span>Edit course</span>
               </CommandItem>
             </div>
@@ -119,6 +121,18 @@ export function MainSearch() {
               <Smile className="mr-2 h-4 w-4" />
               <span>Content</span>
             </CommandItem> */}
+            <div
+              onClick={() => {
+                // console.log("Clicked");
+                navigate(`/${course_id}/sales`);
+                setOpen(false);
+              }}
+            >
+              <CommandItem>
+                <DollarSign className="mr-2 h-4 w-4" />
+                <span>Sales</span>
+              </CommandItem>
+            </div>
             <div
               onClick={() => {
                 // console.log("Clicked");

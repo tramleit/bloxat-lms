@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useCourseContentStore from "@/store/courses/course-content";
 import Loading from "@/components/loading/loading";
-import { IconBadge } from "@/components/icon-badge";
 import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react";
 import { TitleForm } from "./_components/title-form";
 import { DescriptionForm } from "./_components/description-form";
@@ -78,10 +77,16 @@ const EditCoursePage = () => {
 
   return (
     <>
-      {!courseContent?.published && (
+      {!courseContent?.published && isComplete && (
         <Banner
           variant="warning"
           label="This course is not published. It will not be visible to your students."
+        />
+      )}
+      {!isComplete && (
+        <Banner
+          variant="warning"
+          label={`Add a title, description, thumbnail, price, and a section with a lesson in it to publish. Completed 👉 ${completionText}`}
         />
       )}
       <div className="p-8 pt-6">
@@ -94,22 +99,26 @@ const EditCoursePage = () => {
             />
             <div className="flex flex-col gap-y-2 w-full">
               <h1 className="text-3xl font-bold tracking-tight line-clamp-1">
-                Edit Course
+                {courseContent?.title}
               </h1>
-              <span
+              <span></span>
+              {/* <span
                 className={cn(
                   "text-sm text-slate-700 dark:text-[#929292]",
-                  !isComplete && "text-red"
+                  !isComplete && "text-red dark:text-red"
                 )}
               >
                 Complete all fields {completionText}
-              </span>
+              </span> */}
             </div>
             {/* Add Actions */}
             <Actions
               disabled={!isComplete}
+              copyDisabled={!isComplete || !courseState?.published}
               courseId={course_id}
               isPublished={courseState?.published}
+              brandSlug={courseContent?.user?.brand_slug}
+              courseSlug={courseContent?.course_slug}
               // updateUI={(newState) => {
               //   // Update the ui with the new title
               //   setCour(newState);
@@ -122,8 +131,9 @@ const EditCoursePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge Icon={LayoutDashboard} />
-              <h2 className="text-xl">Customize your course</h2>
+              {/* <IconBadge Icon={LayoutDashboard} /> */}
+
+              <h2 className="text-xl font-semibold">✨ Information</h2>
             </div>
             <TitleForm
               initialData={courseContent}
@@ -138,23 +148,36 @@ const EditCoursePage = () => {
               //   console.log("newState", newState);
               // }}
             />
-            <ImageForm
-              initialData={courseContent}
-              courseId={courseContent?.course_id}
-              updateUI={(newState) => {
-                // Update the ui with the new title
-                setThumbnailState(newState);
-                console.log("newState", newState);
-              }}
-            />
+            <div className="flex flex-row items-start space-x-4 ">
+              <ImageForm
+                initialData={courseContent}
+                courseId={courseContent?.course_id}
+                updateUI={(newState) => {
+                  // Update the ui with the new title
+                  setThumbnailState(newState);
+                  console.log("newState", newState);
+                }}
+              />
+              <PriceForm
+                initialData={courseContent}
+                courseId={courseContent?.course_id}
+                updateUI={(newState) => {
+                  // Update the ui with the new title
+                  setPriceState(newState);
+                  console.log("newState", newState);
+                }}
+              />
+            </div>
           </div>
           {/* Right side */}
           <div className="space-y-6">
             {/* Content */}
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge Icon={ListChecks} />
-                <h2 className="text-xl">Course content</h2>
+                {/* <IconBadge Icon={ListChecks} /> */}
+                <h2 className="text-xl font-semibold">🚀 Course content</h2>
+
+                {/* <h2 className="text-xl">Course content</h2> */}
               </div>
               <ContentForm
                 initialData={courseContent}
@@ -168,19 +191,10 @@ const EditCoursePage = () => {
             </div>
             {/* Price */}
             <div>
-              <div className="flex items-center gap-x-2">
+              {/* <div className="flex items-center gap-x-2">
                 <IconBadge Icon={CircleDollarSign} />
                 <h2 className="text-xl">Sell your course</h2>
-              </div>
-              <PriceForm
-                initialData={courseContent}
-                courseId={courseContent?.course_id}
-                updateUI={(newState) => {
-                  // Update the ui with the new title
-                  setPriceState(newState);
-                  console.log("newState", newState);
-                }}
-              />
+              </div> */}
             </div>
           </div>
         </div>

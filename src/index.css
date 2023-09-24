@@ -111,3 +111,20 @@ body,
 .ql-container {
   font-size: 16px !important;
 }
+
+/* Start Tour Modal Apperance Animtion to fade up */
+.fade-up {
+  animation-name: fade-in-up;
+  animation-fill-mode: both;
+  animation-duration: 0.3s;
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+  }
+}

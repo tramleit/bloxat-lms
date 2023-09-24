@@ -1,8 +1,9 @@
 import { cn } from "@/lib/utils";
+// import { useEffect } from "react";
 // import Link from "next/link";
 import { Link, useLocation, useParams } from "react-router-dom";
 
-export function MainNav({ className, ...props }) {
+export function MainNav({ className }) {
   // Get the pathname
   // const pathname = usePathname();
   // const params = useParams();
@@ -20,8 +21,13 @@ export function MainNav({ className, ...props }) {
     // },
     {
       href: `/${course_id}`,
-      label: "Overview",
+      label: "Quick",
       active: pathname === `/${course_id}`,
+    },
+    {
+      href: `/${course_id}/sales`,
+      label: "Sales",
+      active: pathname === `/${course_id}/sales`,
     },
     {
       href: `/${course_id}/students`,
@@ -40,21 +46,47 @@ export function MainNav({ className, ...props }) {
     // },
   ];
 
+  console.log("routes[0].href", routes[1].active);
+  // console.log("pathname:", pathname);
+
+  // useEffect(() => {}, []);
+
   return (
-    <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
+    <nav
+      className={cn(
+        "relative h-full first-letter:flex flex flex-row items-center space-x-4 lg:space-x-6",
+        className
+      )}
+    >
       {routes.map((route, i) => (
-        <Link
+        <div
           key={i}
-          to={route.href}
-          className={cn(
-            "text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-black dark:text-white"
-              : "text-muted-foreground"
-          )}
+          // for tour
+          data-tour={i === 0 ? "2" : i === 1 ? "3" : i === 2 ? "4" : "5"}
+          className="flex w-fit flex-col items-center justify-center"
         >
-          {route.label}
-        </Link>
+          <Link
+            to={route.href}
+            className={cn(
+              "text-sm font-medium transition-colors hover:text-primary",
+              route.active
+                ? "text-black dark:text-white"
+                : "text-muted-foreground"
+            )}
+          >
+            <span> {route.label}</span>
+            {route.active && (
+              <div
+                className={cn(
+                  "bg-blueBlox w-[35px] h-[3px] absolute bottom-0",
+                  route.label === "Students"
+                    ? "w-[60px]"
+                    : route.label === "Settings" && "w-[55px]"
+                )}
+              />
+            )}
+          </Link>
+        </div>
       ))}
     </nav>
   );

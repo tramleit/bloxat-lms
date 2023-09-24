@@ -50,13 +50,31 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // BLUES
+        blueBlox: "#1364ff",
+        blueBloxLight: "#3f80fe",
+        blueBloxDark: "#0a56e7",
+        // LEMONS
+        lemonBlox: "#e5ff96",
+        lemonBloxLight: "#e9fcb0",
+        lemonBloxDark: "#cfea7d",
+        // YELLOWS
+        yellowBlox: "#ffe084",
+        yellowBloxLight: "#ffe8a2",
+        yellowBloxDark: "#edcc6b",
+        // PURPLES
+        purpleBlox: "#987bef",
+        purpleBloxLight: "#b6a0f8",
+        purpleBloxDark: "#7d60d5",
+        // MISC
+        red: "#ff4e41",
+        green: "#01D95A",
+        // OLD
         bxYellow: "#ffef60",
         bxYellowLight: "#FFF387",
         lemon: "#E7FD90",
         sky: "#CCFCFF",
         purple: "#A38FFF",
-        red: "#ff4e41",
-        green: "#01D95A",
       },
       borderRadius: {
         lg: "var(--radius)",

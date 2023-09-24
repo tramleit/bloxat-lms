@@ -24,6 +24,7 @@ import ImageUpload from "@/components/ui/image-upload";
 import Bottom from "../../_components/bottom";
 import { useNavigate } from "react-router-dom";
 import Loading from "@/components/loading/loading";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const formSchema = z.object({
   // label: z.string().min(1),
@@ -134,7 +135,7 @@ const Branding = () => {
         <SetupHeader />
         {/* End Header */}
         {/* Content */}
-        <div className="flex flex-row items-center h-full">
+        <div className="flex flex-row items-center h-full overflow-y-clip">
           {/* Left Side */}
           <div className="flex flex-col flex-1 items-center justify-center h-full space-y-2 text-center">
             <h1 className="text-3xl font-bold">Upload your logo</h1>
@@ -158,6 +159,7 @@ const Branding = () => {
                       <FormLabel>Logo (Light mode)</FormLabel>
                       <FormControl>
                         <ImageUpload
+                          className="bg-white rounded-md"
                           value={field.value ? [field.value] : []}
                           disabled={loading}
                           // onChange={(url) => field.onChange(url)}
@@ -188,6 +190,7 @@ const Branding = () => {
                       <FormLabel>Logo (Dark mode)</FormLabel>
                       <FormControl>
                         <ImageUpload
+                          className="bg-black rounded-md"
                           value={field.value ? [field.value] : []}
                           disabled={loading}
                           // onChange={(url) => field.onChange(url)}
@@ -216,8 +219,19 @@ const Branding = () => {
           </div>
 
           {/* Right Side */}
-          <div className="bg-gray-50 dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full">
-            right [place graphic]
+          <div className="bg-[#fdfdfd] dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full ">
+            {/* bg-gray-50 */}
+
+            {/* right [place graphic] */}
+            <div className="flex items-center justify-center h-full">
+              <LazyLoadImage
+                className="object-cover h-full"
+                src="https://media.publit.io/file/logo-setup-c.webp"
+                effect="blur"
+                placeholderSrc="https://media.publit.io/file/logo-setup-c.webp"
+                draggable={false}
+              />
+            </div>
           </div>
         </div>
         {/* End Content */}

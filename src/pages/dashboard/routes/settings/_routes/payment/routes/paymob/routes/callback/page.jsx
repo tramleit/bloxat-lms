@@ -31,6 +31,18 @@ const PaymobCallbackPage = () => {
       if (result.success) {
         toast.success("Done!");
         navigate(`/${course_id}/settings/payment/paymob`);
+        // Here we set that the payment method is set in the account completion ..
+        // so we're updating the first number to 1 .. and leaving the rest of the numbers as they are
+        // Get the existing array from local storage
+        const completionData = JSON.parse(localStorage.getItem("bxCompletion"));
+        // Check if completionData is an array
+        if (Array.isArray(completionData)) {
+          // Set the first element to 1 and leave the rest as they are
+          completionData[0] = true;
+
+          // Save the modified array back to local storage
+          localStorage.setItem("bxCompletion", JSON.stringify(completionData));
+        }
       } else {
         toast.error("Something went wrong.");
       }

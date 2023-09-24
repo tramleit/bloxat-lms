@@ -4,11 +4,11 @@ import { cn } from "@/lib/utils";
 import { AlertTriangle, CheckCircleIcon } from "lucide-react";
 
 const bannerVariants = cva(
-  "border text-center p-4 text-sm flex items-center w-full dark:text-black",
+  "border text-center p-4 text-sm flex justify-center items-center w-full dark:text-black",
   {
     variants: {
       variant: {
-        warning: "bg-yellow-200/80 border-yellow-30 text-primary",
+        warning: "bg-yellowBloxLight border-yellow-30 text-primary",
         success: "bg-emerald-700 border-emerald-800 text-secondary",
       },
     },

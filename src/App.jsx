@@ -9,7 +9,9 @@ import ModalProvider from "@/providers/modal-provider";
 const Loading = lazy(() => import("@/components/loading/loading"));
 const RootPage = lazy(() => import("@/pages/root/routes/page"));
 // ROOT
+
 const SetupLayout = lazy(() => import("@/pages/root/layout"));
+const LangSetupPage = lazy(() => import("@/pages/root/routes/lang-setup/page"));
 const SetupPage = lazy(() => import("@/pages/root/routes/setup/page"));
 const Branding = lazy(() => import("@/pages/root/routes/branding/page"));
 const CreateFirstCourse = lazy(() =>
@@ -24,7 +26,8 @@ const ForgotPassword = lazy(() =>
 );
 // DASHBOARD
 const DashboardLayout = lazy(() => import("@/pages/dashboard/layout"));
-const DashboardPage = lazy(() => import("@/pages/dashboard/routes/page"));
+const QuickPage = lazy(() => import("@/pages/dashboard/routes/page"));
+const DashboardPage = lazy(() => import("@/pages/dashboard/routes/sales/page"));
 const StudentsPage = lazy(() =>
   import("@/pages/dashboard/routes/students/page")
 );
@@ -126,6 +129,15 @@ function App() {
               {/* Step One */}
               <Route
                 exact
+                path="/lang-setup"
+                element={
+                  <SetupLayout>
+                    <LangSetupPage />
+                  </SetupLayout>
+                }
+              />
+              <Route
+                exact
                 path="/setup"
                 element={
                   <SetupLayout>
@@ -136,6 +148,14 @@ function App() {
               {/* Dashboard */}
               <Route
                 path="/:course_id"
+                element={
+                  <DashboardLayout>
+                    <QuickPage />
+                  </DashboardLayout>
+                }
+              />
+              <Route
+                path="/:course_id/sales"
                 element={
                   <DashboardLayout>
                     <DashboardPage />

@@ -4,7 +4,7 @@ import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
+import { Edit, Pencil, Plus } from "lucide-react";
 import useCourseContentStore from "@/store/courses/course-content";
 import {
   Form,
@@ -73,10 +73,28 @@ export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 dark:bg-[#1a1a1a] rounded-md p-4">
+    <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Description
-        <Button onClick={toggleEdit} variant="ghost">
+        {!data?.description && !isEditing && (
+          <Button onClick={toggleEdit} variant="yellow">
+            <Plus className="h-4 w-4 mr-2" />
+            Add
+          </Button>
+        )}
+        {isEditing && (
+          <Button onClick={toggleEdit} variant="ghost">
+            Cancel
+          </Button>
+        )}
+        {!isEditing && data?.description && (
+          <Button onClick={toggleEdit} variant="ghost">
+            <Edit className="h-4 w-4 mr-2" />
+            Edit
+          </Button>
+        )}
+        {/*  */}
+        {/* <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
             <>Cancel</>
           ) : (
@@ -85,7 +103,7 @@ export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
               Edit
             </>
           )}
-        </Button>
+        </Button> */}
       </div>
       {!isEditing && (
         <div

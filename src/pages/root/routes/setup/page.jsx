@@ -9,6 +9,7 @@ import { BASE_URL } from "@/config/api-base-config";
 import { DAYS_FOR_TRIAL } from "@/config/subscription-config";
 import SetupHeader from "../../_components/setup-header";
 import Bottom from "../../_components/Bottom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const SetupPage = () => {
   const currentUser = useCurrentUser();
@@ -111,39 +112,51 @@ const SetupPage = () => {
         <SetupHeader />
         {/* End Header */}
         {/* Content */}
-        <div className="flex flex-row items-center h-full">
+        <div className="flex flex-row items-center h-full overflow-y-clip">
           {/* Left Side */}
           <div className="flex flex-col flex-1 items-center justify-center h-full space-y-2 text-center">
-            <h1 className="text-3xl font-bold tracking-tight">
-              Welcome to your portal <span className="wave">👋</span>
-            </h1>
-            <p className="text-muted-foreground">
+            <div className="flex flex-col items-start justify-center">
+              {" "}
+              <h1 className="text-3xl font-bold tracking-tight">
+                Provide a name for your portal.
+              </h1>
+              {/* <p className="text-muted-foreground">
               Your Bloxat portal is the main hub from which you can manage and
               sell your courses.
-            </p>
-            <div className="h-4"></div>
-            {/* Brand Name Input */}
-
-            <div className="grid gap-1 w-1/4">
-              <Label htmlFor="brandName" className="mb-1">
-                Type your brand name
-              </Label>
-              <Input
-                id="brandName"
-                placeholder="Seif's School"
-                type="name"
-                autoCapitalize="none"
-                autoComplete="name"
-                autoCorrect="off"
-                disabled={loading}
-                onChange={(e) => setBrandName(e.target.value)}
-              />
+            </p> */}
+              <div className="h-8"></div>
+              {/* Brand Name Input */}
+              <div className="grid gap-1 text-start ">
+                <Label htmlFor="brandName" className="mb-1">
+                  Type your brand name
+                </Label>
+                <Input
+                  id="brandName"
+                  placeholder="Example: Seif's School"
+                  type="name"
+                  autoCapitalize="none"
+                  autoComplete="name"
+                  autoCorrect="off"
+                  disabled={loading}
+                  onChange={(e) => setBrandName(e.target.value)}
+                />
+              </div>
             </div>
           </div>
 
           {/* Right Side */}
-          <div className="bg-gray-50 dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full">
-            right [place graphic]
+          <div className="bg-[#fdfdfd] dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full ">
+            {/* bg-gray-50 */}
+            {/* right [place graphic] */}
+            <div className="flex items-center justify-center h-full">
+              <LazyLoadImage
+                className="object-cover h-full"
+                src="https://media.publit.io/file/bloxat-login.webp"
+                effect="blur"
+                placeholderSrc="https://media.publit.io/file/bloxat-login.webp"
+                draggable={false}
+              />
+            </div>
           </div>
         </div>
         {/* End Content */}
@@ -152,7 +165,7 @@ const SetupPage = () => {
           onClick={() => {
             updateBrandName();
           }}
-          disabled={loading}
+          disabled={loading || !brandName}
         />
         {/* End Bottom */}
       </div>
