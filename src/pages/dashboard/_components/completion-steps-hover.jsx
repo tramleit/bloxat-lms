@@ -15,9 +15,9 @@ export const CompletionStepsHover = () => {
     <>
       {Array.isArray(completionData) &&
         !completionData.every((element) => element === true) && (
-          <div className="absolute bottom-[5px] hover:bottom-10 left-40 right-40 transition-all duration-200 ease-in-out z-50">
+          <div className="absolute bottom-[-60px] hover:bottom-10 left-40 right-40 transition-all duration-200 ease-in-out z-50">
             {/* bottom-[-80px] hover:bottom-10 */}
-            <div className=" bg-white dark:bg-[#262626] rounded-lg py-10 px-20 shadow-lg border ">
+            <div className=" bg-white dark:bg-[#262626] rounded-lg py-5 px-20 shadow-lg border ">
               {/* Skip button */}
               <Button
                 className="absolute right-5 top-5"
@@ -55,7 +55,7 @@ export const CompletionStepsHover = () => {
                   viewButton={false}
                 />
 
-                <Separator className="flex-1 dark:bg-[#393939]" />
+                {/* <Separator className="flex-1 dark:bg-[#393939]" /> */}
 
                 <Step
                   stepNumber="2"
@@ -79,7 +79,7 @@ export const CompletionStepsHover = () => {
                   viewButton={false}
                 />
 
-                <Separator className="flex-1 dark:bg-[#393939]" />
+                {/* <Separator className="flex-1 dark:bg-[#393939]" /> */}
 
                 <Step
                   stepNumber="3"

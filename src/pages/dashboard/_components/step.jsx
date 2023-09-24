@@ -18,16 +18,18 @@ const Step = ({
 
   return (
     <div className="flex flex-col items-center justify-center ml-10">
-      <span
-        className={cn(
-          "flex items-center justify-center border border-gray-400 p-2 h-[35px] w-[35px] rounded-full font-semibold text-gray-400",
-          completed && "bg-green text-white border-none"
-        )}
-      >
-        {stepNumber}
-      </span>
-      <h2 className="mt-2 font-bold tracking-tight ">{label}</h2>
-      <p className=" mb-3">{description}</p>
+      <div className="flex flex-row items-center space-x-2 mb-2">
+        <span
+          className={cn(
+            "flex items-center justify-center border border-gray-400 p-2 h-[25px] w-[25px] rounded-full font-semibold text-gray-400 text-sm",
+            completed && "bg-green text-white border-none"
+          )}
+        >
+          {stepNumber}
+        </span>
+        <h2 className=" font-bold tracking-tight ">{label}</h2>
+      </div>
+      <p className=" mb-3 text-sm">{description}</p>
       {enableButton && (
         <Button
           size="sm"
