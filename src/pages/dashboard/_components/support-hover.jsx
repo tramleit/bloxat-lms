@@ -31,7 +31,7 @@ const SupportHover = () => {
   };
 
   return (
-    <div className="absolute right-10 bottom-10 z-50">
+    <div className="fixed right-10 bottom-10 z-50">
       <Popover>
         <PopoverTrigger asChild>
           <div
