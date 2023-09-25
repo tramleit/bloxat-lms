@@ -15,7 +15,7 @@ export const CompletionStepsHover = () => {
     <>
       {Array.isArray(completionData) &&
         !completionData.every((element) => element === true) && (
-          <div className="absolute bottom-[-60px] hover:bottom-10 left-40 right-40 transition-all duration-200 ease-in-out z-50">
+          <div className="fixed bottom-[-60px] hover:bottom-10 left-40 right-40 transition-all duration-200 ease-in-out z-50">
             {/* bottom-[-80px] hover:bottom-10 */}
             <div className=" bg-white dark:bg-[#262626] rounded-lg py-5 px-20 shadow-lg border ">
               {/* Skip button */}
