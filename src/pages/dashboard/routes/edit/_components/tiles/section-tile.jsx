@@ -161,7 +161,7 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
         </div>
       )}
       <div
-        className="flex flex-row items-start space-x-2 w-full"
+        className="flex flex-row items-start space-x-2 w-full "
         ref={setNodeRef}
         style={style}
       >

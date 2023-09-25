@@ -29,7 +29,7 @@ const LessonTile = ({ lesson }) => {
   return (
     <>
       <div
-        className="flex flex-row items-center space-x-2 w-full"
+        className="flex flex-row items-center space-x-2 w-full "
         ref={setNodeRef}
         style={style}
       >

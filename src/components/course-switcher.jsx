@@ -63,21 +63,22 @@ export default function CourseSwicher({ className, loading, items = [] }) {
           role="combobox"
           aria-expanded={open}
           aria-label="Select a course"
-          className={cn("w-[250px] justify-between", className)}
+          className={cn("md:w-[250px] w-1/2 justify-between", className)}
           // for tour
           data-tour="1"
         >
           {/* it was 200px */}
           {/* <Box className="mr-2 h-4 w-4 " /> */}
-
-          <div
-            className={cn(
-              "w-3 h-3 rounded-full mr-2",
-              currentCourse?.published
-                ? "bg-lemonBloxDark "
-                : "bg-yellowBloxDark "
-            )}
-          />
+          <div className="flex items-center justify-center">
+            <div
+              className={cn(
+                "w-3 h-3 rounded-full mr-2",
+                currentCourse?.published
+                  ? "bg-lemonBloxDark "
+                  : "bg-yellowBloxDark "
+              )}
+            />
+          </div>
           <span className="line-clamp-1 text-start w-full">
             {" "}
             {currentCourse?.label}

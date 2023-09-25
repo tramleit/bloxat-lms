@@ -64,16 +64,16 @@ const QuickPage = () => {
           Welcome back, {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
         </h1> */}
-        <h2 className="text-lg font-normal mb-1 tracking-tight">
+        <h2 className="text-xl font-normal mb-1.5 tracking-tight">
           Welcome back, {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
         </h2>
-        <h1 className="text-4xl font-bold tracking-tight w-[550px] ">
+        <h1 className="text-4xl font-bold tracking-tight md:w-[550px] ">
           {course?.title}
         </h1>
-        <p className="text-muted-foreground mt-3">
+        {/* <p className="text-muted-foreground mt-3">
           Quickly access what you need
-        </p>
+        </p> */}
         <div className="flex flex-col space-y-5 mt-10 w-[350px]">
           <Button
             variant="blue"

@@ -54,7 +54,7 @@ export function MainNav({ className }) {
   return (
     <nav
       className={cn(
-        "relative h-full first-letter:flex flex flex-row items-center space-x-4 lg:space-x-6",
+        "relative md:flex hidden h-full first-letter:flex  flex-row items-center space-x-4 lg:space-x-6 ",
         className
       )}
     >

@@ -89,7 +89,7 @@ export const Actions = ({
   };
 
   return (
-    <div className="flex flex-row items-center gap-x-2">
+    <div className="md:flex hidden flex-row items-center gap-x-2">
       <Button
         variant="outline"
         className="w-[145px]"

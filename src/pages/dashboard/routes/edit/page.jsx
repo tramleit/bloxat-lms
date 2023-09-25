@@ -98,7 +98,7 @@ const EditCoursePage = () => {
               }}
             />
             <div className="flex flex-col gap-y-2 w-full">
-              <h1 className="text-3xl font-bold tracking-tight line-clamp-1">
+              <h1 className="md:text-3xl text-2xl font-bold tracking-tight line-clamp-1">
                 {courseContent?.title}
               </h1>
               <span></span>
@@ -148,7 +148,7 @@ const EditCoursePage = () => {
               //   console.log("newState", newState);
               // }}
             />
-            <div className="flex flex-row items-start space-x-4 ">
+            <div className="flex md:flex-row flex-col items-start md:space-x-4 space-x-0 ">
               <ImageForm
                 initialData={courseContent}
                 courseId={courseContent?.course_id}

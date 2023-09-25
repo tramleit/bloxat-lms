@@ -3,7 +3,7 @@ import { formatPrice } from "@/lib/format-price";
 
 export function RecentSales({ recentData }) {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 ">
       {recentData?.slice(0, 5)?.map((item, i) => (
         <div key={i} className="flex items-center">
           <Avatar className="h-9 w-9 ">
@@ -24,7 +24,7 @@ export function RecentSales({ recentData }) {
             </p>
             <p className="text-sm text-muted-foreground">{item?.user?.email}</p>
           </div>
-          <div className="ml-auto font-medium">
+          <div className="ml-auto font-medium md:text-base text-sm">
             +{item?.price} {item?.currency}
           </div>
         </div>

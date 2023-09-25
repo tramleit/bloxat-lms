@@ -141,9 +141,9 @@ const DashboardPage = () => {
           </div>
 
           <Separator />
-          <div className="grid gap-4 grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-4 grid-cols-1">
             {/* Card */}
-            <Card>
+            <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Total Sales
@@ -165,7 +165,7 @@ const DashboardPage = () => {
             </Card>
             {/* End Card */}
             {/* Card */}
-            <Card>
+            <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Total Sales
@@ -189,7 +189,7 @@ const DashboardPage = () => {
             </Card>
             {/* End Card */}
             {/* Card */}
-            <Card>
+            <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   Sales this month
@@ -217,7 +217,7 @@ const DashboardPage = () => {
             </Card>
             {/* End Card */}
             {/* Card */}
-            <Card>
+            <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   {/* Enrolled Students */}
@@ -244,8 +244,8 @@ const DashboardPage = () => {
           {/* Chart */}
           <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-7 w-full">
             {/* Graph */}
-            <div className="flex-1 col-span-4">
-              <Card>
+            <div className="flex-1 col-span-4 ">
+              <Card className="dark:bg-[#141414]">
                 <CardHeader>
                   <CardTitle className="text-md font-medium">
                     {/* Overview */}
@@ -262,7 +262,7 @@ const DashboardPage = () => {
               </Card>
             </div>
             {/* recent sales */}
-            <Card className="col-span-3">
+            <Card className="md:col-span-3 col-span-4 dark:bg-[#141414]">
               <CardHeader>
                 <CardTitle className="text-md font-medium">
                   Recent Sales

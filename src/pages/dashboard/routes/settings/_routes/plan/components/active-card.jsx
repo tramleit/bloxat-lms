@@ -12,7 +12,7 @@ const ActiveCard = ({
 }) => {
   return (
     <>
-      <Card className="w-[300px] hover:shadow-md transition-all duration-150 ease-in-out">
+      <Card className="w-[300px] hover:shadow-md transition-all duration-150 ease-in-out dark:bg-[#141414]">
         <CardHeader className="flex flex-col space-y-3">
           <div className="flex flex-row items-center justify-between">
             <h2
@@ -23,7 +23,7 @@ const ActiveCard = ({
             {/* <span>eh</span> */}
           </div>
           <CardTitle className="flex flex-row items-center space-x-2 font-bold text-3xl">
-            <span>{title}</span> <Check color="#01D95A" className="h-6 w-6" />
+            <span>{title}</span> <Check className="h-6 w-6 text-[#01D95A]" />
           </CardTitle>
         </CardHeader>
 
@@ -32,35 +32,35 @@ const ActiveCard = ({
           <div className="flex flex-col space-y-3">
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
-              <Check color="#000" className="h-4 w-4" />
+              <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
                 <span className="font-semibold">Unlimited</span> courses
               </p>
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
-              <Check color="#000" className="h-4 w-4" />
+              <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
                 <span className="font-semibold">Unlimited</span> students
               </p>
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
-              <Check color="#000" className="h-4 w-4" />
+              <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
                 <span className="font-semibold">All</span> payment methods
               </p>
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
-              <Check color="#000" className="h-4 w-4" />
+              <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
                 <span className="font-semibold">All</span> features
               </p>
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
-              <Check color="#000" className="h-4 w-4" />
+              <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
                 <span className="font-semibold">Renew</span> anytime
               </p>

@@ -8,6 +8,8 @@ import { MainSearch } from "@/components/main-search";
 import useCourseStore from "@/store/courses/courses-store";
 import { Link, useParams } from "react-router-dom";
 import Logo from "@/assets/images/logo/bloxat-colored.webp";
+import { Button } from "@/components/ui/button";
+import MobileSideMenu from "@/components/mobile-sidemenu";
 
 const Navbar = () => {
   // const param = useParams();
@@ -27,8 +29,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="border-b shadow-sm">
+    <div className="border-b shadow-sm dark:bg-[#141414]">
       <div className="flex h-16 items-center px-4">
+        {/* Menu for mobile */}
+        <MobileSideMenu />
         <Link to={`/${course_id}`}>
           <img
             src={Logo}

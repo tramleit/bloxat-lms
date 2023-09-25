@@ -8,7 +8,7 @@ const bannerVariants = cva(
   {
     variants: {
       variant: {
-        warning: "bg-yellowBloxLight border-yellow-30 text-primary",
+        warning: "bg-yellowBloxLight border-yellow-30 text-primary md:text-center text-start",
         success: "bg-emerald-700 border-emerald-800 text-secondary",
       },
     },

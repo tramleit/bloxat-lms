@@ -4,7 +4,7 @@ const SettingsCard = ({ title, description, icon, color, onClick }) => {
   return (
     <Card
       onClick={onClick}
-      className="p-5 hover:shadow-md transition-all duration-150 ease-in-out cursor-pointer"
+      className="p-5 hover:shadow-md transition-all duration-150 ease-in-out cursor-pointer dark:bg-[#141414]"
     >
       <div className="flex flex-row items-center">
         <div

@@ -18,6 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
 import toast from "react-hot-toast";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Form validator
 const formSchema = z.object({
@@ -91,7 +92,7 @@ const InstapaySetupPage = () => {
       {/* Left div */}
       {/* Inputs */}
       <div className="flex-1 flex flex-col items-center justify-center h-full ">
-        <div className="w-1/2 ">
+        <div className="md:w-1/2 ">
           <div className="flex flex-row items-center space-x-2 mb-5">
             <img
               src={InstapayLogo}
@@ -161,9 +162,21 @@ const InstapaySetupPage = () => {
       </div>
 
       {/* Right div */}
-      {/* Tutorial */}
-      <div className="border border-l border-gray-50 dark:border-[#121212] bg-gradient-to-b from-gray-50 via-transparent to-transparent dark:bg-gradient-to-b dark:from-[#121212] dark:via-transparent dark:to-transparent flex-1 flex items-center justify-center h-full">
-        right
+      {/* https://media.publit.io/file/instapay-howto.webp */}
+      {/* Right Side */}
+      <div className="bg-[#fdfdfd] dark:bg-transparent border-l  md:flex hidden flex-col flex-1 items-center justify-center h-full ">
+        {/* bg-[#fdfdfd] */}
+        {/* bg-gray-50 */}
+        {/* right [place graphic] */}
+        <div className="flex items-center justify-center h-full">
+          <LazyLoadImage
+            className="object-cover h-1/2 bg-blend-difference"
+            src="https://media.publit.io/file/instapay-howto.webp"
+            effect="blur"
+            placeholderSrc="https://media.publit.io/file/instapay-howto.webp"
+            draggable={false}
+          />
+        </div>
       </div>
     </div>
   );

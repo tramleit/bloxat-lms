@@ -178,7 +178,7 @@ const BrandingPage = () => {
               <Form {...form}>
                 <form
                   // onSubmit={form.handleSubmit(onSubmit)}
-                  className="flex flex-row items-center justify-center space-x-8 w-full"
+                  className="flex md:flex-row flex-col items-center justify-center md:space-x-8 space-y-8 md:space-y-0 w-full"
                 >
                   <FormField
                     control={form.control}

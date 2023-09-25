@@ -45,7 +45,7 @@ export const StudentsClient = () => {
       />
       <div className="flex items-center justify-between">
         <Heading title="Students" description="View your students details." />
-        <div className="flex flex-row space-x-2">
+        <div className="md:flex hidden flex-row space-x-2">
           <Button
             variant="outline"
             onClick={() =>

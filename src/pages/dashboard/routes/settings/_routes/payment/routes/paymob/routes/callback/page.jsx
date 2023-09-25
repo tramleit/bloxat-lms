@@ -100,7 +100,7 @@ const PaymobCallbackPage = () => {
 
       {/* Right div */}
       {/* Tutorial */}
-      <div className="border border-l border-gray-50 dark:border-[#121212] bg-gradient-to-b from-gray-50 via-transparent to-transparent dark:bg-gradient-to-b dark:from-[#121212] dark:via-transparent dark:to-transparent flex-1 flex items-center justify-center h-full">
+      <div className="border border-l border-gray-50 dark:border-[#121212] bg-gradient-to-b from-gray-50 via-transparent to-transparent dark:bg-gradient-to-b dark:from-[#121212] dark:via-transparent dark:to-transparent flex-1 md:flex hidden items-center justify-center h-full">
         right
       </div>
     </div>

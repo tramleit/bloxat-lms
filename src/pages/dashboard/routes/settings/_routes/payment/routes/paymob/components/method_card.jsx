@@ -76,7 +76,7 @@ const MethodCard = ({
         // onConfirm={onDisconnect}
         // loading={loading}
       />
-      <Card className="p-6 h-full hover:shadow-md transition-all duration-150 ease-in-out">
+      <Card className="p-6 h-full hover:shadow-md transition-all duration-150 ease-in-out dark:bg-[#141414]">
         <div className="flex flex-row items-start justify-between h-full">
           <div className="flex flex-col items-start justify-between h-full">
             <div className="flex flex-col items-start space-y-3">

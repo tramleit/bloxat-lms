@@ -108,7 +108,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <div
-          className="overflow-x-hidden h-screen"
+          className="overflow-x-clip h-screen"
           style={{ fontFamily: Open_Sans }}
         >
           <ToasterProvider />

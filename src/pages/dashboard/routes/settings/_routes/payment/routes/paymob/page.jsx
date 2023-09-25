@@ -111,7 +111,7 @@ const PaymobPage = () => {
           <Separator />
           {/* Content */}
           {/* <PaymobSettingsForm /> */}
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
             {/* Payment methods */}
             {/* Credit and Debit Cards */}
             <MethodCard
@@ -195,17 +195,20 @@ const PaymobPage = () => {
           </div>
           <div className="h-1"></div>
           {/* <Separator /> */}
-          <h2 className="text-xl font-semibold">Integration Callbacks</h2>
-          <ApiAlert
-            title="Transaction Processed Callback"
-            description="https://octopus-app-fypbq.ondigitalocean.app/api/v1/paymob/enroll"
-            variant="public"
-          />
-          <ApiAlert
-            title="Transaction Response Callback"
-            description="https://bloxat.app/payment-redirect"
-            variant="public"
-          />
+          <div className="md:flex flex-col space-y-4 hidden">
+            <h2 className="text-xl font-semibold">Integration Callbacks</h2>
+            <ApiAlert
+              title="Transaction Processed Callback"
+              description="https://octopus-app-fypbq.ondigitalocean.app/api/v1/paymob/enroll"
+              variant="public"
+            />
+            <ApiAlert
+              title="Transaction Response Callback"
+              description="https://bloxat.app/payment-redirect"
+              variant="public"
+            />
+          </div>
+
           {/* <PaymentSettingsForm initialData={course} /> */}
         </div>
       </div>

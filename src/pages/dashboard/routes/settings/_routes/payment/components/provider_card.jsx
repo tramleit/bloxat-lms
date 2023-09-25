@@ -41,7 +41,7 @@ const ProviderCard = ({
         onConfirm={onDisconnect}
         loading={loading}
       />
-      <Card className="flex flex-col h-[155px] p-6 items-start justify-between hover:shadow-md transition-all duration-150 ease-in-out">
+      <Card className="flex flex-col h-[155px] p-6 items-start justify-between hover:shadow-md transition-all duration-150 ease-in-out dark:bg-[#141414]">
         {/* h-[185px] */}
         <div className="flex flex-col items-start space-y-1.5">
           <img
