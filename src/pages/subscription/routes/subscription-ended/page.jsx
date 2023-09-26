@@ -107,6 +107,7 @@ const SubscriptionEndedPage = () => {
           duration="Yearly"
           color={"bg-yellowBloxLight"}
           price="5,000"
+          extraText="Save 1,000 EGP"
           onClick={() => {
             setYearlyLoading(true);
             startPaymentProcess(

@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-export const Modal = ({ title, description, isOpen, onClose, children }) => {
+export const MinimalModal = ({  isOpen, onClose, children }) => {
   const onChange = (open) => {
     if (!open) {
       onClose();
@@ -17,14 +17,14 @@ export const Modal = ({ title, description, isOpen, onClose, children }) => {
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
       <DialogContent>
-        <DialogHeader className="md:hidden lg:flex flex">
+        {/* <DialogHeader className="md:hidden lg:flex flex">
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
-        </DialogHeader>
+        </DialogHeader> */}
         <div>{children}</div>
       </DialogContent>
     </Dialog>
   );
 };
 
-export default Modal;
+export default MinimalModal;

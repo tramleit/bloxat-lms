@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/images/logo/bloxat-black.webp";
 import { Button } from "@/components/ui/button";
+import useIsMobile from "@/hooks/use-is-mobile";
 
 const StartTourModal = () => {
   // const {
@@ -26,6 +27,7 @@ const StartTourModal = () => {
   const { setIsOpen } = useTour();
 
   // const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     localStorage.setItem("tourModalPopped", "true");
@@ -38,7 +40,7 @@ const StartTourModal = () => {
       <div className="bg-black/80  w-screen fixed nav-item top-0 right-0 z-50 overflow-y-hidden ">
         <div className="flex h-screen  dark:text-gray-200 bg-half-transparent dark:[#484B52] w-full  p-5   overflow-y-hidden	items-center justify-center content-center ">
           <div className="fade-up">
-            <div className="flex items-center justify-center content-center bg-white rounded-lg h-[400px] w-[500px]">
+            <div className="flex items-center justify-center content-center bg-white rounded-lg md:h-[400px] md:w-[500px] h-[400px]">
               <XIcon
                 onClick={() => {
                   // setShowStartTourModal(false);
@@ -54,24 +56,43 @@ const StartTourModal = () => {
                       New to Bloxat?
                     </span>
                     <span className="text-muted-foreground  mb-4">
-                      {' Click on "Start Tour" for a quick walkthrough! 😄'}
+                      {isMobile
+                        ? " Open it on your computer for a quick walkthrough! 😄"
+                        : ' Click on "Start Tour" for a quick walkthrough! 😄'}{" "}
                     </span>
-                    <Button
-                      onClick={() => {
-                        // setShowStartTourModal(false);
-                        disableShowStartTourModal();
 
-                        // setTourStarted(true);
-                        openTour();
-                        setIsOpen(true);
-                      }}
-                      className="w-fit bg-black text-white hover:bg-[#242424] hover:text-white"
-                    >
-                      <span className="text-[14px] select-none">
-                        Start Tour
-                      </span>
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                    {isMobile ? (
+                      <Button
+                        onClick={() => {
+                          // setShowStartTourModal(false);
+                          disableShowStartTourModal();
+
+                          // setTourStarted(true);
+                          // openTour();
+                          // setIsOpen(true);
+                        }}
+                        className="w-fit bg-black text-white hover:bg-[#242424] hover:text-white"
+                      >
+                        <span className="text-[14px] select-none">Okay</span>
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          // setShowStartTourModal(false);
+                          disableShowStartTourModal();
+
+                          // setTourStarted(true);
+                          openTour();
+                          setIsOpen(true);
+                        }}
+                        className="w-fit bg-black text-white hover:bg-[#242424] hover:text-white"
+                      >
+                        <span className="text-[14px] select-none">
+                          Start Tour
+                        </span>
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    )}
                   </div>
                 </div>
                 <button

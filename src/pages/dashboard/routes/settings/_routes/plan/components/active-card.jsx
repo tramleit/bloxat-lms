@@ -9,6 +9,7 @@ const ActiveCard = ({
   showRemaining,
   title,
   color,
+  textColor
 }) => {
   return (
     <>
@@ -16,7 +17,7 @@ const ActiveCard = ({
         <CardHeader className="flex flex-col space-y-3">
           <div className="flex flex-row items-center justify-between">
             <h2
-              className={`text-sm ${color} px-2 py-0.5 rounded-md font-semibold text-black`}
+              className={`text-sm ${color} px-2 py-0.5 rounded-md font-semibold ${textColor}`}
             >
               {planName}
             </h2>

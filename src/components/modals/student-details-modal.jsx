@@ -63,7 +63,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
 
   //   Loading state
   if (!data) {
-    return <>loading</>;
+    return <></>;
   }
 
   return (
@@ -135,7 +135,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
         </div> */}
         <Separator />
         {/* Payment */}
-        <div className="flex flex-row items-center space-x-2">
+        <div className="flex flex-row items-center space-x-2 md:text-base text-sm">
           <span className="text-muted-foreground">💵 Paid: </span>
           <span>
             {data?.userEnrollment?.price} {data?.userEnrollment?.currency}
@@ -144,7 +144,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
         </div>
 
         {/* How enrolled */}
-        <div className="flex flex-row items-center space-x-1">
+        <div className="flex flex-row items-center space-x-1 flex-wrap md:text-base text-sm">
           <span className="text-muted-foreground">📅 Enrolled At: </span>
           <span>{formatDate(data?.userEnrollment.createdAt)} </span>
           <span>via</span>

@@ -3,11 +3,14 @@ import { useWarnings } from "@/hooks/use-warnings";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import useIsMobile from "@/hooks/use-is-mobile";
 
 const WarningsBanners = ({ warnings, courseId }) => {
   const navigate = useNavigate();
   // Retrieve the value from local storage
   const completionData = JSON.parse(localStorage.getItem("bxCompletion"));
+
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -31,7 +34,7 @@ const WarningsBanners = ({ warnings, courseId }) => {
                         navigate(`/${courseId}/settings/payment`);
                       }}
                     >
-                      Setup payment
+                      {isMobile ? "Go" : "Setup payment"}
                     </Button>
                   }
                 />
@@ -52,7 +55,7 @@ const WarningsBanners = ({ warnings, courseId }) => {
                         navigate(`/${courseId}/edit`);
                       }}
                     >
-                      Edit course
+                      {isMobile ? "Go" : "Edit course"}
                       {/* <ArrowRight className="h-4 w-4 ml-2" /> */}
                     </Button>
                   }

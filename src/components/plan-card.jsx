@@ -13,17 +13,22 @@ const PlanCard = ({
   ctaText,
   disabled,
   loading,
+  extraText,
 }) => {
   return (
     <>
       <Card className="w-[300px] hover:shadow-md transition-all duration-150 ease-in-out">
         <CardHeader className="flex flex-col space-y-3">
-          <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center ">
             <h2
               className={`text-sm ${color} px-2 py-0.5 rounded-md font-semibold text-black`}
             >
               {duration}
             </h2>
+            {extraText && (
+              <span className="ml-2 font-semibold">{extraText}</span>
+            )}
+
             {/* <span>eh</span> */}
           </div>
           <CardTitle className="font-bold text-3xl">{price} EGP</CardTitle>

@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 
 const useGetCourseStore = create((set) => ({
   course: null, // Store a single course object
+  courseSlug: null,
   loading: false,
 
   // Fetch a course by course ID
@@ -25,6 +26,31 @@ const useGetCourseStore = create((set) => ({
 
       set({
         course: response.data, // Store the fetched course data
+        loading: false,
+      });
+    } catch (error) {
+      console.error("Error fetching course by ID:", error);
+      set({ loading: false });
+    }
+  },
+  // Fetch course title and slug
+  fetchCourseSlug: async (courseId) => {
+    const token = JSON.parse(localStorage.getItem("bxAuthToken"));
+
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+    set({ loading: true });
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/courses/title/id/${courseId}`,
+        // Headers
+        {
+          Authorization: `Bearer ${token}`,
+        }
+      );
+
+      set({
+        courseSlug: response.data, // Store the fetched course data
         loading: false,
       });
     } catch (error) {

@@ -10,6 +10,7 @@ import { KeyRound } from "lucide-react";
 import { AlertModal } from "@/components/modals/alert-modal";
 import useAuthStore from "@/store/auth/auth-store";
 import { useNavigate } from "react-router-dom";
+import useIsMobile from "@/hooks/use-is-mobile";
 
 const EditAccountForm = ({ currentUser }) => {
   // Edit Inputs
@@ -73,6 +74,8 @@ const EditAccountForm = ({ currentUser }) => {
     }
   };
 
+  const isMobile = useIsMobile();
+
   return (
     <>
       <AlertModal
@@ -84,7 +87,7 @@ const EditAccountForm = ({ currentUser }) => {
         loading={false}
       />
       <Card>
-        <CardContent className="grid grid-cols-1 p-8 gap-5">
+        <CardContent className="grid grid-cols-1 md:p-8 p-5 gap-5">
           <div className="flex flex-row items-center space-x-5">
             {/* First Name */}
             <div className="grid gap-1">
@@ -176,7 +179,7 @@ const EditAccountForm = ({ currentUser }) => {
         <CardFooter className="flex flex-row space-x-4">
           <Button onClick={handleUpdateUser} disabled={loading}>
             {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-            Save changes
+            {isMobile ? "Save" : "Save changes"}
           </Button>
           <Button
             variant="outline"

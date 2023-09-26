@@ -5,6 +5,9 @@ import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
 import { useNavigate, useParams } from "react-router-dom";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
+import Logo from "@/assets/images/logo/bloxat-blue.webp";
+import Lottie from "lottie-react-web";
+import loading from "@/assets/lotties/loading.json";
 
 const RootPage = () => {
   const navigate = useNavigate();
@@ -30,9 +33,24 @@ const RootPage = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen items-center justify-center">
-      <span>Root</span>
-      <p>Preparing your Bloxat experience ...</p>
+    <div className="flex flex-col items-center justify-center h-screen space-y-4">
+      <img
+        src={Logo}
+        className="w-[110px] h-auto"
+        alt="Bloxat"
+        draggable={false}
+      />
+      <div className="relative flex w-[230px]">
+        <div className="">
+          <Lottie
+            //   className="lottie"
+            options={{
+              animationData: loading,
+              loop: true,
+            }}
+          />
+        </div>
+      </div>{" "}
     </div>
   );
 };

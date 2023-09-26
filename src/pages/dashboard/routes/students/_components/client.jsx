@@ -11,12 +11,15 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import Loading from "@/components/loading/loading";
 import { copyText } from "@/lib/copy-text";
 import { PORTAL_URL } from "@/config/url-config";
+import useIsMobile from "@/hooks/use-is-mobile";
 // import { columns } from "./columns";
 
 export const StudentsClient = () => {
   const { course_id } = useParams();
 
   const [open, setOpen] = useState(false);
+
+  const isMobile = useIsMobile();
 
   // Get course
   const { course, fetchCourseById } = useGetCourseStore();
@@ -45,9 +48,10 @@ export const StudentsClient = () => {
       />
       <div className="flex items-center justify-between">
         <Heading title="Students" description="View your students details." />
-        <div className="md:flex hidden flex-row space-x-2">
+        <div className="flex flex-row space-x-2 ">
           <Button
             variant="outline"
+            size="default"
             onClick={() =>
               copyText(
                 `${PORTAL_URL}/${currentUser?.brand_slug}/${course?.course_slug}/checkout`
@@ -55,11 +59,15 @@ export const StudentsClient = () => {
             }
           >
             <Copy className="mr-2 h-4 w-4" />
-            Payment link
+            {isMobile ? <>Pay</> : <span>Payment link</span>}
           </Button>
-          <Button variant="blue" onClick={() => setOpen(true)}>
-            <Plus className="mr-2 h-4 w-4" />
-            Add student
+          <Button
+            variant="blue"
+            size={isMobile ? "icon" : "default"}
+            onClick={() => setOpen(true)}
+          >
+            <Plus className="md:mr-2 mr-0 h-4 w-4" />
+            {isMobile ? <></> : <span>Add student</span>}
           </Button>
         </div>
       </div>

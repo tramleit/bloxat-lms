@@ -54,7 +54,7 @@ const PaymobCallbackPage = () => {
   };
 
   return (
-    <div className="flex flex-row items-center w-full h-[90%]">
+    <div className="flex flex-row items-center md:px-0 px-10 w-full h-[90%]">
       {/* Left div */}
       {/* Inputs */}
       <div className="flex-1 flex flex-col items-center justify-center h-full ">

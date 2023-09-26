@@ -13,6 +13,9 @@ import { ContentForm } from "./_components/content-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
 import { cn } from "@/lib/utils";
+import useLandscapeMode from "@/hooks/use-landscape-mode";
+import StartTourModal from "@/components/modals/start-tour-modal";
+import RotateDeviceModal from "@/components/modals/rotate-device-modal";
 // import useGlobalStore from "@/store/global-state";
 
 const EditCoursePage = () => {
@@ -34,6 +37,9 @@ const EditCoursePage = () => {
   const [lessonsState, setLessonsState] = useState(
     courseContent?.modules.some((module) => module.lessons.length > 0)
   );
+
+  // detect if we're on mobile and portrait
+  const isPortrait = useLandscapeMode();
 
   useEffect(() => {
     fetchCourseContent(course_id);
@@ -89,6 +95,8 @@ const EditCoursePage = () => {
           label={`Add a title, description, thumbnail, price, and a section with a lesson in it to publish. Completed 👉 ${completionText}`}
         />
       )}
+      {/* if we're onn mobile and they're in portrait mode then show them that they need to rotate */}
+      {isPortrait && <RotateDeviceModal />}
       <div className="p-8 pt-6">
         <div className="flex flex-col">
           <div className="flex flex-row items-center space-x-4">
@@ -128,7 +136,7 @@ const EditCoursePage = () => {
 
           <Separator className="mt-4" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-1  gap-6 mt-6">
           <div>
             <div className="flex items-center gap-x-2">
               {/* <IconBadge Icon={LayoutDashboard} /> */}

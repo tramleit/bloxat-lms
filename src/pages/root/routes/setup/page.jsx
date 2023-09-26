@@ -10,6 +10,7 @@ import { DAYS_FOR_TRIAL } from "@/config/subscription-config";
 import SetupHeader from "../../_components/setup-header";
 import Bottom from "../../_components/Bottom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { generateRandomSlug } from "@/lib/generate-random-slug";
 
 const SetupPage = () => {
   const currentUser = useCurrentUser();
@@ -47,11 +48,17 @@ const SetupPage = () => {
       return; // Prevent form submission
     }
 
+    // Check if the course name contains Arabic characters
+    const hasArabicCharacters = /[؀-ۿ]/.test(brandName);
+
     // Transform name to lowercase and replace spaces with hyphens
-    const formattedNameToSlug = brandName
-      .toLowerCase()
-      .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
-      .replace(/\s+/g, "-"); // Replace spaces with hyphens
+    // Generate a random slug if the course name is in Arabic
+    const brandSlug = hasArabicCharacters
+      ? generateRandomSlug(10) // Adjust the length as needed
+      : brandName.name
+          .toLowerCase()
+          .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
+          .replace(/\s+/g, "-"); // Replace spaces with hyphens
 
     const currentDate = new Date(); // Get the current date and time
     const futureDate = new Date(currentDate); // Create a copy of the current date
@@ -74,7 +81,7 @@ const SetupPage = () => {
           // Body
           {
             brand_name: brandName,
-            brand_slug: formattedNameToSlug,
+            brand_slug: brandSlug,
             brand_logo_light: currentUser?.brand_logo_light,
             brand_logo_dark: currentUser?.brand_logo_dark,
             trial_end: formattedFutureDate,

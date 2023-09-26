@@ -10,7 +10,8 @@ import { PORTAL_URL } from "@/config/url-config";
 import { useCourseTitle } from "@/queries/courses/course-queries";
 import useTourStore from "@/store/tour.store";
 import StartTourModal from "@/components/modals/start-tour-modal";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ViewPortalModal from "@/components/modals/view-portal-modal";
 
 const QuickPage = () => {
   const { course_id } = useParams();
@@ -36,6 +37,9 @@ const QuickPage = () => {
   // If start tour modal has been shown
   const tourModalPopped = localStorage.getItem("tourModalPopped");
 
+  // View portal modal state
+  const [openViewModal, setOpenViewModal] = useState(false);
+
   // to show the tour modal if first time visit
   useEffect(() => {
     if (tourModalPopped !== "true") {
@@ -59,7 +63,16 @@ const QuickPage = () => {
       {showStartTourModal && <StartTourModal />}
       {/* Warning banners if something is missing */}
       <WarningsBanners warnings={warnings} courseId={course_id} />
-      <div className="flex flex-col items-center justify-center h-[80vh] text-center">
+
+      {/* That's a modal that opens when we click View your portal ... */}
+      {/* to let them choose if they want to see the entire portal or just copy their payment link? */}
+      <ViewPortalModal
+        isOpen={openViewModal}
+        onClose={() => setOpenViewModal(false)}
+        brandSlug={warnings?.brandSlug}
+        // onConfirm={onConfirm}
+      />
+      <div className="flex flex-col items-center justify-center lg:h-[80vh] h-[80vh] md:h-screen text-center md:px-0 px-5">
         {/* <h1 className="text-4xl font-bold tracking-tight">
           Welcome back, {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
@@ -76,30 +89,34 @@ const QuickPage = () => {
         </p> */}
         <div className="flex flex-col space-y-5 mt-10 w-[350px]">
           <Button
-            variant="blue"
-            size="lg"
+            // variant="blue"
+            // variant="yellow"
+
+            size="xl"
             className="w-full"
             onClick={() => {
               createModal.onOpen();
             }}
           >
             <Plus className="h-4 w-4 mr-2" />
-            Create course
+            Create a new course
           </Button>
           <Button
-            variant="lemon"
-            size="lg"
+            // variant="lemon"
+            variant="blueLight"
+            size="xl"
             className="w-full"
             onClick={() => {
               navigate(`/${course_id}/edit`);
             }}
           >
             <Pencil className="h-4 w-4 mr-2" />
-            Course content
+            Add & Edit course content
           </Button>
           <Button
             variant="yellow"
-            size="lg"
+            // variant="sky"
+            size="xl"
             className="w-full"
             onClick={() => {
               navigate(`/${course_id}/settings/payment`);
@@ -111,15 +128,17 @@ const QuickPage = () => {
           <div className="flex flex-row items-center space-x-5">
             <Button
               variant="outline"
-              size="lg"
+              size="xl"
               className="w-full"
-              onClick={() => {
-                // Open portal of the brand in a new tab
-                window.open(`${PORTAL_URL}/${warnings?.brandSlug}`, "_blank");
-              }}
+              onClick={() => setOpenViewModal(true)}
+
+              // onClick={() => {
+              //   // Open portal of the brand in a new tab
+              //   window.open(`${PORTAL_URL}/${warnings?.brandSlug}`, "_blank");
+              // }}
             >
               <Eye className="h-4 w-4 mr-2" />
-              View my portal
+              View Portal & Get Link
             </Button>
           </div>
         </div>

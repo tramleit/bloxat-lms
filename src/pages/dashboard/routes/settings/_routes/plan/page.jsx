@@ -142,7 +142,8 @@ const PlanPage = () => {
               new Date() < new Date(currentUser.subscription_end) && (
                 <ActiveCard
                   title={"Active"}
-                  color={"bg-yellow"}
+                  color={"bg-blueBloxLight"}
+                  textColor={"text-white"}
                   planName={`${billingData[0]?.plan.toUpperCase()} subscription`}
                   daysRemaining={remainingDays}
                   showRemaining={remainingDays <= 2 ? true : false}
@@ -158,6 +159,7 @@ const PlanPage = () => {
                 <ActiveCard
                   title={"Free Trial"}
                   color={"bg-sky"}
+                  textColor={"text-black"}
                   planName="21 days trial"
                   daysRemaining={trialRemainingDays}
                   showRemaining={trialRemainingDays <= 2 ? true : false}

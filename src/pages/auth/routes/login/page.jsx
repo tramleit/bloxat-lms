@@ -6,6 +6,9 @@ import rotate from "@/assets/lotties/rotate.json";
 import { LoginForm } from "../../_components/login-form";
 import { Link } from "react-router-dom";
 import Logo from "@/assets/images/logo/bloxat-yellow.webp";
+import LogoBlue from "@/assets/images/logo/bloxat-blue.webp";
+
+import useIsMobile from "@/hooks/use-is-mobile";
 // import Lottie from "lottie-react-web";
 // import { buttonVariants } from "@/registry/new-york/ui/button"
 // import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"
@@ -16,6 +19,8 @@ import Logo from "@/assets/images/logo/bloxat-yellow.webp";
 // };
 
 const Login = () => {
+  const isMobile = useIsMobile();
+
   return (
     <>
       {/* <div className="md:hidden">
@@ -34,7 +39,7 @@ const Login = () => {
           className="hidden dark:block"
         />
       </div> */}
-      <div className="container relative hidden h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div className="container relative  h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <Link
           to="/signup"
           className={cn(
@@ -110,9 +115,19 @@ const Login = () => {
           </div> */}
         </div>
         <div className="lg:p-8">
-          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-            <div className="flex flex-col space-y-2 text-center mt-10">
-              <h1 className="text-2xl font-semibold tracking-tight">
+          <div className="mx-auto flex md:w-[350px] w-screen md:px-0 px-10 flex-col justify-center space-y-6 ">
+            {/* sm:w-[350px] */}
+            <div className="flex flex-col space-y-2 justify-center items-center   text-center mt-10">
+              {/* Mobile only visible logo */}
+              {isMobile && (
+                <img
+                  src={LogoBlue}
+                  className="w-[100px] h-auto mb-3"
+                  alt="Bloxat Logo"
+                  draggable={false}
+                />
+              )}
+              <h1 className="text-2xl font-semibold tracking-tight md:flex hidden">
                 Login to Bloxat
               </h1>
               {/* <p className="text-sm text-muted-foreground">

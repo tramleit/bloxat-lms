@@ -19,14 +19,18 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         blue: "bg-blueBlox text-white hover:bg-blueBloxLight ",
+        blueLight: "bg-blueBloxLight text-white hover:bg-[#5890ff] ",
         yellow: "bg-yellowBlox text-black hover:bg-yellowBloxLight ",
         lemon: "bg-lemonBlox text-black hover:bg-lemonBloxLight ",
         purple: "bg-purpleBlox text-black hover:bg-purpleBloxLight ",
+        sky: "bg-sky text-black hover:bg-[#d9fcff] ",
       },
       size: {
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
+        xl: "h-12 rounded-md px-11",
+
         icon: "h-10 w-10",
       },
     },

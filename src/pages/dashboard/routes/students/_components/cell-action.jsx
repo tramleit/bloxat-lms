@@ -86,7 +86,7 @@ export const CellAction = ({ userId }) => {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="h-8 w-8 p-0">
             {/* sr-only means it's not visible it's just for screen readers for accessibility */}
-            <span className="sr-only">Open menu</span>
+            {/* <span className="sr-only">Open menu</span> */}
             <MoreVertical className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>

@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { EditConnectionModal } from "@/components/modals/paymob-integration/edit-connection";
 import CardsIcon from "@/assets/images/icons/all-cards.webp";
 import WalletsIcon from "@/assets/images/icons/wallets.webp";
+import useIsMobile from "@/hooks/use-is-mobile";
 
 const PaymobPage = () => {
   const { course_id } = useParams();
@@ -56,6 +57,8 @@ const PaymobPage = () => {
 
   // EDIT CONNECTION MODAL
   const [open, setOpen] = useState(false);
+
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     fetchPaymobIntegration();
@@ -104,7 +107,7 @@ const PaymobPage = () => {
                   setOpen(true);
                 }}
               >
-                Edit Connection
+                {isMobile ? "Edit" : "Edit Connection"}
               </Button>
             </div>
           </div>
@@ -195,7 +198,7 @@ const PaymobPage = () => {
           </div>
           <div className="h-1"></div>
           {/* <Separator /> */}
-          <div className="md:flex flex-col space-y-4 hidden">
+          <div className="flex flex-col space-y-4 ">
             <h2 className="text-xl font-semibold">Integration Callbacks</h2>
             <ApiAlert
               title="Transaction Processed Callback"
@@ -208,8 +211,7 @@ const PaymobPage = () => {
               variant="public"
             />
           </div>
-
-          {/* <PaymentSettingsForm initialData={course} /> */}
+<div className="md:h-0 h-20"/>   {/* <PaymentSettingsForm initialData={course} /> */}
         </div>
       </div>
     </>

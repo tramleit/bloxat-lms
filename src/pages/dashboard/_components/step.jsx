@@ -18,11 +18,13 @@ const Step = ({
 
   return (
     <div className="flex flex-col items-center justify-center ml-10">
-      <div className="flex flex-row items-center space-x-2 mb-2">
+      <div className="flex flex-col items-center space-y-2 mb-2">
         <span
           className={cn(
             "flex items-center justify-center border border-gray-400 p-2 h-[25px] w-[25px] rounded-full font-semibold text-gray-400 text-sm",
-            completed && "bg-green text-white border-none"
+            completed
+              ? "bg-green text-white border-none"
+              : enableButton && "bg-blueBloxLight text-white border-none"
           )}
         >
           {stepNumber}

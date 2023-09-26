@@ -140,7 +140,7 @@ export const AddStudentModal = ({ isOpen, onClose, coursePrice, currency }) => {
       onClose={onClose}
     >
       {/* Content */}
-      <div className="flex flex-col space-y-6 my-6">
+      <div className="flex flex-col space-y-6 my-6 ">
         {/* <form
         // onSubmit={handleSubmit}
         > */}
