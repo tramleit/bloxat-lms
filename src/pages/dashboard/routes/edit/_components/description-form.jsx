@@ -19,6 +19,7 @@ import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   description: z.string().min(1, {
@@ -27,6 +28,7 @@ const formSchema = z.object({
 });
 
 export const DescriptionForm = ({ initialData, courseId }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -76,33 +78,30 @@ export const DescriptionForm = ({ initialData, courseId }) => {
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Description
+        {t("Description")}
         {!data?.description && !isEditing && (
           <Button onClick={toggleEdit} variant="yellow">
             <Plus className="h-4 w-4 mr-2" />
-            Add
+            {t("Add")}
           </Button>
         )}
         {isEditing && (
           <Button onClick={toggleEdit} variant="ghost">
-            Cancel
+            {t("Cancel")}
           </Button>
         )}
         {!isEditing && data?.description && (
           <Button onClick={toggleEdit} variant="ghost">
             <Edit className="h-4 w-4 mr-2" />
-            Edit
+            {t("Edit")}
           </Button>
         )}
       </div>
       {!isEditing && (
         <p
-          className={cn(
-            "mt-2",
-            !data?.description && "text-slate-500 italic"
-          )}
+          className={cn("mt-2", !data?.description && "text-slate-500 italic")}
         >
-          {data?.description || "No description"}
+          {data?.description || t("No description")}
         </p>
       )}
       {isEditing && (
@@ -119,7 +118,9 @@ export const DescriptionForm = ({ initialData, courseId }) => {
                   <FormControl>
                     <Textarea
                       disabled={isSubmitting}
-                      placeholder="eg: This course is designed to ..."
+                      placeholder={t(
+                        "Example: This course is designed to teach ..."
+                      )}
                       {...field}
                     />
                   </FormControl>
@@ -133,7 +134,7 @@ export const DescriptionForm = ({ initialData, courseId }) => {
                 {isSubmitting && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Save
+                {t("Save")}
               </Button>
             </div>
           </form>

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { ArrowRight, Eye } from "lucide-react";
 import { PORTAL_URL } from "@/config/url-config";
+import { useTranslation } from "react-i18next";
 
 const Step = ({
   stepNumber,
@@ -14,6 +15,7 @@ const Step = ({
   viewButton,
   courseId,
 }) => {
+  const { t } = useTranslation();
   const currentUser = useCurrentUser();
 
   return (
@@ -38,7 +40,7 @@ const Step = ({
           //   variant="blue"
           onClick={onClick}
         >
-          Go
+          {t("Go")}
           <ArrowRight className="h-4 w-4 ml-1" />
         </Button>
       )}
@@ -71,7 +73,7 @@ const Step = ({
           }}
         >
           <Eye className="h-4 w-4 mr-1" />
-          View
+          {t("View")}
         </Button>
       )}
     </div>

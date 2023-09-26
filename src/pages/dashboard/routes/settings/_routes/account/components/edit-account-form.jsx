@@ -11,6 +11,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import useAuthStore from "@/store/auth/auth-store";
 import { useNavigate } from "react-router-dom";
 import useIsMobile from "@/hooks/use-is-mobile";
+import { useTranslation } from "react-i18next";
 
 const EditAccountForm = ({ currentUser }) => {
   // Edit Inputs
@@ -29,6 +30,8 @@ const EditAccountForm = ({ currentUser }) => {
   // for alert of change password that we'll log out
   const [open, setOpen] = useState(false);
   const { logoutAndChangePassword } = useAuthStore();
+
+  const { t } = useTranslation();
 
   // Function to handle the "Update" button click
   const handleUpdateUser = async () => {
@@ -92,7 +95,7 @@ const EditAccountForm = ({ currentUser }) => {
             {/* First Name */}
             <div className="grid gap-1">
               <Label htmlFor="firstName" className="mb-1 text-muted-foreground">
-                First Name
+                {t("First Name")}
               </Label>
               <Input
                 id="firstName"
@@ -111,7 +114,7 @@ const EditAccountForm = ({ currentUser }) => {
             {/* Last Name */}
             <div className="grid gap-1">
               <Label htmlFor="lastName" className="mb-1 text-muted-foreground">
-                Last Name
+                {t("Last Name")}
               </Label>
               <Input
                 id="lastName"
@@ -135,7 +138,7 @@ const EditAccountForm = ({ currentUser }) => {
                 htmlFor="phoneNumber"
                 className="mb-1 text-muted-foreground"
               >
-                Phone
+                {t("Phone")}
               </Label>
               <Input
                 id="phoneNumber"
@@ -153,7 +156,7 @@ const EditAccountForm = ({ currentUser }) => {
             </div>
             <div className="grid gap-1 w-fit">
               <Label htmlFor="email" className="mb-1 text-muted-foreground">
-                Email (Used for login)
+                {t("Email (Used for login)")}
               </Label>
               <Input
                 id="email"
@@ -179,7 +182,7 @@ const EditAccountForm = ({ currentUser }) => {
         <CardFooter className="flex flex-row space-x-4">
           <Button onClick={handleUpdateUser} disabled={loading}>
             {loading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-            {isMobile ? "Save" : "Save changes"}
+            {isMobile ? t("Save") : t("Save changes")}
           </Button>
           <Button
             variant="outline"
@@ -187,7 +190,7 @@ const EditAccountForm = ({ currentUser }) => {
             disabled={loading}
           >
             <KeyRound className="h-4 w-4 mr-2" />
-            Change password
+            {t("Change password")}
           </Button>
         </CardFooter>
       </Card>

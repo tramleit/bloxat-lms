@@ -6,8 +6,10 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const LessonActions = ({ courseId, lessonId }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -49,7 +51,7 @@ export const LessonActions = ({ courseId, lessonId }) => {
           size="sm"
         >
           <Trash className="h-4 w-4 mr-2" />
-          Delete lesson
+          {t("Delete lesson")}
         </Button>
       </div>
     </>

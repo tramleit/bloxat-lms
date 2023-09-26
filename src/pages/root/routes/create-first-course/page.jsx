@@ -19,6 +19,7 @@ import { Icons } from "@/components/icons";
 import SetupHeader from "../../_components/setup-header";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 
 // Form validation
 const formSchema = z.object({
@@ -28,6 +29,7 @@ const formSchema = z.object({
 });
 
 const CreateFirstCourse = () => {
+  const { t } = useTranslation();
   // const [loading, setLoading] = useState(false);
 
   const currentUser = useCurrentUser();
@@ -91,9 +93,11 @@ const CreateFirstCourse = () => {
         <div className="flex flex-row items-center h-full">
           {/* Left Side */}
           <div className="flex flex-col flex-1 items-center justify-center h-full space-y-2 text-center">
-            <h1 className="text-3xl font-bold">Create Your First Course</h1>
+            <h1 className="text-3xl font-bold">
+              {t("Create Your First Course")}
+            </h1>
             <p className="text-muted-foreground">
-              Add a new course and start getting paid!
+              {t("Add a new course and start getting paid!")}
             </p>
             <div className="h-4"></div>
             {/* Content */}
@@ -107,12 +111,12 @@ const CreateFirstCourse = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="flex justify-start">
-                            Course Name
+                            {t("Course Title")}
                           </FormLabel>
                           <FormControl>
                             <Input
                               disabled={loading}
-                              placeholder="Example: Stock Market Course"
+                              placeholder={t("Example: Stock Market Course")}
                               {...field}
                             />
                           </FormControl>
@@ -126,7 +130,7 @@ const CreateFirstCourse = () => {
                         {loading && (
                           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                         )}
-                        Create
+                        {t("Create")}
                       </Button>
                     </div>
                   </form>
@@ -135,7 +139,7 @@ const CreateFirstCourse = () => {
             </div>
           </div>
           {/* Right Side */}
-          <div className="bg-[#fdfdfd] dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full ">
+          <div className="bg-[#fdfdfd] dark:bg-[#121212] md:flex hidden flex-col flex-1 items-center justify-center h-full ">
             {/* bg-gray-50 */}
             {/* right [place graphic] */}
             <div className="flex items-center justify-center h-full">

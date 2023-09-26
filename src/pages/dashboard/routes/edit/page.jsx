@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import useLandscapeMode from "@/hooks/use-landscape-mode";
 import StartTourModal from "@/components/modals/start-tour-modal";
 import RotateDeviceModal from "@/components/modals/rotate-device-modal";
+import { useTranslation } from "react-i18next";
 // import useGlobalStore from "@/store/global-state";
 
 const EditCoursePage = () => {
@@ -73,6 +74,8 @@ const EditCoursePage = () => {
   // check if it's complete so we can publish the course
   const isComplete = requiredFields.every(Boolean);
 
+  const { t } = useTranslation();
+
   if (loading || !courseContent) {
     return (
       <>
@@ -86,13 +89,19 @@ const EditCoursePage = () => {
       {!courseContent?.published && isComplete && (
         <Banner
           variant="warning"
-          label="This course is not published. It will not be visible to your students."
+          label={t(
+            "This course is not published. It will not be visible to your students."
+          )}
         />
       )}
       {!isComplete && (
         <Banner
           variant="warning"
-          label={`Add a title, description, thumbnail, price, and a section with a lesson in it to publish. Completed 👉 ${completionText}`}
+          label={
+            t(
+              "Add a title, description, thumbnail, price, and a section with a lesson in it to publish. Completed 👉"
+            ) + `${completionText}`
+          }
         />
       )}
       {/* if we're onn mobile and they're in portrait mode then show them that they need to rotate */}
@@ -141,7 +150,7 @@ const EditCoursePage = () => {
             <div className="flex items-center gap-x-2">
               {/* <IconBadge Icon={LayoutDashboard} /> */}
 
-              <h2 className="text-xl font-semibold">✨ Information</h2>
+              <h2 className="text-xl font-semibold">{t("✨ Information")}</h2>
             </div>
             <TitleForm
               initialData={courseContent}
@@ -183,7 +192,9 @@ const EditCoursePage = () => {
             <div>
               <div className="flex items-center gap-x-2">
                 {/* <IconBadge Icon={ListChecks} /> */}
-                <h2 className="text-xl font-semibold">🚀 Course content</h2>
+                <h2 className="text-xl font-semibold">
+                  {t("🚀 Course content")}
+                </h2>
 
                 {/* <h2 className="text-xl">Course content</h2> */}
               </div>

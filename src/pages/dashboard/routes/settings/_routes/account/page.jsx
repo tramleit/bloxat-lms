@@ -5,13 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { Box, Check, CreditCard } from "lucide-react";
+import { Box, Check, CreditCard, Languages } from "lucide-react";
 import EditAccountForm from "./components/edit-account-form";
 import UploadForm from "./components/upload-form";
 import useCourseStore from "@/store/courses/courses-store";
 import Loading from "@/components/loading/loading";
 import useBillingStore from "@/store/billing/billing-store";
 import { useNavigate, useParams } from "react-router-dom";
+import LanguageSwitch from "./components/language-switch";
+import { useTranslation } from "react-i18next";
 
 const AccountPage = () => {
   const { course_id } = useParams();
@@ -33,6 +35,9 @@ const AccountPage = () => {
     // Capitalize the first letter and concatenate it with the rest of the string
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  // LANGUAGES
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchCoursesByUserId();
@@ -65,8 +70,8 @@ const AccountPage = () => {
             />
 
             <Heading
-              title="Account"
-              description="View and update your profile details."
+              title={t("Account")}
+              description={t("View and update your profile details.")}
             />
           </div>
           {/* <Button disabled={loading} variant="destructive" size="icon" onClick={() => {}}>
@@ -87,7 +92,9 @@ const AccountPage = () => {
             {/* Courses */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Courses</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  {t("Courses")}
+                </CardTitle>
 
                 <Box className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
@@ -98,7 +105,7 @@ const AccountPage = () => {
                 {/* IF FREE TRIAL */}
                 {billingData?.length == 0 && (
                   <p className="text-sm text-muted-foreground mt-2">
-                    Free Trial
+                    {t("Free Trial")}
                   </p>
                 )}
                 {/* If there's a plan */}
@@ -112,31 +119,23 @@ const AccountPage = () => {
             {/* Courses */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Status</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  {t("Language")}
+                </CardTitle>
 
-                <Check className="h-4 w-4 text-muted-foreground" />
+                <Languages className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               {/* Card Content */}
               <CardContent>
-                <div className="text-2xl font-bold">Active</div>
-                {/* IF FREE TRIAL */}
-                {billingData?.length == 0 && (
-                  <p className="text-sm text-muted-foreground mt-2">
-                    Free Trial
-                  </p>
-                )}
-                {/* If there's a plan */}
-                {billingData?.length !== 0 && (
-                  <p className="text-sm text-muted-foreground mt-2">
-                    {capitalizeFirstLetter(billingData[0]?.plan)} Plan
-                  </p>
-                )}
+                <LanguageSwitch />
               </CardContent>
             </Card>
             {/* Courses */}
             <Card className="border-glow">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium ">Plan</CardTitle>
+                <CardTitle className="text-sm font-medium ">
+                  {t("Plan")}
+                </CardTitle>
 
                 <CreditCard className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
@@ -144,7 +143,7 @@ const AccountPage = () => {
               <CardContent className="relative">
                 {/* IF FREE TRIAL */}
                 {billingData?.length == 0 && (
-                  <p className="text-2xl font-bold">Free Trial</p>
+                  <p className="text-2xl font-bold">{t("Free Trial")}</p>
                 )}
                 {/* If there's a plan */}
                 {billingData?.length !== 0 && (
@@ -152,14 +151,16 @@ const AccountPage = () => {
                     {capitalizeFirstLetter(billingData[0]?.plan)} Plan
                   </p>
                 )}
-                <p className="text-sm text-muted-foreground mt-2">Active</p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {t("Active")}
+                </p>
                 <div className="absolute right-5 bottom-5 ">
                   <Button
                     onClick={() => {
                       navigate(`/${course_id}/settings/plan`);
                     }}
                   >
-                    Go to Plan
+                    {t("Go to Plan")}
                   </Button>
                 </div>
               </CardContent>
@@ -167,6 +168,7 @@ const AccountPage = () => {
           </div>
         </div>
       </div>
+      <div className="md:h-0 h-10"/>
     </div>
   );
 };

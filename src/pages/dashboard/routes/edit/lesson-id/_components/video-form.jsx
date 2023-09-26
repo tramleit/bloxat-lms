@@ -28,6 +28,7 @@ import VideoPlayer from "./video-player";
 import { Icons } from "@/components/icons";
 import YoutubeIcon from "@/assets/images/icons/youtube.webp";
 import VimeoIcon from "@/assets/images/icons/vimeo.webp";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   lesson_video_url: z.string().min(1, {
@@ -36,6 +37,7 @@ const formSchema = z.object({
 });
 
 export const VideoForm = ({ initialData, lessonId }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -82,13 +84,13 @@ export const VideoForm = ({ initialData, lessonId }) => {
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between mb-2">
-        Video URL
+        {t("Video URL")}
         <Button onClick={toggleEdit} variant="ghost">
-          {isEditing && <>Cancel</>}
+          {isEditing && <>{t("Cancel")}</>}
           {!isEditing && data?.lesson_video_url && (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit
+              {t("Edit")}
             </>
           )}
         </Button>
@@ -111,7 +113,7 @@ export const VideoForm = ({ initialData, lessonId }) => {
                 className="w-[50px] h-auto"
                 draggable={false}
               />
-              <span>or</span>
+              <span>{t("or")}</span>
               <img
                 src={VimeoIcon}
                 alt="Vimeo"
@@ -151,13 +153,13 @@ export const VideoForm = ({ initialData, lessonId }) => {
                     {isSubmitting && (
                       <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                     )}
-                    Update URL
+                    {t("Update URL")}
                   </Button>
                 </div>
               </form>
             </Form>
             <span className="text-sm text-muted-foreground">
-              💡 Add a Video URL from Youtube/ Vimeo
+              {t("💡 Add a Video URL from Youtube/ Vimeo")}
             </span>
           </div>
         </div>

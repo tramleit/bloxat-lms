@@ -21,6 +21,7 @@ import { Separator } from "@/components/ui/separator";
 import { StudentDetailsModal } from "@/components/modals/student-details-modal";
 import useUserDeletionStore from "@/store/students/student-delete-store";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const CellAction = ({ userId }) => {
   const { course_id } = useParams();
@@ -66,6 +67,8 @@ export const CellAction = ({ userId }) => {
     // }
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <AlertModal
@@ -98,7 +101,7 @@ export const CellAction = ({ userId }) => {
           {/* Item */}
           <DropdownMenuItem onClick={() => setDetailsOpen(true)}>
             <User className="mr-2 h-4 w-4" />
-            See details
+            {t("See details")}
           </DropdownMenuItem>
           {/* End Item */}
           {/* Item */}
@@ -111,7 +114,7 @@ export const CellAction = ({ userId }) => {
           {/* Item */}
           <DropdownMenuItem onClick={() => setOpen(true)}>
             <Trash className="mr-2 h-4 w-4" />
-            Delete
+            {t("Delete")}
           </DropdownMenuItem>
           {/* End Item */}
         </DropdownMenuContent>

@@ -3,8 +3,10 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const TourNextButton = (props) => {
+  const { t } = useTranslation();
   //   const navigate = useNavigate();
 
   const { onClick } = props;
@@ -56,7 +58,7 @@ const TourNextButton = (props) => {
       //   variant='yellow'
     >
       <span className="text-[14px]">
-        {lastStep ? "Let's start! 🤩" : "Next"}
+        {lastStep ? t("Let's start! 🤩") : t("Next")}
       </span>
       {lastStep ? null : <ArrowRight className="w-4 h-4 ml-2" />}
     </Button>

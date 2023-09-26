@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import FileUpload from "./file-upload";
 import { cloudName, uploadPreset } from "@/config/cloudinary-config";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   imageUrl: z.string().min(1, {
@@ -38,6 +39,7 @@ const formSchema = z.object({
 });
 
 export const ImageForm = ({ initialData, courseId, updateUI }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -106,22 +108,22 @@ export const ImageForm = ({ initialData, courseId, updateUI }) => {
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4 w-full">
       <div className="font-medium flex items-center justify-between mb-2">
-        Thumbnail
+        {t("Thumbnail")}
         {!data?.thumbnail && !isEditing && (
           <Button onClick={toggleEdit} variant="yellow">
             <Plus className="h-4 w-4 mr-2" />
-            Add
+            {t("Add")}
           </Button>
         )}
         {isEditing && (
           <Button onClick={toggleEdit} variant="ghost">
-            Cancel
+            {t("Cancel")}
           </Button>
         )}
         {!isEditing && data?.thumbnail && (
           <Button onClick={toggleEdit} variant="ghost">
             <Edit className="h-4 w-4 mr-2" />
-            Edit
+            {t("Edit")}
           </Button>
         )}
         {/* <Button onClick={toggleEdit} variant="ghost">
@@ -159,7 +161,7 @@ export const ImageForm = ({ initialData, courseId, updateUI }) => {
           <div className="flex flex-col items-center justify-center h-[220px] border border-dashed border-[#b2b2b2] dark:border-[#424242] rounded-lg space-y-3">
             <UploadCloud className="h-12 w-12 text-[#c0c0c0] dark:text-[#424242] " />
             <Button onClick={() => widgetRef.current.open()} variant="yellow">
-              Upload Image
+              {t("Upload Image")}
             </Button>
             <span className="text-sm text-muted-foreground">Image (4MB)</span>
           </div>

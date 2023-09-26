@@ -25,6 +25,7 @@ import Bottom from "../../_components/bottom";
 import { useNavigate } from "react-router-dom";
 import Loading from "@/components/loading/loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   // label: z.string().min(1),
@@ -33,6 +34,7 @@ const formSchema = z.object({
 });
 
 const Branding = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   // Get current user hook
@@ -138,9 +140,9 @@ const Branding = () => {
         <div className="flex flex-row items-center h-full overflow-y-clip">
           {/* Left Side */}
           <div className="flex flex-col flex-1 items-center justify-center h-full space-y-2 text-center">
-            <h1 className="text-3xl font-bold">Upload your logo</h1>
+            <h1 className="text-3xl font-bold">{t("Upload your logo")}</h1>
             <p className="text-muted-foreground">
-              Customize your Bloxat portal with your brand logo.
+              {t("Customize your Bloxat portal with your brand logo.")}
             </p>
             <div className="h-4"></div>
             {/* Brand Logo Uplaod*/}
@@ -156,7 +158,7 @@ const Branding = () => {
                   render={({ field }) => (
                     // Light Mode Logo
                     <FormItem>
-                      <FormLabel>Logo (Light mode)</FormLabel>
+                      <FormLabel>{t("Logo (Light mode)")}</FormLabel>
                       <FormControl>
                         <ImageUpload
                           className="bg-white rounded-md"
@@ -187,7 +189,7 @@ const Branding = () => {
                   render={({ field }) => (
                     // Light Mode Logo
                     <FormItem>
-                      <FormLabel>Logo (Dark mode)</FormLabel>
+                      <FormLabel>{t("Logo (Dark mode)")}</FormLabel>
                       <FormControl>
                         <ImageUpload
                           className="bg-black rounded-md"
@@ -219,7 +221,7 @@ const Branding = () => {
           </div>
 
           {/* Right Side */}
-          <div className="bg-[#fdfdfd] dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full ">
+          <div className="bg-[#fdfdfd] dark:bg-[#121212] md:flex hidden flex-col flex-1 items-center justify-center h-full ">
             {/* bg-gray-50 */}
 
             {/* right [place graphic] */}

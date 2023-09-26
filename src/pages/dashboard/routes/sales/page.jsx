@@ -37,6 +37,7 @@ import currentMonth from "@/lib/get-current-month";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import CardBadge from "./_components/card-badge";
 import { copyText } from "@/lib/copy-text";
+import { useTranslation } from "react-i18next";
 
 const DashboardPage = () => {
   const { course_id } = useParams();
@@ -57,6 +58,8 @@ const DashboardPage = () => {
     isLoading: analyticsLoading,
     isError: error,
   } = useCompareAnalytics();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Call the fetchEnrollments method when the component mounts or whenever needed
@@ -103,7 +106,10 @@ const DashboardPage = () => {
       <div className="flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between">
-            <Heading title="Sales" description="View your course sales." />
+            <Heading
+              title={t("Sales")}
+              description={t("View your course sales.")}
+            />
             <div className="flex flex-row items-center space-x-3">
               <Button
                 variant="yellow"
@@ -114,7 +120,7 @@ const DashboardPage = () => {
                 }
               >
                 <Copy className="mr-2 h-4 w-4" />
-                Payment link
+                {t("Payment link")}
               </Button>
 
               {/* <Button
@@ -146,7 +152,7 @@ const DashboardPage = () => {
             <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Total Sales
+                  {t("Total Sales")}
                   {/* All Courses Revenue */}
                 </CardTitle>
                 <DollarSign className="h-4 w-4 text-muted-foreground" />
@@ -160,7 +166,7 @@ const DashboardPage = () => {
                   )}
                 </div>
 
-                <CardBadge label="All courses" color="bg-[#dae6ff]" />
+                <CardBadge label={t("All courses")} color="bg-[#dae6ff]" />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -168,7 +174,7 @@ const DashboardPage = () => {
             <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Total Sales
+                  {t("Total Sales")}
                   {/* All Courses Revenue */}
                 </CardTitle>
                 <DollarSign className="h-4 w-4 text-muted-foreground" />
@@ -184,7 +190,7 @@ const DashboardPage = () => {
                 {/* <p className="text-sm text-muted-foreground mt-2">
                   This course
                 </p> */}
-                <CardBadge label="This course" color="bg-[#fff3cf]" />
+                <CardBadge label={t("This course")} color="bg-[#fff3cf]" />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -192,7 +198,7 @@ const DashboardPage = () => {
             <Card className="dark:bg-[#141414]">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
-                  Sales this month
+                  {t("Sales this month")}
                 </CardTitle>
 
                 <CreditCard className="h-4 w-4 text-muted-foreground" />
@@ -212,7 +218,7 @@ const DashboardPage = () => {
                   This course
                 </p> */}
 
-                <CardBadge label="This course" color="bg-[#fff3cf]" />
+                <CardBadge label={t("This course")} color="bg-[#fff3cf]" />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -221,7 +227,7 @@ const DashboardPage = () => {
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">
                   {/* Enrolled Students */}
-                  Students
+                  {t("Students")}
                 </CardTitle>
 
                 <User className="h-4 w-4 text-muted-foreground" />
@@ -236,7 +242,7 @@ const DashboardPage = () => {
                   This course
                 </p> */}
 
-                <CardBadge label="This course" color="bg-[#fff3cf] " />
+                <CardBadge label={t("This course")} color="bg-[#fff3cf] " />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -249,7 +255,7 @@ const DashboardPage = () => {
                 <CardHeader>
                   <CardTitle className="text-md font-medium">
                     {/* Overview */}
-                    Compare courses
+                    {t("Compare courses")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pl-2">
@@ -265,7 +271,7 @@ const DashboardPage = () => {
             <Card className="md:col-span-3 col-span-4 dark:bg-[#141414]">
               <CardHeader>
                 <CardTitle className="text-md font-medium">
-                  Recent Sales
+                  {t("Recent Sales")}
                 </CardTitle>
                 {/* <CardDescription>You made 265 sales this month.</CardDescription> */}
                 <CardDescription>

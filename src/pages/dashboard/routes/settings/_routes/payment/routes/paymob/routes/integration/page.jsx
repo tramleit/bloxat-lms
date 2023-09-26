@@ -16,6 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
 import toast from "react-hot-toast";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
+import { useTranslation } from "react-i18next";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Form validator
 const formSchema = z.object({
@@ -82,6 +84,8 @@ const PaymobIntegrationPage = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-row items-center w-full h-[90%]">
       {/* Left div */}
@@ -95,7 +99,7 @@ const PaymobIntegrationPage = () => {
               className="w-[135px] h-auto"
               draggable={false}
             />
-            <h1 className="font-bold text-2xl "> Setup</h1>
+            <h1 className="font-bold text-2xl "> {t("Setup")}</h1>
             {/* <CreditCard className="h-6 w-6" /> */}
           </div>
 
@@ -172,8 +176,19 @@ const PaymobIntegrationPage = () => {
 
       {/* Right div */}
       {/* Tutorial */}
-      <div className="border border-l border-gray-50 dark:border-[#121212] bg-gradient-to-b from-gray-50 via-transparent to-transparent dark:bg-gradient-to-b dark:from-[#121212] dark:via-transparent dark:to-transparent flex-1 md:flex hidden items-center justify-center h-full">
-        right
+      <div className="bg-white md:flex hidden flex-col flex-1 items-center justify-center h-full ">
+        {/* bg-[#fdfdfd] */}
+        {/* bg-gray-50 */}
+        {/* right [place graphic] */}
+        <div className="flex items-center justify-center h-full">
+          <LazyLoadImage
+            className="object-cover h-1/2 bg-blend-difference"
+            src="https://media.publit.io/file/integration-D.gif"
+            effect="blur"
+            placeholderSrc="https://media.publit.io/file/integration-D.gif"
+            draggable={false}
+          />
+        </div>
       </div>
     </div>
   );

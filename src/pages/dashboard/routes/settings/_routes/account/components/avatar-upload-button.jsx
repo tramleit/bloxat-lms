@@ -3,6 +3,7 @@ import { ImagePlus, Trash } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cloudName, uploadPreset } from "@/config/cloudinary-config";
+import { useTranslation } from "react-i18next";
 
 const AvatarUpload = ({
   disabled,
@@ -16,6 +17,8 @@ const AvatarUpload = ({
 
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
+
+  const { t } = useTranslation();
 
   //   Upload function
   const onUpload = (result) => {
@@ -99,7 +102,7 @@ const AvatarUpload = ({
           onClick={() => widgetRef.current.open()}
         >
           <ImagePlus className="h-4 w-4 mr-2" />
-          Upload an Image
+          {t("Upload an Image")}
         </Button>
         <p className="text-muted-foreground text-sm">400x400 px recommended.</p>
       </div>

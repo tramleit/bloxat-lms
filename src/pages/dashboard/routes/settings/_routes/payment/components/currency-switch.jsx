@@ -13,12 +13,15 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
+import { useTranslation } from "react-i18next";
 
 export const CurrencySwitch = () => {
   const currentUser = useCurrentUser();
 
   const [currency, setCurrency] = useState(currentUser?.brand_currency);
   const [loading, setLoading] = useState(false);
+
+  const { t } = useTranslation();
 
   // SELECT
   // FOR THE CURRENCY
@@ -59,7 +62,7 @@ export const CurrencySwitch = () => {
 
   return (
     <div className="flex flex-row items-center space-x-3">
-      <span className="text-sm font-semibold">Currency: </span>
+      <span className="text-sm font-semibold">{t("Currency")} </span>
       <div className="grid gap-2">
         {/* SELECT CURRENCY */}
         <Select

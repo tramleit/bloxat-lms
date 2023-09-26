@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -25,6 +26,7 @@ const formSchema = z.object({
 });
 
 export const TitleForm = ({ initialData, courseId }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -71,14 +73,14 @@ export const TitleForm = ({ initialData, courseId }) => {
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course title
+        {t("Course Title")}
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
-            <>Cancel</>
+            <>{t("Cancel")}</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit
+              {t("Edit")}
             </>
           )}
         </Button>
@@ -112,7 +114,7 @@ export const TitleForm = ({ initialData, courseId }) => {
                 {isSubmitting && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Save
+                {t("Save")}
               </Button>
             </div>
           </form>

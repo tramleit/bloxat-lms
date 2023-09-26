@@ -12,8 +12,10 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState } from "react";
 import { AddLessonModal } from "../modals/add-lesson-modal";
+import { useTranslation } from "react-i18next";
 
 const LessonTile = ({ lesson }) => {
+  const { t } = useTranslation();
   const { course_id } = useParams();
   const navigate = useNavigate();
 
@@ -62,7 +64,7 @@ const LessonTile = ({ lesson }) => {
                   // className="w-fit h-fit"
                   // size="icon"
                 >
-                  Edit Lesson
+                  {t("Edit Lesson")}
                 </Button>
               </div>
 

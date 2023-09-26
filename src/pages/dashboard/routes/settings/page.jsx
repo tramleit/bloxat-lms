@@ -3,10 +3,13 @@ import { Separator } from "@/components/ui/separator";
 import { CreditCard, PencilRuler, Rocket, User } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import SettingsCard from "./components/settings-card";
+import { useTranslation } from "react-i18next";
 
 const SettingsPage = () => {
   const { course_id } = useParams();
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -14,8 +17,8 @@ const SettingsPage = () => {
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between">
             <Heading
-              title="Settings"
-              description="Set up payment methods, branding, and more."
+              title={t("Settings")}
+              description={t("Set up payment methods, branding, and more.")}
             />
           </div>
           <Separator />
@@ -23,8 +26,8 @@ const SettingsPage = () => {
           <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
             {/* Account Card */}
             <SettingsCard
-              title="Account"
-              description="View and update your profile"
+              title={t("Account")}
+              description={t("View and update your profile")}
               icon={<User />}
               color="bg-[#FFF387]"
               onClick={() => {
@@ -35,8 +38,8 @@ const SettingsPage = () => {
             {/* End Card */}
             {/* Plan Card */}
             <SettingsCard
-              title="Plan"
-              description="View your current plan"
+              title={t("Plan")}
+              description={t("View your current plan")}
               icon={<Rocket />}
               color="bg-[#E7FD90]"
               onClick={() => {
@@ -47,8 +50,8 @@ const SettingsPage = () => {
             {/* End Card */}
             {/* Branding Card */}
             <SettingsCard
-              title="Branding"
-              description={"Customize your portal"}
+              title={t("Branding")}
+              description={t("Customize your portal")}
               icon={<PencilRuler />}
               color="bg-[#CCFCFF]"
               onClick={() => {
@@ -58,8 +61,8 @@ const SettingsPage = () => {
             {/* End Card */}
             {/* Payment Methods */}
             <SettingsCard
-              title="Payment Methods"
-              description="Enable payment methods on your portal"
+              title={t("Payment Methods")}
+              description={t("Enable payment methods on your portal")}
               icon={<CreditCard />}
               color="bg-[#A38FFF]"
               onClick={() => {

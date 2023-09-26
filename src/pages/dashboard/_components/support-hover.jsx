@@ -9,12 +9,15 @@ import { useTour } from "@reactour/tour";
 import { Box, HelpCircle, MessagesSquare, Video } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SupportHover = () => {
   const { course_id } = useParams();
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false); // State to control popover
+
+  const { t } = useTranslation();
 
   //   const isTourOpen = useTourStore((state) => state.isTourOpen);
   //   const openTour = useTourStore((state) => state.openTour);
@@ -38,14 +41,16 @@ const SupportHover = () => {
             onClick={openPopover} // Toggle the popover
             className="bg-black dark:bg-[#353535] w-10 h-10  flex items-center justify-center rounded-full cursor-pointer hover:scale-110 transition"
           >
-            <HelpCircle className="text-white" />
+            <HelpCircle className="text-white md:h-6 md:w-6 h-6 w-6" />
           </div>
         </PopoverTrigger>
         {isOpen && (
           <PopoverContent className="w-[250px] mr-[40px] mb-[10px]">
             <div className="grid gap-4">
               <div className="space-y-2">
-                <h4 className="font-medium leading-none">Help & Support </h4>
+                <h4 className="font-medium leading-none">
+                  {t("Help & Support")}{" "}
+                </h4>
                 {/* <p className="text-sm text-muted-foreground">
                 Choose a way to get help
               </p> */}
@@ -62,7 +67,7 @@ const SupportHover = () => {
                   }}
                 >
                   <Box className="h-4 w-4 mr-2" />
-                  Start tour (Setup)
+                  {t("Start tour (Setup)")}
                 </div>
                 {/* Videos */}
                 <div
@@ -70,7 +75,7 @@ const SupportHover = () => {
                   onClick={() => {}}
                 >
                   <Video className="h-4 w-4 mr-2" />
-                  Video tutorials
+                  {t("Video tutorials")}
                 </div>
                 {/* Whatsapp */}
                 <div

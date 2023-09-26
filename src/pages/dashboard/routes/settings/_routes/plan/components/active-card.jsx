@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const ActiveCard = ({
   planName,
@@ -9,8 +11,15 @@ const ActiveCard = ({
   showRemaining,
   title,
   color,
-  textColor
+  textColor,
 }) => {
+  const { t, i18n } = useTranslation();
+
+  // To check the current language
+  const currentLanguage = i18n.language;
+
+  console.log("currentLanguage", currentLanguage);
+
   return (
     <>
       <Card className="w-[300px] hover:shadow-md transition-all duration-150 ease-in-out dark:bg-[#141414]">
@@ -30,40 +39,62 @@ const ActiveCard = ({
 
         <CardContent>
           <Separator className="mb-4" />
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-3 ">
             {/* Feature tile */}
-            <div className="flex flex-row items-center space-x-2">
+            <div className="flex flex-row items-center space-x-2 ">
               <Check className="h-4 w-4 text-[#01D95A]" />
-              <p>
-                <span className="font-semibold">Unlimited</span> courses
-              </p>
+              {currentLanguage === "ar" ? (
+                <p>
+                  {t("courses")}{" "}
+                  <span className="font-semibold">{t("Unlimited")}</span>
+                </p>
+              ) : (
+                <p>
+                  <span className="font-semibold">{t("Unlimited")}</span>{" "}
+                  {t("courses")}
+                </p>
+              )}
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
               <Check className="h-4 w-4 text-[#01D95A]" />
-              <p>
+              {currentLanguage === "ar" ? (
+                <p>
+                  {t("students")}{" "}
+                  <span className="font-semibold">{t("Unlimited-b")}</span>
+                </p>
+              ) : (
+                <p>
+                  <span className="font-semibold">{t("Unlimited-b")}</span>{" "}
+                  {t("students")}
+                </p>
+              )}
+              {/* <p>
                 <span className="font-semibold">Unlimited</span> students
+              </p> */}
+            </div>
+            {/* Feature tile */}
+            <div className="flex flex-row items-center space-x-2">
+              <Check className="h-4 w-4 text-[#01D95A]" />
+              <p>
+                <span className="font-semibold">{t("All")}</span>{" "}
+                {t("payment methods")}
               </p>
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
               <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
-                <span className="font-semibold">All</span> payment methods
+                <span className="font-semibold">{t("All")}</span>{" "}
+                {t("features")}
               </p>
             </div>
             {/* Feature tile */}
             <div className="flex flex-row items-center space-x-2">
               <Check className="h-4 w-4 text-[#01D95A]" />
               <p>
-                <span className="font-semibold">All</span> features
-              </p>
-            </div>
-            {/* Feature tile */}
-            <div className="flex flex-row items-center space-x-2">
-              <Check className="h-4 w-4 text-[#01D95A]" />
-              <p>
-                <span className="font-semibold">Renew</span> anytime
+                <span className="font-semibold">{t("Renew")}</span>{" "}
+                {t("anytime")}
               </p>
             </div>
           </div>

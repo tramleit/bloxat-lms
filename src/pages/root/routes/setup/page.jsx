@@ -11,8 +11,10 @@ import SetupHeader from "../../_components/setup-header";
 import Bottom from "../../_components/Bottom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
+import { useTranslation } from "react-i18next";
 
 const SetupPage = () => {
+  const { t } = useTranslation();
   const currentUser = useCurrentUser();
   // const onOpen = useCreateModal((state) => state.onOpen);
   // const isOpen = useCreateModal((state) => state.isOpen);
@@ -55,7 +57,7 @@ const SetupPage = () => {
     // Generate a random slug if the course name is in Arabic
     const brandSlug = hasArabicCharacters
       ? generateRandomSlug(10) // Adjust the length as needed
-      : brandName.name
+      : brandName
           .toLowerCase()
           .replace(/[^a-z0-9\s]/g, "") // Remove all non-alphanumeric characters
           .replace(/\s+/g, "-"); // Replace spaces with hyphens
@@ -119,13 +121,13 @@ const SetupPage = () => {
         <SetupHeader />
         {/* End Header */}
         {/* Content */}
-        <div className="flex flex-row items-center h-full overflow-y-clip">
+        <div className="flex md:flex-row flex-col items-center h-full overflow-y-clip">
           {/* Left Side */}
           <div className="flex flex-col flex-1 items-center justify-center h-full space-y-2 text-center">
-            <div className="flex flex-col items-start justify-center">
+            <div className="flex flex-col md:items-start md:text-start text-center items-center justify-center">
               {" "}
               <h1 className="text-3xl font-bold tracking-tight">
-                Provide a name for your portal.
+                {t("Provide a name for your portal.")}
               </h1>
               {/* <p className="text-muted-foreground">
               Your Bloxat portal is the main hub from which you can manage and
@@ -135,11 +137,11 @@ const SetupPage = () => {
               {/* Brand Name Input */}
               <div className="grid gap-1 text-start ">
                 <Label htmlFor="brandName" className="mb-1">
-                  Type your brand name
+                  {t("Type your brand name")}
                 </Label>
                 <Input
                   id="brandName"
-                  placeholder="Example: Seif's School"
+                  placeholder={t("Example: Seif's School")}
                   type="name"
                   autoCapitalize="none"
                   autoComplete="name"
@@ -152,7 +154,7 @@ const SetupPage = () => {
           </div>
 
           {/* Right Side */}
-          <div className="bg-[#fdfdfd] dark:bg-[#121212] flex flex-col flex-1 items-center justify-center h-full ">
+          <div className="bg-[#fdfdfd] dark:bg-[#121212] md:flex hidden flex-col flex-1 items-center justify-center h-full ">
             {/* bg-gray-50 */}
             {/* right [place graphic] */}
             <div className="flex items-center justify-center h-full">

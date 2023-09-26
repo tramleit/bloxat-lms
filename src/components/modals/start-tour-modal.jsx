@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/images/logo/bloxat-black.webp";
 import { Button } from "@/components/ui/button";
 import useIsMobile from "@/hooks/use-is-mobile";
+import { useTranslation } from "react-i18next";
 
 const StartTourModal = () => {
+  const { t } = useTranslation();
   // const {
   //   // showStartTourModal,
   //   setShowStartTourModal,
@@ -53,12 +55,16 @@ const StartTourModal = () => {
                 <div className="absolute z-50 bottom-0 m-6">
                   <div className="flex flex-col z-50">
                     <span className="font-bold text-xl tracking-tight mb-1.5 text-black">
-                      New to Bloxat?
+                      {t("New to Bloxat?")}
                     </span>
                     <span className="text-muted-foreground  mb-4">
                       {isMobile
-                        ? " Open it on your computer for a quick walkthrough! 😄"
-                        : ' Click on "Start Tour" for a quick walkthrough! 😄'}{" "}
+                        ? t(
+                            "Open it on your computer for a quick walkthrough! 😄"
+                          )
+                        : t(
+                            "Click on 'Start Tour' for a quick walkthrough! 😄"
+                          )}{" "}
                     </span>
 
                     {isMobile ? (
@@ -73,7 +79,9 @@ const StartTourModal = () => {
                         }}
                         className="w-fit bg-black text-white hover:bg-[#242424] hover:text-white"
                       >
-                        <span className="text-[14px] select-none">Okay</span>
+                        <span className="text-[14px] select-none">
+                          {t("Okay")}
+                        </span>
                       </Button>
                     ) : (
                       <Button
@@ -88,7 +96,7 @@ const StartTourModal = () => {
                         className="w-fit bg-black text-white hover:bg-[#242424] hover:text-white"
                       >
                         <span className="text-[14px] select-none">
-                          Start Tour
+                          {t("Start Tour")}
                         </span>
                         <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
@@ -102,7 +110,7 @@ const StartTourModal = () => {
                   }}
                   className="absolute right-7 bottom-8 z-50 text-muted-foreground"
                 >
-                  Skip
+                  {t("Skip")}
                 </button>
 
                 <img

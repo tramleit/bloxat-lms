@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ProviderCard = ({
   title,
@@ -32,6 +33,8 @@ const ProviderCard = ({
 
   // For Delete Alert Modal
   const [open, setOpen] = useState(false);
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -67,7 +70,7 @@ const ProviderCard = ({
                   onMouseLeave={handleMouseLeave}
                   className="bg-[#effbf1] dark:bg-[#08290d] text-[#2c8e41] dark:text-green px-3 py-2 rounded-md text-sm select-none"
                 >
-                  Connected
+                  {t("Connected")}
                 </span>
               )}
 
@@ -80,11 +83,11 @@ const ProviderCard = ({
                   onClick={() => setOpen(true)}
                   disabled={loading}
                 >
-                  Disconnect
+                  {t("Disconnect")}
                 </Button>
               )}
               <Button variant="outline" onClick={onEdit} disabled={loading}>
-                Edit
+                {t("Edit")}
               </Button>
             </div>
           )}
@@ -94,7 +97,7 @@ const ProviderCard = ({
               {loading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Connect
+              {t("Connect")}
             </Button>
           )}
         </div>

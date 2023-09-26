@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 // import { useEffect } from "react";
 // import Link from "next/link";
 import { Link, useLocation, useParams } from "react-router-dom";
@@ -12,6 +13,8 @@ export function MainNav({ className }) {
 
   const pathname = location.pathname;
 
+  const { t } = useTranslation();
+
   // Routes
   const routes = [
     // {
@@ -21,22 +24,22 @@ export function MainNav({ className }) {
     // },
     {
       href: `/${course_id}`,
-      label: "Quick",
+      label: t("Quick"),
       active: pathname === `/${course_id}`,
     },
     {
       href: `/${course_id}/sales`,
-      label: "Sales",
+      label: t("Sales"),
       active: pathname === `/${course_id}/sales`,
     },
     {
       href: `/${course_id}/students`,
-      label: "Students",
+      label: t("Students"),
       active: pathname === `/${course_id}/students`,
     },
     {
       href: `/${course_id}/settings`,
-      label: "Settings",
+      label: t("Settings"),
       active: pathname === `/${course_id}/settings`,
     },
     // {

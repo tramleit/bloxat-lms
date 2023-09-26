@@ -27,12 +27,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   price: z.coerce.number(),
 });
 
 export const PriceForm = ({ initialData, courseId, updateUI }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -88,28 +90,30 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4 w-full">
       <div className="font-medium flex items-center justify-between">
-        Price
+        {t("Price")}
         {!data?.price && !isEditing && (
           <Button onClick={toggleEdit} variant="yellow">
             <Plus className="h-4 w-4 mr-2" />
-            Add
+            {t("Add")}
           </Button>
         )}
         {isEditing && (
           <Button onClick={toggleEdit} variant="ghost">
-            Cancel
+            {t("Cancel")}
           </Button>
         )}
         {!isEditing && data?.price !== 0 && (
           <Button onClick={toggleEdit} variant="ghost">
             <Edit className="h-4 w-4 mr-2" />
-            Edit
+            {t("Edit")}
           </Button>
         )}
       </div>
       {!isEditing && (
         <p className={cn("mt-2", !data?.price && "text-slate-500 italic")}>
-          {data?.price ? formatPrice(data?.price, data?.currency) : "No price"}
+          {data?.price
+            ? formatPrice(data?.price, data?.currency)
+            : t("No price")}
         </p>
       )}
       {isEditing && (
@@ -130,7 +134,7 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
                         step="0.01"
                         // className="w-fit"
                         disabled={isSubmitting}
-                        placeholder="Set a price for your course"
+                        placeholder={t("Set a price for your course")}
                         {...field}
                       />
                     </FormControl>
@@ -145,7 +149,7 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
                 {isSubmitting && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Save
+                {t("Save")}
               </Button>
             </div>
           </form>

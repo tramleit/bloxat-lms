@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
 import { CurrencySwitch } from "./components/currency-switch";
+import { useTranslation } from "react-i18next";
 
 const PaymentPage = () => {
   const { course_id } = useParams();
@@ -88,6 +89,8 @@ const PaymentPage = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     fetchPaymentMethods();
   }, []);
@@ -117,8 +120,8 @@ const PaymentPage = () => {
               }}
             />
             <Heading
-              title="Payment"
-              description="Set up payment on your portal."
+              title={t("Payment")}
+              description={t("Set up payment on your portal.")}
             />
           </div>
           <CurrencySwitch />
@@ -129,7 +132,9 @@ const PaymentPage = () => {
           {/* Paymob */}
           <ProviderCard
             title="Paymob Accept"
-            description="Enable all card payments, mobile wallets, and installments."
+            description={t(
+              "Enable all card payments, mobile wallets, and installments."
+            )}
             logo={PaymobLogo}
             connected={
               paymentMethods?.paymob_integrations?.[0] &&
@@ -159,7 +164,7 @@ const PaymentPage = () => {
           {/* Instapay */}
           <ProviderCard
             title="Instapay"
-            description="Accept payment on your Instapay address."
+            description={t("Accept payment on your Instapay address.")}
             logo={InstapayLogo}
             connected={
               paymentMethods?.instapay_integrations?.[0] &&

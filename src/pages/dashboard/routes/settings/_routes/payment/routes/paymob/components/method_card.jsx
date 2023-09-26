@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Edit, Pencil } from "lucide-react";
 import { EditIntegrationIFrameModal } from "@/components/modals/paymob-integration/edit-integration-iframe";
+import { useTranslation } from "react-i18next";
 
 const MethodCard = ({
   title,
@@ -28,6 +29,8 @@ const MethodCard = ({
   const [openEdit, setOpenEdit] = useState(false);
   // For Edit Integration Id + Iframe modal
   const [openEditBoth, setOpenEditBoth] = useState(false);
+
+  const { t } = useTranslation();
 
   const handleSwitchToggle = () => {
     // if there's an integration id then we can toggle
@@ -107,7 +110,7 @@ const MethodCard = ({
                   }}
                 >
                   <Pencil className="h-4 w-4 mr-2" />
-                  Edit
+                  {t("Edit")}
                 </Button>
               )}
             </div>

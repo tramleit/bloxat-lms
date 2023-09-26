@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useTranslation } from "react-i18next";
 
 // interface DataTableProps<TData, TValue> {
 //   columns: ColumnDef<TData, TValue>[]
@@ -48,6 +49,8 @@ export function DataTable({
       columnFilters,
     },
   });
+
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -106,7 +109,7 @@ export function DataTable({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {t("No results.")}
                 </TableCell>
               </TableRow>
             )}
@@ -124,7 +127,7 @@ export function DataTable({
           disabled={prevDisabled}
           // disabled={!table.getCanPreviousPage()}
         >
-          Previous
+          {t("Previous")}
         </Button>
         <Button
           variant="outline"
@@ -134,7 +137,7 @@ export function DataTable({
           disabled={nextDisabled}
           // disabled={!table.getCanNextPage()}
         >
-          Next
+          {t("Next")}
         </Button>
       </div>
     </div>

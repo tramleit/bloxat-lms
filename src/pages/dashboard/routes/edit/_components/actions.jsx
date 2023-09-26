@@ -7,6 +7,7 @@ import { Copy } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { PORTAL_URL } from "@/config/url-config";
+import { useTranslation } from "react-i18next";
 
 export const Actions = ({
   disabled,
@@ -16,6 +17,7 @@ export const Actions = ({
   courseSlug,
   copyDisabled,
 }) => {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -99,7 +101,7 @@ export const Actions = ({
         disabled={copyDisabled || isLoading}
       >
         <Copy className="mr-2 h-4 w-4" />
-        Payment link
+        {t("Payment link")}
       </Button>
       <Button
         onClick={onClick}
@@ -108,7 +110,7 @@ export const Actions = ({
         className={cn("", isPublished && "bg-red hover:bg-[#f6695e]")}
         size="sm"
       >
-        {isPublished ? "Unpublish" : "Publish"}
+        {isPublished ? t("Unpublish") : t("Publish")}
       </Button>
     </div>
   );

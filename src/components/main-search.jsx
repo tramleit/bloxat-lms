@@ -4,6 +4,7 @@ import {
   CreditCard,
   DollarSign,
   Edit2,
+  Languages,
   Pencil,
   PencilRuler,
   Plus,
@@ -24,6 +25,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useCreateModal } from "@/hooks/use-create-modal";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export function MainSearch() {
   // const params = useParams();
@@ -33,6 +35,8 @@ export function MainSearch() {
 
   // To open the create course modal
   const createModal = useCreateModal();
+
+  const { t } = useTranslation();
 
   const [open, setOpen] = React.useState(false);
 
@@ -51,7 +55,7 @@ export function MainSearch() {
   return (
     <>
       {/* Search Bar */}
-      <div onClick={setOpen} className="relative md:flex hidden">
+      <div onClick={setOpen} className="relative lg:flex hidden">
         {/* <p className="text-sm text-muted-foreground absolute top-[-30px] left-0 right-0 ml-auto mr-auto text-center">
           Press{" "}
           <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
@@ -60,7 +64,7 @@ export function MainSearch() {
         </p> */}
         <Input
           type="search"
-          placeholder="Search"
+          placeholder={t("Search")}
           className="md:w-[250px] lg:w-[250px]"
         />
       </div>
@@ -68,11 +72,11 @@ export function MainSearch() {
       {/* The Dialog */}
       <CommandDialog open={open} onOpenChange={setOpen}>
         {/* <CommandInput placeholder="Type a command or search..." /> */}
-        <CommandInput placeholder="Search..." />
+        <CommandInput placeholder={t("Search")} />
 
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
+          <CommandGroup heading={t("Suggestions")}>
             <div
               onClick={() => {
                 // open create course modal
@@ -87,7 +91,7 @@ export function MainSearch() {
               // }}
               >
                 <Plus className="mr-2 h-4 w-4" />
-                <span>Add course</span>
+                <span>{t("Add course")}</span>
               </CommandItem>
             </div>
 
@@ -100,7 +104,7 @@ export function MainSearch() {
             >
               <CommandItem>
                 <Pencil className="mr-2 h-4 w-4" />
-                <span>Edit course</span>
+                <span>{t("Edit course")}</span>
               </CommandItem>
             </div>
 
@@ -130,7 +134,7 @@ export function MainSearch() {
             >
               <CommandItem>
                 <DollarSign className="mr-2 h-4 w-4" />
-                <span>Sales</span>
+                <span>{t("Sales")}</span>
               </CommandItem>
             </div>
             <div
@@ -142,7 +146,7 @@ export function MainSearch() {
             >
               <CommandItem>
                 <Users className="mr-2 h-4 w-4" />
-                <span>Students</span>
+                <span>{t("Students")}</span>
               </CommandItem>
             </div>
           </CommandGroup>
@@ -157,11 +161,23 @@ export function MainSearch() {
             >
               <CommandItem>
                 <User className="mr-2 h-4 w-4" />
-                <span>Account</span>
+                <span>{t("Account")}</span>
                 {/* <CommandShortcut>⌘P</CommandShortcut> */}
               </CommandItem>
             </div>
-
+            <div
+              onClick={() => {
+                // console.log("Clicked");
+                navigate(`/${course_id}/settings/account`);
+                setOpen(false);
+              }}
+            >
+              <CommandItem>
+                <Languages className="mr-2 h-4 w-4" />
+                <span>{t("Language")}</span>
+                {/* <CommandShortcut>⌘P</CommandShortcut> */}
+              </CommandItem>
+            </div>
             <div
               onClick={() => {
                 // console.log("Clicked");
@@ -171,7 +187,7 @@ export function MainSearch() {
             >
               <CommandItem>
                 <Rocket className="mr-2 h-4 w-4" />
-                <span>Plan</span>
+                <span>{t("Plan")}</span>
 
                 {/* <CommandShortcut>⌘B</CommandShortcut> */}
               </CommandItem>
@@ -186,7 +202,7 @@ export function MainSearch() {
             >
               <CommandItem>
                 <CreditCard className="mr-2 h-4 w-4" />
-                <span>Payment</span>
+                <span>{t("Payment")}</span>
 
                 {/* <CommandShortcut>⌘B</CommandShortcut> */}
               </CommandItem>
@@ -201,7 +217,7 @@ export function MainSearch() {
             >
               <CommandItem>
                 <PencilRuler className="mr-2 h-4 w-4" />
-                <span>Branding</span>
+                <span>{t("Branding")}</span>
                 {/* <CommandShortcut>⌘S</CommandShortcut> */}
               </CommandItem>
             </div>

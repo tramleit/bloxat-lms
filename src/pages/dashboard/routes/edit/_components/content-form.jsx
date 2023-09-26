@@ -24,12 +24,14 @@ import Loading from "@/components/loading/loading";
 import { useTheme } from "next-themes";
 import EmptyLight from "@/assets/images/empty-light.webp";
 import EmptyDark from "@/assets/images/empty-dark.webp";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   title: z.string().min(1),
 });
 
 export const ContentForm = ({ initialData, courseId, updateUI }) => {
+  const { t } = useTranslation();
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -134,11 +136,11 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
       )}
 
       <div className="font-medium flex items-center justify-between mb-5">
-        Sections and lessons
+        {t("Sections and lessons")}
         <span></span>
         {isCreating ? (
           <Button onClick={toggleCreating} variant="ghost">
-            Cancel
+            {t("Cancel")}
           </Button>
         ) : (
           <Button
@@ -148,7 +150,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
             className="border-2  border-blueBloxLight text-blueBloxLight hover:text-white hover:bg-blueBloxLight"
           >
             <PlusIcon className="h-4 w-4 mr-2" />
-            Add a section
+            {t("Add a section")}
           </Button>
         )}
       </div>
@@ -166,7 +168,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="eg: Introduction"
+                      placeholder={t("Example: Introduction Section")}
                       {...field}
                     />
                   </FormControl>
@@ -179,7 +181,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
               {isSubmitting && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Create
+              {t("Create")}
             </Button>
           </form>
         </Form>
@@ -201,7 +203,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
                 draggable={false}
               />
 
-              <span>No sections yet</span>
+              <span>{t("No sections yet")}</span>
             </div>
           )}
           {/* TODO: ADD A LIST OF LESSONS AND CONTAIN THE IN SECTIONS */}
@@ -216,7 +218,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
       {!isCreating && (
         <div className="flex flex-col ">
           <p className="text-xs text-muted-foreground mt-4">
-            💡 Drag and drop to reorder the sections or lessons.
+            {t("💡 Drag and drop to reorder the sections or lessons.")}
           </p>
         </div>
       )}

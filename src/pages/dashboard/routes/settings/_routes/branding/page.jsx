@@ -28,6 +28,7 @@ import toast from "react-hot-toast";
 import { Icons } from "@/components/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { PORTAL_URL } from "@/config/url-config";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   // label: z.string().min(1),
@@ -123,6 +124,8 @@ const BrandingPage = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -134,7 +137,10 @@ const BrandingPage = () => {
               }}
             />
 
-            <Heading title="Branding" description="Customize your portal." />
+            <Heading
+              title={t("Branding")}
+              description={t("Customize your portal")}
+            />
           </div>
           <Button
             // disabled={loading}
@@ -146,7 +152,7 @@ const BrandingPage = () => {
             }}
           >
             <ExternalLink className="h-4 w-4" />
-            <span>View</span>
+            <span>{t("View")}</span>
           </Button>
         </div>
         <Separator />
@@ -154,7 +160,7 @@ const BrandingPage = () => {
         <div className="flex flex-col space-y-8 w-full">
           <div className="grid gap-1">
             <Label htmlFor="brandName" className="mb-1">
-              Your brand name
+              {t("Your brand name")}
             </Label>
             <Input
               id="brandName"
@@ -173,7 +179,9 @@ const BrandingPage = () => {
           {/* Logo */}
           {/* Brand Logo Uplaod*/}
           <Card>
-            <CardHeader className="text-sm font-semibold">Logo</CardHeader>
+            <CardHeader className="text-sm font-semibold">
+              {t("Logo")}
+            </CardHeader>
             <CardContent>
               <Form {...form}>
                 <form
@@ -186,7 +194,7 @@ const BrandingPage = () => {
                     render={({ field }) => (
                       // Light Mode Logo
                       <FormItem>
-                        <FormLabel>Logo (Light mode)</FormLabel>
+                        <FormLabel>{t("Logo (Light mode)")}</FormLabel>
                         <FormControl>
                           <ImageUpload
                             className="bg-white rounded-md"
@@ -216,7 +224,7 @@ const BrandingPage = () => {
                     render={({ field }) => (
                       // Light Mode Logo
                       <FormItem>
-                        <FormLabel>Logo (Dark mode)</FormLabel>
+                        <FormLabel>{t("Logo (Dark mode)")}</FormLabel>
                         <FormControl>
                           <ImageUpload
                             className="bg-black rounded-md"
@@ -259,7 +267,7 @@ const BrandingPage = () => {
               {loading && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
-              Save changes
+              {t("Save changes")}
             </Button>
           </div>
 

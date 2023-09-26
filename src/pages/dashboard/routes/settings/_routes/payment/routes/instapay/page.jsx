@@ -19,6 +19,7 @@ import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-stor
 import Loading from "@/components/loading/loading";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 // Form validator
 const formSchema = z.object({
@@ -131,6 +132,8 @@ const InstapayPage = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   // loading
   if (loading) {
     return (
@@ -152,7 +155,7 @@ const InstapayPage = () => {
             />
             <Heading
               title="Instapay"
-              description="Connect your Instapay account with Bloxat."
+              description={t("Connect your Instapay account with Bloxat.")}
             />
           </div>
           <div className="flex flex-row items-center">
@@ -179,7 +182,7 @@ const InstapayPage = () => {
                   name="paymentAddress"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Payment Address</FormLabel>
+                      <FormLabel>{t("Payment Address")}</FormLabel>
                       <FormControl>
                         <div className="flex flex-row items-center space-x-4">
                           <Input
@@ -202,7 +205,9 @@ const InstapayPage = () => {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Full Name (As shown in the App)</FormLabel>
+                      <FormLabel>
+                        {t("Full Name (As shown in the App)")}
+                      </FormLabel>
                       <FormControl>
                         <Input
                           disable={loadingForm}
@@ -224,7 +229,7 @@ const InstapayPage = () => {
                   disabled={loadingForm}
                   loading={loadingForm}
                 >
-                  Save changes
+                  {t("Save changes")}
                 </Button>
               </div>
             </form>

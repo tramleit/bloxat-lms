@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import Editor from "@/components/editor";
 import { Preview } from "@/components/preview";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   description: z.string().min(1, {
@@ -28,7 +29,8 @@ const formSchema = z.object({
   }),
 });
 
-export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
+export const LessonDescriptionForm = ({ initialData, lessonId }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -75,22 +77,22 @@ export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Description
+        {t("Lesson Description")}
         {!data?.description && !isEditing && (
           <Button onClick={toggleEdit} variant="yellow">
             <Plus className="h-4 w-4 mr-2" />
-            Add
+            {t("Add")}
           </Button>
         )}
         {isEditing && (
           <Button onClick={toggleEdit} variant="ghost">
-            Cancel
+            {t("Cancel")}
           </Button>
         )}
         {!isEditing && data?.description && (
           <Button onClick={toggleEdit} variant="ghost">
             <Edit className="h-4 w-4 mr-2" />
-            Edit
+            {t("Edit")}
           </Button>
         )}
         {/*  */}
@@ -112,7 +114,7 @@ export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
             !data?.description && "text-slate-500 italic"
           )}
         >
-          {!data?.description && "No description"}
+          {!data?.description && t("No description")}
           {data?.description && <Preview value={data?.description} />}
         </div>
       )}
@@ -140,7 +142,7 @@ export const LessonDescriptionForm = ({ initialData,  lessonId }) => {
                 {isSubmitting && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Save
+                {t("Save")}
               </Button>
             </div>
           </form>

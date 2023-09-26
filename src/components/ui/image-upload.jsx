@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
 import { cloudName, uploadPreset } from "@/config/cloudinary-config";
+import { useTranslation } from "react-i18next";
 
 const ImageUpload = ({
   disabled,
@@ -19,6 +20,8 @@ const ImageUpload = ({
 
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
+
+  const { t } = useTranslation();
 
   //   Upload function
   const onUpload = (result) => {
@@ -88,7 +91,7 @@ const ImageUpload = ({
         onClick={() => widgetRef.current.open()}
       >
         <ImagePlus className="h-4 w-4 mr-2" />
-        Upload an Image
+        {t("Upload an Image")}
       </Button>
 
       {/* <CldUploadWidget onUpload={onUpload} uploadPreset="hoepl74m">

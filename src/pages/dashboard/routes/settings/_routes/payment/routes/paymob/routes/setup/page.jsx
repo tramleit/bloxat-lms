@@ -19,6 +19,7 @@ import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-stor
 import toast from "react-hot-toast";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 
 // Form validator
 const formSchema = z.object({
@@ -72,6 +73,8 @@ const PaymobSetupPage = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-row items-center w-full h-[90%] overflow-y-clip">
       {/* Left div */}
@@ -85,7 +88,7 @@ const PaymobSetupPage = () => {
               className="w-[135px] h-auto"
               draggable={false}
             />
-            <h1 className="font-bold text-2xl "> Setup</h1>
+            <h1 className="font-bold text-2xl "> {t("Setup")}</h1>
             {/* <CreditCard className="h-6 w-6" /> */}
           </div>
           <Form {...form}>

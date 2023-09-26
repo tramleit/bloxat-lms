@@ -36,6 +36,7 @@ import {
 } from "@dnd-kit/sortable";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { ResourceList } from "./resources-list";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   resource_title: z.string().min(1, {
@@ -47,6 +48,7 @@ const formSchema = z.object({
 });
 
 export const ResourcesForm = ({ initialData, lessonId }) => {
+  const { t } = useTranslation();
   const [isAdding, setIsAdding] = useState(false);
 
   const toggleAdd = () => setIsAdding((current) => !current);
@@ -167,21 +169,21 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
           </div>
         )}
         <div className="font-medium flex items-center justify-between">
-          Add resources
+          {t("Add resources")}
           {/*  */}
           <Button onClick={toggleAdd} variant={!isAdding ? "yellow" : "ghost"}>
             {!isAdding && (
               <>
                 <Plus className="h-4 w-4 mr-2" />
-                Add
+                {t("Add")}
               </>
             )}
 
-            {isAdding && <>Cancel</>}
+            {isAdding && <>{t("Cancel")}</>}
           </Button>
         </div>
         {!isAdding && !resourcesState?.length && (
-          <p className="text-muted-foreground italic">No resources</p>
+          <p className="text-muted-foreground italic">{t("No resources")}</p>
         )}
         {!isAdding && (
           <>
@@ -208,7 +210,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
                         {/* Resource title */}
                         <div className="grid gap-0 w-full">
                           <Label htmlFor="resource_title" className="mb-1">
-                            Title
+                            {t("Title")}
                           </Label>
                           <Input
                             id="resource_title"
@@ -232,7 +234,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
                         {/* Resource title */}
                         <div className="grid gap-0 w-full">
                           <Label htmlFor="resource_link" className="mb-1">
-                            Link
+                            {t("Link")}
                           </Label>
                           <Input
                             id="resource_link"
@@ -250,7 +252,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
                 {/* Select Input */}
                 <div className="grid gap-0 w-full">
                   <Label htmlFor="resource_type" className="mb-1">
-                    Resource Type
+                    {t("Resource Type")}
                   </Label>
                   <Select
                     id="resource_type"
@@ -307,7 +309,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
                   {isSubmitting && (
                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                   )}
-                  Add
+                  {t("Add")}
                 </Button>
               </div>
             </form>

@@ -18,6 +18,7 @@ import {
 import { useCreateModal } from "@/hooks/use-create-modal";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function CourseSwicher({ className, loading, items = [] }) {
   const createModal = useCreateModal();
@@ -46,6 +47,8 @@ export default function CourseSwicher({ className, loading, items = [] }) {
     window.location.replace(`/${course.id}`);
     return;
   };
+
+  const { t } = useTranslation();
 
   console.log("formattedItems", formattedItems);
 
@@ -89,8 +92,8 @@ export default function CourseSwicher({ className, loading, items = [] }) {
       <PopoverContent className="w-[250px] p-0">
         <Command>
           <CommandList>
-            <CommandInput placeholder="Search course..." />
-            <CommandEmpty> No course found.</CommandEmpty>
+            <CommandInput placeholder={t("Search course...")} />
+            <CommandEmpty> {t("No course found.")}</CommandEmpty>
             <CommandGroup heading="Courses">
               {formattedItems?.map((course) => (
                 <CommandItem
@@ -136,7 +139,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
                 }}
               >
                 <PlusCircle className="mr-2 h-4 w-4" />
-                Create course
+                {t("Create course")}
               </CommandItem>
             </CommandGroup>
           </CommandList>

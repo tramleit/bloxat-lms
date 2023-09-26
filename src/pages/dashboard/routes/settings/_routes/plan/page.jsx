@@ -9,6 +9,7 @@ import Loading from "@/components/loading/loading";
 import useBillingStore from "@/store/billing/billing-store";
 import ActiveCard from "./components/active-card";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PlanPage = () => {
   const { course_id } = useParams();
@@ -19,42 +20,12 @@ const PlanPage = () => {
   // to get the billing data .. to show in the table and to see the last plan we're on
   const { billingData, loading, fetchBillingData } = useBillingStore();
 
-  const billing = [
-    {
-      user_id: 1,
-      purchase_date: "dateeee",
-      end_date: "date",
-      plan: "monthly",
-      amount: 497,
-      payment_method: "Card",
-      status: "Paid",
-    },
-    {
-      user_id: 1,
-      purchase_date: "dateeee",
-      end_date: "date",
-      plan: "monthly",
-      amount: 497,
-      payment_method: "Card",
-      status: "Paid",
-    },
-    {
-      user_id: 1,
-      purchase_date: "dateeee",
-      end_date: "date",
-      plan: "monthly",
-      amount: 497,
-      payment_method: "Card",
-      status: "Paid",
-    },
-  ];
-
   //   Pagination
   // For Pagination
   const [page, setPage] = useState(0);
   // Next page function
   function nextPage() {
-    if (page !== billing?.count - 1) {
+    if (page !== billingData?.count - 1) {
       setPage(page + 1);
       //   fetchEnrollments(courseId, page + 1, "");
     }
@@ -97,6 +68,8 @@ const PlanPage = () => {
 
   console.log("Remaining days until subscription ends:", remainingDays);
 
+  const { t } = useTranslation();
+
   // FETCH BILLING DATA
   useEffect(() => {
     // Replace 'userId' with the actual user ID you want to fetch data for
@@ -126,8 +99,8 @@ const PlanPage = () => {
             />
 
             <Heading
-              title="Plan"
-              description="Upgrade or renew your Bloxat plan"
+              title={t("Plan")}
+              description={t("Upgrade or renew your Bloxat plan")}
             />
           </div>
         </div>
@@ -157,10 +130,10 @@ const PlanPage = () => {
               new Date() < new Date(currentUser.trial_end) &&
               !currentUser?.subscription_end && (
                 <ActiveCard
-                  title={"Free Trial"}
+                  title={t("Free Trial")}
                   color={"bg-sky"}
                   textColor={"text-black"}
-                  planName="21 days trial"
+                  planName={t("21 days trial")}
                   daysRemaining={trialRemainingDays}
                   showRemaining={trialRemainingDays <= 2 ? true : false}
                 />
@@ -169,9 +142,9 @@ const PlanPage = () => {
           <Separator />
           {/* Billing history */}
           <div className="flex flex-col space-y-1">
-            <h3 className="font-semibold text-xl">Billing History</h3>
+            <h3 className="font-semibold text-xl">{t("Billing History")}</h3>
             <p className="text-muted-foreground text-sm">
-              Here you can review all of your payments to Bloxat
+              {t("Here you can review all of your payments to Bloxat")}
             </p>
           </div>
 

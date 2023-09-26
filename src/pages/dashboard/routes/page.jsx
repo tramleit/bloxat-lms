@@ -12,6 +12,7 @@ import useTourStore from "@/store/tour.store";
 import StartTourModal from "@/components/modals/start-tour-modal";
 import { useEffect, useState } from "react";
 import ViewPortalModal from "@/components/modals/view-portal-modal";
+import { useTranslation } from "react-i18next";
 
 const QuickPage = () => {
   const { course_id } = useParams();
@@ -40,6 +41,8 @@ const QuickPage = () => {
   // View portal modal state
   const [openViewModal, setOpenViewModal] = useState(false);
 
+  const { t } = useTranslation();
+
   // to show the tour modal if first time visit
   useEffect(() => {
     if (tourModalPopped !== "true") {
@@ -66,19 +69,21 @@ const QuickPage = () => {
 
       {/* That's a modal that opens when we click View your portal ... */}
       {/* to let them choose if they want to see the entire portal or just copy their payment link? */}
-      <ViewPortalModal
-        isOpen={openViewModal}
-        onClose={() => setOpenViewModal(false)}
-        brandSlug={warnings?.brandSlug}
-        // onConfirm={onConfirm}
-      />
+      {openViewModal && (
+        <ViewPortalModal
+          isOpen={openViewModal}
+          onClose={() => setOpenViewModal(false)}
+          brandSlug={warnings?.brandSlug}
+          // onConfirm={onConfirm}
+        />
+      )}
       <div className="flex flex-col items-center justify-center lg:h-[80vh] h-[80vh] md:h-screen text-center md:px-0 px-5">
         {/* <h1 className="text-4xl font-bold tracking-tight">
           Welcome back, {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
         </h1> */}
         <h2 className="text-xl font-normal mb-1.5 tracking-tight">
-          Welcome back, {currentUser?.first_name}!{" "}
+          {t("Ahlan,")} {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
         </h2>
         <h1 className="text-4xl font-bold tracking-tight md:w-[550px] ">
@@ -99,7 +104,7 @@ const QuickPage = () => {
             }}
           >
             <Plus className="h-4 w-4 mr-2" />
-            Create a new course
+            {t("Create a new course")}
           </Button>
           <Button
             // variant="lemon"
@@ -111,7 +116,7 @@ const QuickPage = () => {
             }}
           >
             <Pencil className="h-4 w-4 mr-2" />
-            Add & Edit course content
+            {t("Add & Edit course content")}
           </Button>
           <Button
             variant="yellow"
@@ -123,7 +128,7 @@ const QuickPage = () => {
             }}
           >
             <CreditCard className="h-4 w-4 mr-2" />
-            Payment method
+            {t("Payment method")}
           </Button>
           <div className="flex flex-row items-center space-x-5">
             <Button
@@ -138,7 +143,7 @@ const QuickPage = () => {
               // }}
             >
               <Eye className="h-4 w-4 mr-2" />
-              View Portal & Get Link
+              {t("View Portal & Get Link")}
             </Button>
           </div>
         </div>

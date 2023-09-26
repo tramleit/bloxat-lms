@@ -8,8 +8,10 @@ import { copyText } from "@/lib/copy-text";
 import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ViewPortalModal = ({ isOpen, onClose, brandSlug }) => {
+  const { t } = useTranslation();
   const { course_id } = useParams();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -49,7 +51,7 @@ const ViewPortalModal = ({ isOpen, onClose, brandSlug }) => {
           className="flex flex-col md:w-[200px] md:h-[180px] w-full space-y-2 bg-blueBloxLight text-white hover:bg-[#5890ff] cursor-pointer transition items-center justify-center border p-10 rounded-lg "
         >
           <Eye className="h-6 w-6" />
-          <h2 className="font-semibold">View your portal</h2>
+          <h2 className="font-semibold">{t("View your portal")}</h2>
         </div>
         {/* COPY */}
         <div
@@ -62,7 +64,7 @@ const ViewPortalModal = ({ isOpen, onClose, brandSlug }) => {
           className="flex flex-col md:w-[200px] md:h-[180px] w-full space-y-2 bg-lemonBlox text-black hover:bg-lemonBloxLight cursor-pointer transition items-center justify-center border p-10 rounded-lg"
         >
           <Copy className="h-6 w-6" />
-          <h2 className="font-semibold">Copy course payment link</h2>
+          <h2 className="font-semibold">{t("Copy course payment link")}</h2>
         </div>
       </div>
 

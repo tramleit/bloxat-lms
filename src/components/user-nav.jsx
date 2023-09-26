@@ -15,6 +15,7 @@ import useAuthStore from "@/store/auth/auth-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import useBillingStore from "@/store/billing/billing-store";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export function UserNav() {
   // const router = useRouter();
@@ -29,6 +30,8 @@ export function UserNav() {
 
   // to get the billing data ..
   const { billingData, loading, fetchBillingData } = useBillingStore();
+
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     // Call the logout function when the button is clicked
@@ -82,18 +85,18 @@ export function UserNav() {
               navigate(`/${course_id}/settings/plan`);
             }}
           >
-            <span>Plan</span>
+            <span>{t("Plan")}</span>
 
             {/* if there's no billing yet that means he's in the free trial */}
             {billingData?.length == 0 && (
               <span className="bg-sky text-black px-1 font-semibold rounded-md text-[12px]">
-                Free trial
+                {t("Free Trial")}
               </span>
             )}
             {/* IF THERE'S A BILLING THEN GET THE LAST ONE AND DISPLAY THE PLAN */}
             {billingData?.length !== 0 && (
               <span className="bg-purple text-black px-1 font-semibold rounded-md text-[12px]">
-                Active
+                {t("Active")}
               </span>
             )}
 
@@ -104,7 +107,7 @@ export function UserNav() {
               navigate(`/${course_id}/settings/account`);
             }}
           >
-            Account
+            {t("Account")}
           </DropdownMenuItem>
           {/* <DropdownMenuItem>
             Billing
@@ -119,13 +122,13 @@ export function UserNav() {
           <DropdownMenuItem
             onClick={() => navigate(`/${course_id}/settings/branding`)}
           >
-            Branding
+            {t("Branding")}
             {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
-          Log out
+          {t("Log out")}
           {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
         </DropdownMenuItem>
       </DropdownMenuContent>

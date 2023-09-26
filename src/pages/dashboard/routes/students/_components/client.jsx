@@ -12,6 +12,7 @@ import Loading from "@/components/loading/loading";
 import { copyText } from "@/lib/copy-text";
 import { PORTAL_URL } from "@/config/url-config";
 import useIsMobile from "@/hooks/use-is-mobile";
+import { useTranslation } from "react-i18next";
 // import { columns } from "./columns";
 
 export const StudentsClient = () => {
@@ -24,6 +25,8 @@ export const StudentsClient = () => {
   // Get course
   const { course, fetchCourseById } = useGetCourseStore();
   const currentUser = useCurrentUser();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetchCourseById(course_id, 0);
@@ -47,7 +50,10 @@ export const StudentsClient = () => {
         // loading={userDeletionStore.isDeleting}
       />
       <div className="flex items-center justify-between">
-        <Heading title="Students" description="View your students details." />
+        <Heading
+          title={t("Students")}
+          description={t("View your students details.")}
+        />
         <div className="flex flex-row space-x-2 ">
           <Button
             variant="outline"
@@ -59,7 +65,7 @@ export const StudentsClient = () => {
             }
           >
             <Copy className="mr-2 h-4 w-4" />
-            {isMobile ? <>Pay</> : <span>Payment link</span>}
+            {isMobile ? <>Pay</> : <span>{t("Payment link")}</span>}
           </Button>
           <Button
             variant="blue"
@@ -67,7 +73,7 @@ export const StudentsClient = () => {
             onClick={() => setOpen(true)}
           >
             <Plus className="md:mr-2 mr-0 h-4 w-4" />
-            {isMobile ? <></> : <span>Add student</span>}
+            {isMobile ? <></> : <span>{t("Add student")}</span>}
           </Button>
         </div>
       </div>

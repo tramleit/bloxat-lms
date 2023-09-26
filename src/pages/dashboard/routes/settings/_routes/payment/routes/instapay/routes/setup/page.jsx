@@ -19,6 +19,7 @@ import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-stor
 import toast from "react-hot-toast";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 
 // Form validator
 const formSchema = z.object({
@@ -87,6 +88,8 @@ const InstapaySetupPage = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-row items-center w-full h-[90%]">
       {/* Left div */}
@@ -100,7 +103,7 @@ const InstapaySetupPage = () => {
               className="w-[135px] h-auto"
               draggable={false}
             />
-            <h1 className="font-bold text-2xl "> Setup</h1>
+            <h1 className="font-bold text-2xl "> {t("Setup")}</h1>
             {/* <CreditCard className="h-6 w-6" /> */}
           </div>
           <Form {...form}>
@@ -114,7 +117,7 @@ const InstapaySetupPage = () => {
                   name="paymentAddress"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Payment Address</FormLabel>
+                      <FormLabel>{t("Payment Address")}</FormLabel>
                       <FormControl>
                         <div className="flex flex-row items-center space-x-4">
                           <Input
@@ -137,7 +140,9 @@ const InstapaySetupPage = () => {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Full Name (As shown in the App)</FormLabel>
+                      <FormLabel>
+                        {t("Full Name (As shown in the App)")}
+                      </FormLabel>
                       <FormControl>
                         <Input
                           disable={loading}
@@ -154,7 +159,7 @@ const InstapaySetupPage = () => {
               Save changes
             </Button> */}
               <Button onClick={() => {}} disabled={loading} loading={loading}>
-                Done
+                {t("Done")}
               </Button>
             </form>
           </Form>

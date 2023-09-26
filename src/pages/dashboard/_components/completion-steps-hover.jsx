@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import Step from "./step";
+import { useTranslation } from "react-i18next";
 
 export const CompletionStepsHover = () => {
+  const { t } = useTranslation();
   const { course_id } = useParams();
   const navigate = useNavigate();
 
@@ -32,13 +34,13 @@ export const CompletionStepsHover = () => {
                   return;
                 }}
               >
-                Skip
+                {t("Skip")}
               </Button>
               <div className="flex flex-row items-center justify-between ">
                 <Step
                   stepNumber="1"
-                  label="Payment Method"
-                  description="Connect a payment method to your account"
+                  label={t("Payment Method")}
+                  description={t("Connect a payment method to your account")}
                   onClick={() => {
                     navigate(`/${course_id}/settings/payment`);
                   }}
@@ -59,8 +61,8 @@ export const CompletionStepsHover = () => {
 
                 <Step
                   stepNumber="2"
-                  label="Course Content"
-                  description="Finish & publish your course"
+                  label={t("Course Content")}
+                  description={t("Finish & publish your course")}
                   onClick={() => {
                     navigate(`/${course_id}/edit`);
                   }}
@@ -83,8 +85,8 @@ export const CompletionStepsHover = () => {
 
                 <Step
                   stepNumber="3"
-                  label="View & Share"
-                  description="View your portal as a student"
+                  label={t("View & Share")}
+                  description={t("View your portal as a student")}
                   completed={
                     Array.isArray(completionData) && completionData[2] === true
                       ? true

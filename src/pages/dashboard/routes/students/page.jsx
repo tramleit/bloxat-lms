@@ -6,6 +6,7 @@ import Loading from "@/components/loading/loading";
 import { useParams } from "react-router-dom";
 import { StudentsClient } from "./_components/client";
 import { columns } from "./_components/columns";
+import { useTranslation } from "react-i18next";
 
 const StudentsPage = () => {
   const { course_id } = useParams();
@@ -18,6 +19,8 @@ const StudentsPage = () => {
 
   // Get Students
   const { enrollments, fetchDetailedEnrollments } = useStudentsStore();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     // Fetch enrollments when the component mounts
@@ -58,7 +61,7 @@ const StudentsPage = () => {
         {/* Search Input For filtering */}
         <div className="flex items-center">
           <Input
-            placeholder="Search"
+            placeholder={t("Search")}
             onChange={(e) => {
               setSearch(e.target.value);
               setPage(0);

@@ -1,4 +1,4 @@
-import CreateModal from "@/components/modals/create-modal";
+import CreateModal from "@/components/modals/create-modal/create-modal";
 import React, { useEffect, useState } from "react";
 
 const ModalProvider = () => {

@@ -40,7 +40,7 @@ const LangSetupPage = () => {
             <h2 className="mt-6 text-xl font-bold ">
               {t("Choose a language")}
             </h2>
-            <div className="flex flex-col space-y-5 mt-6 w-1/4">
+            <div className="flex flex-col space-y-5 mt-6 md:w-[300px] w-full md:px-0 px-10">
               <Button
                 variant="yellow"
                 size="lg"

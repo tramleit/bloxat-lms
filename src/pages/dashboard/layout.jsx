@@ -12,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { CompletionStepsHover } from "./_components/completion-steps-hover";
 import { cn } from "@/lib/utils";
 import SupportHover from "./_components/support-hover";
+import LanguageInitializer from "@/hooks/language-init";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 
 export default function DashboardLayout({ children }) {
@@ -133,17 +134,16 @@ export default function DashboardLayout({ children }) {
 
   return (
     <>
+      {/* LanguageInitializer runs early in the rendering process */}
+      <LanguageInitializer />
       {/* Here if we're in the account completion process then overflow-y-clip because the hover goes to bottom-[20px] */}
       {/* {remainingDays <= 2 && <></>} */}
       {/* {trialRemainingDays <= 2 && <></>} */}
       <Navbar />
-
       {/* Account completion bottom overlay */}
       <CompletionStepsHover />
-
       {/* Support Floating on the bottom right */}
       <SupportHover />
-
       {/* Actual pages */}
       {children}
     </>

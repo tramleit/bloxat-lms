@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import useIsMobile from "@/hooks/use-is-mobile";
+import { useTranslation } from "react-i18next";
 
 const WarningsBanners = ({ warnings, courseId }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // Retrieve the value from local storage
   const completionData = JSON.parse(localStorage.getItem("bxCompletion"));
@@ -24,7 +26,9 @@ const WarningsBanners = ({ warnings, courseId }) => {
               warnings?.instapay_enabled === false && (
                 <Banner
                   variant="warning"
-                  label="Setup your payment method to accept payments from your students."
+                  label={t(
+                    "Setup your payment method to accept payments from your students."
+                  )}
                   button={
                     <Button
                       size="sm"
@@ -34,7 +38,7 @@ const WarningsBanners = ({ warnings, courseId }) => {
                         navigate(`/${courseId}/settings/payment`);
                       }}
                     >
-                      {isMobile ? "Go" : "Setup payment"}
+                      {isMobile ? t("Go") : t("Setup payment")}
                     </Button>
                   }
                 />
@@ -45,7 +49,9 @@ const WarningsBanners = ({ warnings, courseId }) => {
                 warnings?.instapay_enabled === true) && (
                 <Banner
                   variant="warning"
-                  label="This course is not published. It will not be visible to your students."
+                  label={t(
+                    "This course is not published. It will not be visible to your students."
+                  )}
                   button={
                     <Button
                       size="sm"
@@ -55,7 +61,7 @@ const WarningsBanners = ({ warnings, courseId }) => {
                         navigate(`/${courseId}/edit`);
                       }}
                     >
-                      {isMobile ? "Go" : "Edit course"}
+                      {isMobile ? t("Go") : t("Edit course")}
                       {/* <ArrowRight className="h-4 w-4 ml-2" /> */}
                     </Button>
                   }

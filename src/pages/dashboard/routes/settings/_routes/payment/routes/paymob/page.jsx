@@ -13,6 +13,7 @@ import { EditConnectionModal } from "@/components/modals/paymob-integration/edit
 import CardsIcon from "@/assets/images/icons/all-cards.webp";
 import WalletsIcon from "@/assets/images/icons/wallets.webp";
 import useIsMobile from "@/hooks/use-is-mobile";
+import { useTranslation } from "react-i18next";
 
 const PaymobPage = () => {
   const { course_id } = useParams();
@@ -60,6 +61,8 @@ const PaymobPage = () => {
 
   const isMobile = useIsMobile();
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     fetchPaymobIntegration();
   }, []);
@@ -98,7 +101,7 @@ const PaymobPage = () => {
               />
               <Heading
                 title="Paymob Accept"
-                description="Connect your Paymob account with Bloxat."
+                description={t("Connect your Paymob account with Bloxat.")}
               />
             </div>
             <div className="flex flex-row items-center">
@@ -107,7 +110,7 @@ const PaymobPage = () => {
                   setOpen(true);
                 }}
               >
-                {isMobile ? "Edit" : "Edit Connection"}
+                {isMobile ? t("Edit") : t("Edit Connection")}
               </Button>
             </div>
           </div>
@@ -118,7 +121,7 @@ const PaymobPage = () => {
             {/* Payment methods */}
             {/* Credit and Debit Cards */}
             <MethodCard
-              title="Credit and Debit Cards"
+              title={t("Credit and Debit Cards")}
               icon={CardsIcon}
               width="w-[140px]"
               enabled={
@@ -147,7 +150,7 @@ const PaymobPage = () => {
             />
             {/* Mobile Wallets */}
             <MethodCard
-              title="Mobile Wallets"
+              title={t("Mobile Wallets")}
               icon={WalletsIcon}
               width="w-[280px]"
               enabled={
@@ -211,7 +214,8 @@ const PaymobPage = () => {
               variant="public"
             />
           </div>
-<div className="md:h-0 h-20"/>   {/* <PaymentSettingsForm initialData={course} /> */}
+          <div className="md:h-0 h-20" />{" "}
+          {/* <PaymentSettingsForm initialData={course} /> */}
         </div>
       </div>
     </>

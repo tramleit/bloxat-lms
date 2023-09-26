@@ -25,8 +25,10 @@ import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { EditSectionModal } from "../modals/edit-section-modal";
+import { useTranslation } from "react-i18next";
 
 const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
+  const { t } = useTranslation();
   const { course_id } = useParams();
 
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -238,7 +240,7 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
                     className="space-x-2"
                   >
                     <Plus className="h-4 w-4" />
-                    <span>Add Lesson</span>
+                    <span>{t("Add Lesson")}</span>
                   </Button>
                 </div>
               </AccordionContent>

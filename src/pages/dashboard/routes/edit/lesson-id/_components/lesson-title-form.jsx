@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -30,6 +31,7 @@ export const LessonTitleForm = ({
   lessonId,
   updateUI, // Add this prop
 }) => {
+  const { t } = useTranslation();
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleEdit = () => setIsEditing((current) => !current);
@@ -79,14 +81,14 @@ export const LessonTitleForm = ({
   return (
     <div className="mt-6 border bg-[#FAFAFA] dark:bg-[#1a1a1a] rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Lesson title
+        {t("Lesson title")}
         <Button onClick={toggleEdit} variant="ghost">
           {isEditing ? (
-            <>Cancel</>
+            <>{t("Cancel")}</>
           ) : (
             <>
               <Pencil className="h-4 w-4 mr-2" />
-              Edit
+              {t("Edit")}
             </>
           )}
         </Button>
@@ -106,7 +108,7 @@ export const LessonTitleForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="eg: How to setup your project ..."
+                      placeholder={t("Example: How to setup your project ...")}
                       {...field}
                     />
                   </FormControl>
@@ -120,7 +122,7 @@ export const LessonTitleForm = ({
                 {isSubmitting && (
                   <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Save
+                {t("Save")}
               </Button>
             </div>
           </form>

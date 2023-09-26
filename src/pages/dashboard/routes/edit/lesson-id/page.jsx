@@ -17,8 +17,10 @@ import { VideoForm } from "./_components/video-form";
 import { ResourcesForm } from "./_components/resources-form";
 import { LessonActions } from "./_components/lesson-actions";
 import { BackButton } from "@/components/back-button";
+import { useTranslation } from "react-i18next";
 
 const EditLessonIdPage = () => {
+  const { t } = useTranslation();
   const { course_id, lesson_id } = useParams();
 
   const navigate = useNavigate();
@@ -95,7 +97,9 @@ const EditLessonIdPage = () => {
           <div>
             <div className="flex items-center gap-x-2">
               {/* <IconBadge Icon={LayoutDashboardIcon} /> */}
-              <h2 className="text-xl font-semibold">🧠 Lesson information</h2>
+              <h2 className="text-xl font-semibold">
+                {t("🧠 Lesson information")}
+              </h2>
             </div>
             {/* Title form */}
             <LessonTitleForm
@@ -113,7 +117,7 @@ const EditLessonIdPage = () => {
             <div>
               <div className="flex items-center gap-x-2 mt-6">
                 {/* <IconBadge Icon={Files} /> */}
-                <h2 className="text-xl">🔗 Resources</h2>
+                <h2 className="text-xl">{t("🔗 Resources")}</h2>
               </div>
               <ResourcesForm
                 initialData={lessonData?.resources}
@@ -126,7 +130,7 @@ const EditLessonIdPage = () => {
         <div>
           <div className="flex items-center gap-x-2">
             {/* <IconBadge Icon={Video} /> */}
-            <h2 className="text-xl font-semibold">👨‍💻 Lesson video</h2>
+            <h2 className="text-xl font-semibold">{t("👨‍💻 Lesson video")}</h2>
           </div>
           {/* Video Form */}
           <VideoForm initialData={lessonData} lessonId={lesson_id} />

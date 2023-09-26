@@ -1,8 +1,3 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateModal } from "@/hooks/use-create-modal";
-import Modal from "@/components/ui/modal";
 import {
   Form,
   FormControl,
@@ -17,16 +12,20 @@ import useCourseStore from "@/store/courses/courses-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Form validation
 const formSchema = z.object({
   name: z.string().min(1),
 });
 
-const CreateModal = () => {
-  const createModal = useCreateModal();
-
+const CreateForm = ({ close }) => {
+//   const { t } = useTranslation();
   const currentUser = useCurrentUser();
+  const { addCourse, loading } = useCourseStore();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -34,8 +33,6 @@ const CreateModal = () => {
       name: "",
     },
   });
-
-  const { addCourse, loading } = useCourseStore();
 
   const onSubmit = async (values) => {
     try {
@@ -83,56 +80,50 @@ const CreateModal = () => {
   };
 
   return (
-    <div>
-      <Modal
-        title="Create course 🧩"
-        description="Add a new course and start getting paid."
-        isOpen={createModal.isOpen}
-        onClose={createModal.onClose}
-      >
-        {/* Content */}
-        <div>
-          <div className="space-y-4 py-2 pb-4">
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled={loading}
-                          placeholder="eg: Stock Market Course"
-                          {...field}
-                        />
-                      </FormControl>
-                      {/* To show for validation if there's a problem */}
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                  <Button
+    <div className="space-y-4 py-2 pb-4">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  {/* {t("Course Title")} */}
+                  Course Title
+                </FormLabel>
+                <FormControl>
+                  <Input
                     disabled={loading}
-                    variant="outline"
-                    onClick={createModal.onClose}
-                    type="button"
-                  >
-                    Cancel
-                  </Button>
-                  <Button disabled={loading} type="submit" variant="blue">
-                    Continue
-                  </Button>
-                </div>
-              </form>
-            </Form>
+                    placeholder="Example: Stock Market Course"
+                    // {t("Example: Stock Market Course")}
+                    {...field}
+                  />
+                </FormControl>
+                {/* To show for validation if there's a problem */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+            <Button
+              disabled={loading}
+              variant="outline"
+              onClick={close}
+              type="button"
+            >
+              Cancel
+              {/* {t("Cancel")} */}
+            </Button>
+            <Button disabled={loading} type="submit" variant="blue">
+              {/* {t("Continue")} */}
+              Continue
+            </Button>
           </div>
-        </div>
-      </Modal>
+        </form>
+      </Form>
     </div>
   );
 };
 
-export default CreateModal;
+export default CreateForm;
