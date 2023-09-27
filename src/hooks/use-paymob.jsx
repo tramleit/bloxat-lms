@@ -34,18 +34,18 @@ export const startPaymentProcess = async (
 
   let token = response.token;
 
-  console.log(
-    "first step",
-    token,
-    amount,
-    currency,
-    plan,
-    endDate,
-    firstName,
-    lastName,
-    email,
-    phoneNumber
-  );
+  // console.log(
+  //   "first step",
+  //   token,
+  //   amount,
+  //   currency,
+  //   plan,
+  //   endDate,
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   phoneNumber
+  // );
 
   if (token) {
     secondStep({
@@ -117,17 +117,17 @@ export const secondStep = async ({
 
   let id = response?.id;
 
-  console.log(
-    "second step",
-    token,
-    id,
-    amount,
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    currency
-  );
+  // console.log(
+  //   "second step",
+  //   token,
+  //   id,
+  //   amount,
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   phoneNumber,
+  //   currency
+  // );
 
   if (id) {
     thirdStep(
@@ -191,20 +191,20 @@ export const thirdStep = async (
 
   let finalToken = response.token;
 
-  console.log(
-    "third step",
-    token,
-    id,
-    amount,
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    currency
-  );
+  // console.log(
+  //   "third step",
+  //   token,
+  //   id,
+  //   amount,
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   phoneNumber,
+  //   currency
+  // );
 
   if (finalToken) {
-    console.log(finalToken);
+    // console.log(finalToken);
     cardPayment(finalToken);
   }
 };
