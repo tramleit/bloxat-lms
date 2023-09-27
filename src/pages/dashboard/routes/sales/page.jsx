@@ -38,6 +38,7 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import CardBadge from "./_components/card-badge";
 import { copyText } from "@/lib/copy-text";
 import { useTranslation } from "react-i18next";
+import SalesSkeleton from "./_components/skeleton";
 
 const DashboardPage = () => {
   const { course_id } = useParams();
@@ -91,11 +92,7 @@ const DashboardPage = () => {
 
   // Loading
   if (analyticsLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <SalesSkeleton />;
   }
 
   console.log("warnings", enrollments);
@@ -103,7 +100,7 @@ const DashboardPage = () => {
   return (
     <>
       {/* <WarningsBanners warnings={warnings} courseId={course_id} /> */}
-      <div className="flex-col">
+      <div className="page-fade flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between">
             <Heading

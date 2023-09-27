@@ -17,6 +17,7 @@ import useLandscapeMode from "@/hooks/use-landscape-mode";
 import StartTourModal from "@/components/modals/start-tour-modal";
 import RotateDeviceModal from "@/components/modals/rotate-device-modal";
 import { useTranslation } from "react-i18next";
+import EditSkeleton from "./_components/skeleton";
 // import useGlobalStore from "@/store/global-state";
 
 const EditCoursePage = () => {
@@ -77,11 +78,7 @@ const EditCoursePage = () => {
   const { t } = useTranslation();
 
   if (loading || !courseContent) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <EditSkeleton />;
   }
 
   return (
@@ -106,7 +103,7 @@ const EditCoursePage = () => {
       )}
       {/* if we're onn mobile and they're in portrait mode then show them that they need to rotate */}
       {isPortrait && <RotateDeviceModal />}
-      <div className="p-8 pt-6">
+      <div className="page-fade p-8 pt-6">
         <div className="flex flex-col">
           <div className="flex flex-row items-center space-x-4">
             <BackButton

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import Loading from "@/components/loading/loading";
 import { useNavigate } from "react-router-dom";
+import LanguageInitializer from "@/hooks/language-init";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 
 export default function SubscriptionLayout({ children }) {
@@ -43,5 +44,11 @@ export default function SubscriptionLayout({ children }) {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {/* LanguageInitializer runs early in the rendering process */}
+      <LanguageInitializer />
+      {children}
+    </>
+  );
 }

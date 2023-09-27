@@ -8,8 +8,10 @@ import {
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { startPaymentProcess } from "@/hooks/use-paymob";
 import Logo from "@/assets/images/logo/bloxat-blue.webp";
+import { useTranslation } from "react-i18next";
 
 const SubscriptionEndedPage = () => {
+  const { t } = useTranslation();
   const currentUser = useCurrentUser();
 
   // FOR MONTHLY
@@ -61,25 +63,28 @@ const SubscriptionEndedPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-4">
+    <div className="fade-up flex flex-col items-center justify-center md:h-screen md:py-0 py-10 md:px-0 px-5 space-y-4">
       <img
         src={Logo}
         className="w-[110px] h-auto"
         alt="Bloxat"
         draggable={false}
       />
-      <div className="flex flex-col space-y-1">
+      <div className="flex flex-col space-y-1 text-center">
         <h1 className="px-2 py-1 rounded-md font-base">
-          Your subscription has <span className="font-semibold">ended</span> on
+          {t("Your subscription has")}{" "}
+          <span className="font-semibold">{t("ended")}</span> {t("on")}
         </h1>
         <p className="">{formattedDate}</p>
       </div>
 
-      <h2 className="font-bold text-xl">Pick a plan to renew</h2>
-      <div className="flex flex-row items-center space-x-5">
+      <h2 className="font-bold text-xl text-center">
+        {t("Pick a plan to renew")}
+      </h2>
+      <div className="flex md:flex-row flex-col items-center md:space-x-5 space-x-0 md:space-y-0 space-y-5">
         {/* MONTH */}
         <PlanCard
-          duration="Monthly"
+          duration={t("Monthly")}
           color={"bg-lemonBloxLight"}
           price="497"
           onClick={() => {
@@ -98,16 +103,16 @@ const SubscriptionEndedPage = () => {
               "card"
             );
           }}
-          ctaText="Get plan"
+          ctaText={t("Get plan")}
           loading={monthlyLoading}
           disabled={monthlyLoading || yearlyLoading ? true : false}
         />
         {/* YEAR */}
         <PlanCard
-          duration="Yearly"
+          duration={t("Yearly")}
           color={"bg-yellowBloxLight"}
           price="5,000"
-          extraText="Save 1,000 EGP"
+          extraText={t("Save 1,000 EGP")}
           onClick={() => {
             setYearlyLoading(true);
             startPaymentProcess(
@@ -124,7 +129,7 @@ const SubscriptionEndedPage = () => {
               "card"
             );
           }}
-          ctaText="Get plan"
+          ctaText={t("Get plan")}
           loading={yearlyLoading}
           disabled={monthlyLoading || yearlyLoading ? true : false}
         />

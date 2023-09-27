@@ -128,3 +128,20 @@ body,
     opacity: 1;
   }
 }
+
+/* Page fade in transition */
+.page-fade {
+  animation-name: fade-in-page;
+  animation-fill-mode: both;
+  animation-duration: 0.3s;
+}
+
+@keyframes fade-in-page {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+  }
+}

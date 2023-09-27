@@ -14,6 +14,7 @@ import useBillingStore from "@/store/billing/billing-store";
 import { useNavigate, useParams } from "react-router-dom";
 import LanguageSwitch from "./components/language-switch";
 import { useTranslation } from "react-i18next";
+import AccountSkeleton from "./components/skeleton";
 
 const AccountPage = () => {
   const { course_id } = useParams();
@@ -51,15 +52,11 @@ const AccountPage = () => {
 
   // Loading
   if (loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <AccountSkeleton />;
   }
 
   return (
-    <div className="flex-col">
+    <div className="page-fade flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-row space-x-4 items-center">
@@ -168,7 +165,7 @@ const AccountPage = () => {
           </div>
         </div>
       </div>
-      <div className="md:h-0 h-10"/>
+      <div className="md:h-0 h-10" />
     </div>
   );
 };

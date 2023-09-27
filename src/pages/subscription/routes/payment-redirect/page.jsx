@@ -2,7 +2,7 @@ import SuccessCard from "./components/success-card";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import Loading from "@/components/loading/loading";
 import TryAgainCard from "./components/try-again-card";
-import Logo from "@/assets/images/logo/bloxat-colored.webp";
+import Logo from "@/assets/images/logo/bloxat-blue.webp";
 
 const PaymentRedirect = () => {
   const currentUser = useCurrentUser();

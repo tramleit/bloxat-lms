@@ -127,7 +127,7 @@ const BrandingPage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex-col">
+    <div className="page-fade flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-row space-x-4 items-center">

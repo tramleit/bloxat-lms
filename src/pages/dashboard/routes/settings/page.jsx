@@ -4,16 +4,19 @@ import { CreditCard, PencilRuler, Rocket, User } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import SettingsCard from "./components/settings-card";
 import { useTranslation } from "react-i18next";
+import { AppearanceForm } from "./components/appearance-form";
+import useIsMobile from "@/hooks/use-is-mobile";
 
 const SettingsPage = () => {
+  const { t } = useTranslation();
   const { course_id } = useParams();
   const navigate = useNavigate();
 
-  const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   return (
     <>
-      <div className="flex-col">
+      <div className="page-fade flex-col">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between">
             <Heading
@@ -71,10 +74,10 @@ const SettingsPage = () => {
             />
           </div>
           {/* Theme */}
-          {/* <div className="space-y-6">
-            <AppearanceForm />
-          </div> */}
+          {isMobile && <AppearanceForm />}
+
           {/* End of theme */}
+          {/* <span>hey</span> */}
         </div>
       </div>
     </>

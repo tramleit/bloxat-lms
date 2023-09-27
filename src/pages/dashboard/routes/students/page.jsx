@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { StudentsClient } from "./_components/client";
 import { columns } from "./_components/columns";
 import { useTranslation } from "react-i18next";
+import StudentsSkeleton from "./_components/skeleton";
 
 const StudentsPage = () => {
   const { course_id } = useParams();
@@ -47,15 +48,11 @@ const StudentsPage = () => {
 
   // Loading
   if (!enrollments?.rows) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <StudentsSkeleton />;
   }
 
   return (
-    <div className="flex-col ">
+    <div className="page-fade flex-col ">
       <div className="flex-1 space-y-4 p-8 pt-6 ">
         <StudentsClient />
         {/* Search Input For filtering */}

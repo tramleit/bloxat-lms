@@ -19,6 +19,7 @@ import { useCreateModal } from "@/hooks/use-create-modal";
 import { cn } from "@/lib/utils";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CourseSwicher({ className, loading, items = [] }) {
   const createModal = useCreateModal();
@@ -54,7 +55,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
 
   // loading state
   if (loading) {
-    return <></>;
+    return <Skeleton className="md:w-[250px] w-1/2 h-[20px]" />;
   }
 
   return (

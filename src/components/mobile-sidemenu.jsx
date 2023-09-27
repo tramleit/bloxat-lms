@@ -75,7 +75,7 @@ const MobileSideMenu = () => {
                 className={cn(
                   "flex flex-row items-center justify-between text-sm font-medium transition-colors hover:text-primary py-4 px-3 w-full",
                   route.active
-                    ? "text-black dark:text-white bg-[#fafafa]"
+                    ? "text-black dark:text-white bg-[#fafafa] dark:bg-[#141414]"
                     : "text-muted-foreground"
                 )}
               >

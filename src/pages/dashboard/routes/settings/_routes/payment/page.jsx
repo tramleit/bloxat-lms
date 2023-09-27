@@ -11,6 +11,7 @@ import PaymobLogo from "@/assets/images/icons/paymob.webp";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
 import { CurrencySwitch } from "./components/currency-switch";
 import { useTranslation } from "react-i18next";
+import PaymentSkeleton from "./components/skeleton";
 
 const PaymentPage = () => {
   const { course_id } = useParams();
@@ -96,11 +97,7 @@ const PaymentPage = () => {
   }, []);
 
   if (loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <PaymentSkeleton />;
   }
 
   // console.log(
@@ -110,7 +107,7 @@ const PaymentPage = () => {
   // );
 
   return (
-    <div className="flex-col">
+    <div className="page-fade flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-row space-x-4 items-center">

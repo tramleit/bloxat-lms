@@ -10,6 +10,7 @@ import useBillingStore from "@/store/billing/billing-store";
 import ActiveCard from "./components/active-card";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import PlanSkeleton from "./components/skeleton";
 
 const PlanPage = () => {
   const { course_id } = useParams();
@@ -79,15 +80,11 @@ const PlanPage = () => {
   console.log("plan page", billingData);
 
   if (!currentUser || loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <PlanSkeleton />;
   }
 
   return (
-    <div className="flex-col">
+    <div className="page-fade flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
         {" "}
         <div className="flex items-center justify-between">

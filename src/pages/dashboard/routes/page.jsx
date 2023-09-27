@@ -13,6 +13,7 @@ import StartTourModal from "@/components/modals/start-tour-modal";
 import { useEffect, useState } from "react";
 import ViewPortalModal from "@/components/modals/view-portal-modal";
 import { useTranslation } from "react-i18next";
+import QuickSkeleton from "../_components/skeleton";
 
 const QuickPage = () => {
   const { course_id } = useParams();
@@ -51,11 +52,7 @@ const QuickPage = () => {
   }, []);
 
   if (!currentUser || isLoading || courseLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <QuickSkeleton />;
   }
 
   console.log("course", course);
@@ -77,7 +74,7 @@ const QuickPage = () => {
           // onConfirm={onConfirm}
         />
       )}
-      <div className="flex flex-col items-center justify-center lg:h-[80vh] h-[80vh] md:h-screen text-center md:px-0 px-5">
+      <div className="page-fade flex flex-col items-center justify-center lg:h-[80vh] h-[80vh] md:h-screen text-center md:px-0 px-5">
         {/* <h1 className="text-4xl font-bold tracking-tight">
           Welcome back, {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>

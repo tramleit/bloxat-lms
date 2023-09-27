@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import success from "@/assets/lotties/success.json";
 import Lottie from "lottie-react-web";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SuccessCard = ({ endDate }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   // FORMAT DATE
@@ -37,9 +39,9 @@ const SuccessCard = ({ endDate }) => {
         />
       </div>
       <div className="flex flex-col space-y-4 items-center justify-center text-center mt-[-5px]">
-        <h1 className="text-xl font-bold">Active plan!</h1>
+        <h1 className="text-xl font-bold">{t("Active plan!")}</h1>
         <p>
-          Your subscription ends on <br />
+          {t("Your subscription ends on")} <br />
           {/* <span className="font-semibold">30 days</span> <br /> on:{" "} */}
           <span className="font-semibold">{formattedDate}</span>
         </p>
@@ -48,7 +50,7 @@ const SuccessCard = ({ endDate }) => {
             navigate("/");
           }}
         >
-          Go to my account
+          {t("Go to my account")}
         </Button>
       </div>
     </Card>

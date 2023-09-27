@@ -18,6 +18,7 @@ import { ResourcesForm } from "./_components/resources-form";
 import { LessonActions } from "./_components/lesson-actions";
 import { BackButton } from "@/components/back-button";
 import { useTranslation } from "react-i18next";
+import LessonSkeleton from "./_components/skeleton";
 
 const EditLessonIdPage = () => {
   const { t } = useTranslation();
@@ -50,15 +51,11 @@ const EditLessonIdPage = () => {
 
   //   loading
   if (loading || !lessonData) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+    return <LessonSkeleton />;
   }
 
   return (
-    <div className="p-6">
+    <div className="page-fade p-6">
       <div className="flex items-center justify-between">
         <div className="w-full">
           {/* <Link
