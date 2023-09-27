@@ -1,7 +1,7 @@
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 
 const NextButton = ({ onClick, disabled, loading }) => {
   const { t } = useTranslation();

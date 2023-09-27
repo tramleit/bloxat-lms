@@ -1,5 +1,5 @@
-import Logo from "@/assets/images/logo/bloxat-blue.webp";
 import { useTranslation } from "react-i18next";
+import Logo from "@/assets/images/logo/bloxat-blue.webp";
 
 const SetupHeader = () => {
   const { t } = useTranslation();

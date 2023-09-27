@@ -1,18 +1,18 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { CreditCard, Eye, Pencil, Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { useCreateModal } from "@/hooks/use-create-modal";
-import { CreditCard, Eye, Pencil, Plus } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
 import WarningsBanners from "../_components/warnings-banners";
 import { useWarnings } from "@/hooks/use-warnings";
-import Loading from "@/components/loading/loading";
-import { PORTAL_URL } from "@/config/url-config";
+// import Loading from "@/components/loading/loading";
+// import { PORTAL_URL } from "@/config/url-config";
 import { useCourseTitle } from "@/queries/courses/course-queries";
 import useTourStore from "@/store/tour.store";
 import StartTourModal from "@/components/modals/start-tour-modal";
-import { useEffect, useState } from "react";
 import ViewPortalModal from "@/components/modals/view-portal-modal";
-import { useTranslation } from "react-i18next";
 import QuickSkeleton from "../_components/skeleton";
 
 const QuickPage = () => {
@@ -55,7 +55,7 @@ const QuickPage = () => {
     return <QuickSkeleton />;
   }
 
-  console.log("course", course);
+  // console.log("course", course);
 
   return (
     <>

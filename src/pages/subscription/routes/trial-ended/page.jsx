@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Loading from "@/components/loading/loading";
 import PlanCard from "@/components/plan-card";
 import {
@@ -8,7 +9,6 @@ import {
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { startPaymentProcess } from "@/hooks/use-paymob";
 import Logo from "@/assets/images/logo/bloxat-blue.webp";
-import { useTranslation } from "react-i18next";
 
 const TrialEnded = () => {
   const { t } = useTranslation();

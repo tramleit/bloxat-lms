@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 
 const useGetCourseStore = create((set) => ({
   course: null, // Store a single course object

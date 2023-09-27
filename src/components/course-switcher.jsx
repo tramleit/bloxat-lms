@@ -38,7 +38,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
   //   Which course is currently selected
   const currentCourse = formattedItems?.find((item) => item.id == course_id);
 
-  console.log(currentCourse);
+  // console.log(currentCourse);
 
   //   Function to select a course and switch
   const [open, setOpen] = useState(false);
@@ -51,7 +51,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
 
   const { t } = useTranslation();
 
-  console.log("formattedItems", formattedItems);
+  // console.log("formattedItems", formattedItems);
 
   // loading state
   if (loading) {

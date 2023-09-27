@@ -1,15 +1,9 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
-import useLessonsStore from "@/store/lessons/lessons-store";
-import Loading from "@/components/loading/loading";
 import { useState } from "react";
 import { useEffect } from "react";
-import {
-  ArrowLeft,
-  Files,
-  LayoutDashboard,
-  LayoutDashboardIcon,
-  Video,
-} from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import useLessonsStore from "@/store/lessons/lessons-store";
+// import Loading from "@/components/loading/loading";
 import { Separator } from "@/components/ui/separator";
 import { LessonTitleForm } from "./_components/lesson-title-form";
 import { LessonDescriptionForm } from "./_components/lesson-description-form";
@@ -17,7 +11,6 @@ import { VideoForm } from "./_components/video-form";
 import { ResourcesForm } from "./_components/resources-form";
 import { LessonActions } from "./_components/lesson-actions";
 import { BackButton } from "@/components/back-button";
-import { useTranslation } from "react-i18next";
 import LessonSkeleton from "./_components/skeleton";
 
 const EditLessonIdPage = () => {
@@ -40,7 +33,7 @@ const EditLessonIdPage = () => {
     setLessonState(lessonData);
   }, [lessonData]);
 
-  console.log("lessonState", lessonState);
+  // console.log("lessonState", lessonState);
 
   // const requiredFields = [lessonData?.title, lessonData?.lesson_video_url];
 

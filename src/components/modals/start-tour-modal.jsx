@@ -1,12 +1,12 @@
-import useTourStore from "@/store/tour.store";
-import { useTour } from "@reactour/tour";
-import { ArrowRight, XIcon } from "lucide-react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useTour } from "@reactour/tour";
+import { useTranslation } from "react-i18next";
+import { ArrowRight, XIcon } from "lucide-react";
+import useTourStore from "@/store/tour.store";
+// import { useNavigate } from "react-router-dom";
 import Logo from "@/assets/images/logo/bloxat-black.webp";
 import { Button } from "@/components/ui/button";
 import useIsMobile from "@/hooks/use-is-mobile";
-import { useTranslation } from "react-i18next";
 
 const StartTourModal = () => {
   const { t } = useTranslation();

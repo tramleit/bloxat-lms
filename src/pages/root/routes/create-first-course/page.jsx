@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,14 +12,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Plus } from "lucide-react";
 import useCourseStore from "@/store/courses/courses-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { Icons } from "@/components/icons";
 import SetupHeader from "../../_components/setup-header";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useTranslation } from "react-i18next";
 
 // Form validation
 const formSchema = z.object({
@@ -67,7 +65,7 @@ const CreateFirstCourse = () => {
         course_slug: courseSlug,
       });
 
-      console.log(currentUser?.user_id);
+      // console.log(currentUser?.user_id);
 
       //   set in local storage that we started with completing the account so we can show the bottom overlay of account completion
       // Each zero represents a step .. so payment method, course content, share

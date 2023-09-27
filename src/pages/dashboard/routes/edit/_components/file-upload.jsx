@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
 import { UploadCloud } from "lucide-react";
-import React from "react";
+import { Button } from "@/components/ui/button";
 import { cloudName, uploadPreset } from "@/config/cloudinary-config";
 
 const FileUpload = ({ courseId, updateUI }) => {
@@ -25,11 +24,11 @@ const FileUpload = ({ courseId, updateUI }) => {
       function (error, result) {
         if (!error && result && result.event === "success") {
           // Handle the successful upload here
-          console.log("Upload successful:", result.info.secure_url);
+          // console.log("Upload successful:", result.info.secure_url);
 
           onUpload(result);
           // You can perform additional actions here, such as updating the UI
-  
+
           // or sending the URL to a server.
         }
       }

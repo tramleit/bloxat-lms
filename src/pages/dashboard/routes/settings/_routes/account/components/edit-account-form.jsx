@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { KeyRound } from "lucide-react";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useUserStore from "@/store/user/user-store";
-import toast from "react-hot-toast";
 import { Icons } from "@/components/icons";
-import { KeyRound } from "lucide-react";
 import { AlertModal } from "@/components/modals/alert-modal";
 import useAuthStore from "@/store/auth/auth-store";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import useIsMobile from "@/hooks/use-is-mobile";
-import { useTranslation } from "react-i18next";
 
 const EditAccountForm = ({ currentUser }) => {
   // Edit Inputs
@@ -62,7 +62,7 @@ const EditAccountForm = ({ currentUser }) => {
 
       toast.success("Saved");
 
-      console.log("Updated", userData);
+      // console.log("Updated", userData);
 
       // Refresh the page once the update is completed
       window.location.reload();

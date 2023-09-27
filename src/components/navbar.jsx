@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { UserNav } from "./user-nav";
 import { MainNav } from "@/components/main-nav";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -6,9 +7,8 @@ import CourseSwicher from "@/components/course-switcher";
 import { MainSearch } from "@/components/main-search";
 
 import useCourseStore from "@/store/courses/courses-store";
-import { Link, useParams } from "react-router-dom";
 import Logo from "@/assets/images/logo/bloxat-colored.webp";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import MobileSideMenu from "@/components/mobile-sidemenu";
 
 const Navbar = () => {

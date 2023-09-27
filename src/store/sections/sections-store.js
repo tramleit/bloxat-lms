@@ -15,7 +15,7 @@ const useSectionsStore = create((set) => ({
       // Handle the response as needed
       if (response.status === 200) {
         // Optionally, update your store state or trigger other actions
-        console.log("Module added successfully:", response.data);
+        // console.log("Module added successfully:", response.data);
 
         window.location.reload();
 
@@ -75,7 +75,7 @@ const useSectionsStore = create((set) => ({
       // Handle the response as needed
       if (response.status === 200) {
         // Optionally, update your store state or trigger other actions
-        console.log("Module updated successfully:", response.data);
+        // console.log("Module updated successfully:", response.data);
 
         window.location.reload();
 

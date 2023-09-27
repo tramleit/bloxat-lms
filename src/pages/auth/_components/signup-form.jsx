@@ -1,13 +1,13 @@
 // import * as React from "react";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
-import { toast } from "react-hot-toast";
 import PhoneInputComponent from "./phone-input";
-import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
 import useAuthStore from "@/store/auth/auth-store";
 
@@ -66,12 +66,12 @@ export function SignupForm({ className, ...props }) {
       } else {
         // Registration failed, handle the error
         toast.error("An error occurred. Please try again later.");
-        console.log(error);
+        // console.log(error);
       }
     } catch (error) {
       // Handle network or other errors
       toast.error("Email already exists.");
-      console.log(error);
+      // console.log(error);
     } finally {
       setIsLoading(false);
     }

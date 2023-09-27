@@ -1,9 +1,9 @@
+import { useNavigate, useParams } from "react-router-dom";
+import { CreditCard, PencilRuler, Rocket, User } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { CreditCard, PencilRuler, Rocket, User } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
 import SettingsCard from "./components/settings-card";
-import { useTranslation } from "react-i18next";
 import { AppearanceForm } from "./components/appearance-form";
 import useIsMobile from "@/hooks/use-is-mobile";
 

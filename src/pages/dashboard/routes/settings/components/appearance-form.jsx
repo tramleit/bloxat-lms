@@ -1,24 +1,19 @@
-import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 // import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { cn } from "@/lib/utils";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next";
 
-import { ArrowDown } from "lucide-react";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Button, buttonVariants } from "@/components/ui/button";
-import toast from "react-hot-toast";
-import { useTheme } from "next-themes";
-import { useTranslation } from "react-i18next";
 
 const appearanceFormSchema = z.object({
   theme: z.enum(["light", "dark"], {
@@ -46,9 +41,9 @@ export function AppearanceForm() {
   //   setTheme(data.theme);
   // }
 
-  function onSubmit(data) {
-    setTheme(data.theme);
-  }
+  // function onSubmit(data) {
+  //   setTheme(data.theme);
+  // }
 
   return (
     <Form {...form}>

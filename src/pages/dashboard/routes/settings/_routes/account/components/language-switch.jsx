@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
+import { CheckIcon, ChevronsUpDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,13 +11,7 @@ import {
   CommandInput,
   CommandItem,
 } from "@/components/ui/command";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import {
   Popover,
   PopoverContent,
@@ -24,8 +19,6 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { changeLanguage } from "@/config/i18n";
-import { CheckIcon, ChevronsUpDown } from "lucide-react";
-import { useTranslation } from "react-i18next";
 
 const languages = [
   { label: "English", value: "en" },
@@ -52,7 +45,7 @@ const LanguageSwitch = () => {
 
   function onSubmit(data) {
     changeLanguage(data.language);
-    console.log(data.language);
+    // console.log(data.language);
   }
 
   const { t } = useTranslation();

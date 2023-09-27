@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useCurrentUser } from "@/hooks/use-current-user";
 import { BackButton } from "@/components/back-button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { DataTable } from "@/components/ui/data-table";
 import { columnsBilling } from "./components/columns-billing";
-import { useCurrentUser } from "@/hooks/use-current-user";
-import Loading from "@/components/loading/loading";
 import useBillingStore from "@/store/billing/billing-store";
 import ActiveCard from "./components/active-card";
-import { useNavigate, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import PlanSkeleton from "./components/skeleton";
 
 const PlanPage = () => {
@@ -52,7 +51,7 @@ const PlanPage = () => {
   // Calculate the remaining days
   const remainingDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
-  console.log("Remaining days until subscription ends:", remainingDays);
+  // console.log("Remaining days until subscription ends:", remainingDays);
 
   ////////////////////////////////////////
   // SHOW REMAINING DAYS FOR TRIAL
@@ -67,7 +66,7 @@ const PlanPage = () => {
     trialTimeDifference / (1000 * 60 * 60 * 24)
   );
 
-  console.log("Remaining days until subscription ends:", remainingDays);
+  // console.log("Remaining days until subscription ends:", remainingDays);
 
   const { t } = useTranslation();
 
@@ -77,7 +76,7 @@ const PlanPage = () => {
     fetchBillingData(currentUser?.user_id, page, 3);
   }, [page]);
 
-  console.log("plan page", billingData);
+  // console.log("plan page", billingData);
 
   if (!currentUser || loading) {
     return <PlanSkeleton />;

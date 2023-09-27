@@ -71,7 +71,7 @@ const useLessonsStore = create((set) => ({
         // Lesson deleted successfully
         // You can update state or trigger other actions if needed
         window.location.reload();
-        console.log(`Lesson with ID ${lessonId} deleted.`);
+        // console.log(`Lesson with ID ${lessonId} deleted.`);
       } else {
         // Handle errors if the deletion was not successful
         console.error("Failed to delete lesson:", response.status);
@@ -96,7 +96,7 @@ const useLessonsStore = create((set) => ({
 
       if (response.status === 200) {
         // Optionally, you can handle the updated lesson or trigger other actions
-        console.log("Lesson updated successfully:", response.data);
+        // console.log("Lesson updated successfully:", response.data);
 
         // Refresh the lesson data after updating
         // await fetchLessonByOrder(

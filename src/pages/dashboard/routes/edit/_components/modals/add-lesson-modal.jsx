@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
-import { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
-import useLessonsStore from "@/store/lessons/lessons-store";
+// import useLessonsStore from "@/store/lessons/lessons-store";
 import { Icons } from "@/components/icons";
-import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
 // import useGlobalStore from "@/store/global-state";
 
@@ -17,7 +17,7 @@ export const AddLessonModal = ({
   moduleId,
   moduleOrder,
   lessonOrder,
-  updateState,
+  // updateState,
   addLesson, // Add this prop
 }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -55,7 +55,7 @@ export const AddLessonModal = ({
       description: "",
     };
 
-    console.log("lessonData", lessonData);
+    // console.log("lessonData", lessonData);
 
     try {
       setLoading(true);
@@ -64,7 +64,7 @@ export const AddLessonModal = ({
 
       if (response.status === 200) {
         // Optionally, you can handle the created lesson or trigger other actions
-        console.log("Lesson created successfully:", response.data);
+        // console.log("Lesson created successfully:", response.data);
 
         // window.location.reload();
 

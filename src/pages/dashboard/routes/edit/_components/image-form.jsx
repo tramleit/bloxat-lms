@@ -1,36 +1,36 @@
-import * as z from "zod";
-import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useRef } from "react";
+import * as z from "zod";
 import axios from "axios";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import {
   Edit,
   ImageIcon,
-  Pencil,
+  // Pencil,
   Plus,
-  PlusIcon,
+  // PlusIcon,
   UploadCloud,
 } from "lucide-react";
-import useCourseContentStore from "@/store/courses/course-content";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { useTranslation } from "react-i18next";
+// import useCourseContentStore from "@/store/courses/course-content";
+// import {
+//   Form,
+//   FormField,
+//   FormItem,
+//   FormControl,
+//   FormMessage,
+// } from "@/components/ui/form";
+// import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
-import { Icons } from "@/components/icons";
-import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
-import FileUpload from "./file-upload";
+// import { Icons } from "@/components/icons";
+// import { cn } from "@/lib/utils";
+// import { Textarea } from "@/components/ui/textarea";
+// import FileUpload from "./file-upload";
 import { cloudName, uploadPreset } from "@/config/cloudinary-config";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   imageUrl: z.string().min(1, {
@@ -69,13 +69,13 @@ export const ImageForm = ({ initialData, courseId, updateUI }) => {
       function (error, result) {
         if (!error && result && result.event === "success") {
           // Handle the successful upload here
-          console.log("Upload successful:", result.info.secure_url);
+          // console.log("Upload successful:", result.info.secure_url);
 
           // onUpload(result);
           // You can perform additional actions here, such as updating the UI
           updateThumbnail(result.info.secure_url);
 
-          console.log(result.info.secure_url);
+          // console.log(result.info.secure_url);
 
           // or sending the URL to a server.
         }
@@ -99,7 +99,7 @@ export const ImageForm = ({ initialData, courseId, updateUI }) => {
       // fetch the new data after success
       setData(response.data);
       updateUI(response.data.thumbnail);
-      console.log("RESPONSE", value);
+      // console.log("RESPONSE", value);
     } catch {
       toast.error("Something went wrong");
     }

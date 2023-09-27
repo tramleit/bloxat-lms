@@ -1,3 +1,4 @@
+import * as z from "zod";
 import {
   Form,
   FormControl,
@@ -6,16 +7,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useCourseStore from "@/store/courses/courses-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
-import toast from "react-hot-toast";
-import { useTranslation } from "react-i18next";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { useTranslation } from "react-i18next";
 
 // Form validation
 const formSchema = z.object({
@@ -23,7 +23,7 @@ const formSchema = z.object({
 });
 
 const CreateForm = ({ close }) => {
-//   const { t } = useTranslation();
+  //   const { t } = useTranslation();
   const currentUser = useCurrentUser();
   const { addCourse, loading } = useCourseStore();
 
@@ -64,7 +64,7 @@ const CreateForm = ({ close }) => {
         course_slug: courseSlug,
       });
 
-      console.log(currentUser?.user_id);
+      // console.log(currentUser?.user_id);
 
       // If the API request is successful, navigate to another route
       // router.push("/success-route"); // Replace 'success-route' with your desired route

@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { useCurrentUser } from "@/hooks/use-current-user";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import jwt_decode from "jwt-decode";
-import { BASE_URL } from "@/config/api-base-config";
-import { DAYS_FOR_TRIAL } from "@/config/subscription-config";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { changeLanguage } from "@/config/i18n";
 import SetupHeader from "../../_components/setup-header";
-import Bottom from "../../_components/Bottom";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { changeLanguage } from "@/config/i18n";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 const LangSetupPage = () => {
   const { t } = useTranslation();

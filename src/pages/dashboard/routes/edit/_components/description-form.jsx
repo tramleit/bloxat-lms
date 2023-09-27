@@ -1,11 +1,11 @@
-import * as z from "zod";
 import { useState } from "react";
-import axios from "axios";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { Edit, Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Edit, Pencil, Plus } from "lucide-react";
-import useCourseContentStore from "@/store/courses/course-content";
 import {
   Form,
   FormField,
@@ -13,13 +13,11 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   description: z.string().min(1, {
@@ -70,7 +68,7 @@ export const DescriptionForm = ({ initialData, courseId }) => {
       // fetch the new data after success
       setData(response.data);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("Something went wrong");
     }
   };

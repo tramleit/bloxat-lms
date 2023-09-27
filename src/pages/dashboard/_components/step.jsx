@@ -1,9 +1,9 @@
+import { ArrowRight, Eye } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { ArrowRight, Eye } from "lucide-react";
 import { PORTAL_URL } from "@/config/url-config";
-import { useTranslation } from "react-i18next";
 
 const Step = ({
   stepNumber,

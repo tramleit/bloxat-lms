@@ -1,10 +1,9 @@
+import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react-web";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import React, { useEffect, useState } from "react";
 import success from "@/assets/lotties/success.json";
-import Lottie from "lottie-react-web";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const SuccessCard = ({ endDate }) => {
   const { t } = useTranslation();
@@ -25,7 +24,7 @@ const SuccessCard = ({ endDate }) => {
 
   const formattedDate = date.toLocaleString("en-US", options);
 
-  console.log(formattedDate); // Output: "September 16, 2024, 8:05 PM"
+  // console.log(formattedDate); // Output: "September 16, 2024, 8:05 PM"
 
   return (
     <Card className="flex flex-col items-center justify-center p-10 shadow-md">

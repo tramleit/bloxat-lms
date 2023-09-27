@@ -1,10 +1,13 @@
-import * as z from "zod";
 import { useState } from "react";
-import axios from "axios";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Loader2, PlusIcon } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useTheme } from "next-themes";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Loader2, Pencil, Plus, PlusIcon } from "lucide-react";
 import useCourseContentStore from "@/store/courses/course-content";
 import {
   Form,
@@ -14,17 +17,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
 import { ContentList } from "./content-list";
 import Loading from "@/components/loading/loading";
-import { useTheme } from "next-themes";
 import EmptyLight from "@/assets/images/empty-light.webp";
 import EmptyDark from "@/assets/images/empty-dark.webp";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   title: z.string().min(1),
@@ -74,7 +73,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
             : 0,
       });
 
-      console.log();
+      // console.log();
 
       // const response = await axios.patch(
       //   `${BASE_URL}/courses/details/${courseId}`,
@@ -93,7 +92,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
 
   // on reorder function -> reorder modules
   const onReorder = async (updateData) => {
-    console.log("updateData", updateData);
+    // console.log("updateData", updateData);
 
     try {
       setIsUpdating(true);
@@ -117,7 +116,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
     }
   };
 
-  console.log("theme", theme);
+  // console.log("theme", theme);
 
   // loading
   if (loading || !courseContent) {

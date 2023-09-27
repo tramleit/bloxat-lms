@@ -1,9 +1,9 @@
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import Step from "./step";
+// import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
+// import { ArrowRight } from "lucide-react";
+import Step from "./step";
 
 export const CompletionStepsHover = () => {
   const { t } = useTranslation();

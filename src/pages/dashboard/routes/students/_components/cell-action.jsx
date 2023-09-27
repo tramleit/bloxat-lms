@@ -1,27 +1,23 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { useParams } from "react-router-dom";
 import {
-  MoreHorizontal,
   MoreVertical,
-  Pencil,
   Trash,
-  Unlock,
   User,
 } from "lucide-react";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { StudentDetailsModal } from "@/components/modals/student-details-modal";
 import useUserDeletionStore from "@/store/students/student-delete-store";
-import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export const CellAction = ({ userId }) => {
   const { course_id } = useParams();

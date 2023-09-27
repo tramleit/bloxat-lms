@@ -1,11 +1,13 @@
-import * as z from "zod";
 import { useState } from "react";
-import axios from "axios";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { Edit, Plus } from "lucide-react";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Edit, Pencil, Plus } from "lucide-react";
-import useCourseContentStore from "@/store/courses/course-content";
+// import useCourseContentStore from "@/store/courses/course-content";
 import {
   Form,
   FormField,
@@ -14,20 +16,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { Textarea } from "@/components/ui/textarea";
+// import { Textarea } from "@/components/ui/textarea";
 import { formatPrice } from "@/lib/format-price";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useTranslation } from "react-i18next";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 
 const formSchema = z.object({
   price: z.coerce.number(),
@@ -78,7 +78,7 @@ export const PriceForm = ({ initialData, courseId, updateUI }) => {
       );
       toast.success("Course updated!");
       toggleEdit();
-      console.log(response.data);
+      // console.log(response.data);
       // fetch the new data after success
       setData(response.data);
       updateUI(response.data.price);

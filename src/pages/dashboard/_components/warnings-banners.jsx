@@ -1,10 +1,10 @@
-import { Banner } from "@/components/banner";
-import { useWarnings } from "@/hooks/use-warnings";
-import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
-import useIsMobile from "@/hooks/use-is-mobile";
 import { useTranslation } from "react-i18next";
+import { Banner } from "@/components/banner";
+// import { useWarnings } from "@/hooks/use-warnings";
+import { Button } from "@/components/ui/button";
+// import { ArrowRight } from "lucide-react";
+import useIsMobile from "@/hooks/use-is-mobile";
 
 const WarningsBanners = ({ warnings, courseId }) => {
   const { t } = useTranslation();

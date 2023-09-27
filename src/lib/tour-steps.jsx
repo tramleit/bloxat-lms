@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import StepOne from "@/components/tour-steps/step-one";
 import StepTwo from "@/components/tour-steps/step-two";
 import StepThree from "@/components/tour-steps/step-three";

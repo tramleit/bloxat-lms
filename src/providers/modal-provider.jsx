@@ -1,5 +1,5 @@
+import { useEffect, useState } from "react";
 import CreateModal from "@/components/modals/create-modal/create-modal";
-import React, { useEffect, useState } from "react";
 
 const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);

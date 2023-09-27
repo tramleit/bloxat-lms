@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import useAuthStore from "@/store/auth/auth-store";
-import { toast } from "react-hot-toast";
 
 export function LoginForm({ className, ...props }) {
   const [isLoading, setIsLoading] = useState(false);

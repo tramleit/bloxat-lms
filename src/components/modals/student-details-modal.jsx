@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Phone } from "lucide-react";
+import toast from "react-hot-toast";
 import Modal from "@/components/ui/modal";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useStudentsStore from "@/store/students/students-store";
-import { Phone } from "lucide-react";
-import toast from "react-hot-toast";
 import { formatDate } from "@/hooks/use-date-format";
-import { useParams } from "react-router-dom";
 
 export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
   const { course_id } = useParams();
@@ -40,7 +40,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
     return null;
   }
 
-  console.log("Modal's user id", userId);
+  // console.log("Modal's user id", userId);
 
   // Function to copy phone number to clipboard
   const copyPhoneNumberToClipboard = () => {
@@ -51,7 +51,7 @@ export const StudentDetailsModal = ({ userId, isOpen, onClose }) => {
         .writeText(phoneNumber)
         .then(() => {
           // Show a success message or handle success as needed
-          console.log("Phone number copied to clipboard:", phoneNumber);
+          // console.log("Phone number copied to clipboard:", phoneNumber);
           toast.success("Phone number copied to clipboard");
         })
         .catch((error) => {

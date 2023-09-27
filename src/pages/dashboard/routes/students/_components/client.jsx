@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Copy, Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { DataTable } from "@/components/ui/data-table";
 import { AddStudentModal } from "@/components/modals/add-student-modal";
 import useGetCourseStore from "@/store/courses/get-course-store";
-import { useParams } from "react-router-dom";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import Loading from "@/components/loading/loading";
 import { copyText } from "@/lib/copy-text";
 import { PORTAL_URL } from "@/config/url-config";
 import useIsMobile from "@/hooks/use-is-mobile";
-import { useTranslation } from "react-i18next";
 // import { columns } from "./columns";
 
 export const StudentsClient = () => {

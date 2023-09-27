@@ -1,9 +1,11 @@
-import * as z from "zod";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, CreditCard } from "lucide-react";
-import React, { useState } from "react";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 // import NextButton from "../components/next-button";
 import {
   Form,
@@ -13,13 +15,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
-import toast from "react-hot-toast";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useTranslation } from "react-i18next";
 
 // Form validator
 const formSchema = z.object({
@@ -47,7 +46,7 @@ const InstapaySetupPage = () => {
 
   //   Submit function
   const onSubmit = async (values) => {
-    console.log("Form submitted with values:", values);
+    // console.log("Form submitted with values:", values);
 
     try {
       setLoading(true);

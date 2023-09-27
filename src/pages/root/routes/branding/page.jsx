@@ -1,7 +1,13 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as z from "zod";
-import React, { useEffect, useState } from "react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import jwt_decode from "jwt-decode";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 import {
   Form,
   FormControl,
@@ -10,22 +16,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Separator } from "@/components/ui/separator";
-import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
-import { toast } from "react-hot-toast";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import jwt_decode from "jwt-decode";
-import { Button } from "@/components/ui/button";
 import SetupHeader from "../../_components/setup-header";
 import ImageUpload from "@/components/ui/image-upload";
 import Bottom from "../../_components/bottom";
-import { useNavigate } from "react-router-dom";
 import Loading from "@/components/loading/loading";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   // label: z.string().min(1),
@@ -61,19 +58,19 @@ const Branding = () => {
     },
   });
 
-  console.log("currently", currentUser?.user_id);
+  // console.log("currently", currentUser?.user_id);
 
   const onSubmit = async () => {
     const token = JSON.parse(localStorage.getItem("bxAuthToken")); // Retrieve the token from local storage
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    console.log({
-      brand_name: currentUser?.brand_name,
-      brand_slug: currentUser?.brand_slug,
-      brand_logo_light: logoLightMode,
-      brand_logo_dark: logoDarkMode,
-    });
+    // console.log({
+    //   brand_name: currentUser?.brand_name,
+    //   brand_slug: currentUser?.brand_slug,
+    //   brand_logo_light: logoLightMode,
+    //   brand_logo_dark: logoDarkMode,
+    // });
 
     // validate
     if (!logoLightMode || !logoDarkMode) {
@@ -104,8 +101,8 @@ const Branding = () => {
           }
         );
 
-        console.log("Response Status:", response.status);
-        console.log("Response Data:", response.data);
+        // console.log("Response Status:", response.status);
+        // console.log("Response Data:", response.data);
 
         if (response.status === 200) {
           toast.success("Uploaded!");

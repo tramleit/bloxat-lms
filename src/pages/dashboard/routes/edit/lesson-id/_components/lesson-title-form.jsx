@@ -1,11 +1,12 @@
-import * as z from "zod";
 import { useState } from "react";
-import axios from "axios";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
+import axios from "axios";
 import { Pencil } from "lucide-react";
-import useCourseContentStore from "@/store/courses/course-content";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormField,
@@ -14,10 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   title: z.string().min(1, {

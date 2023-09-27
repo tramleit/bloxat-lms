@@ -1,15 +1,15 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Icons } from "@/components/icons";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
+  // CardContent,
   CardDescription,
-  CardHeader,
-  CardTitle,
+  // CardHeader,
+  // CardTitle,
 } from "@/components/ui/card";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 
 const ProviderCard = ({
   title,

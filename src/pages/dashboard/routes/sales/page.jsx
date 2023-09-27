@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import { SalesChart } from "@/components/sales-chart";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Copy, CreditCard, DollarSign, User } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,39 +12,21 @@ import {
 } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { formatter } from "@/lib/utils";
-import {
-  Box,
-  Boxes,
-  Copy,
-  CreditCard,
-  DollarSign,
-  Edit,
-  ExternalLink,
-  Plus,
-  Trash,
-  User,
-} from "lucide-react";
 import useStudentsStore from "@/store/students/students-store";
-import Loading from "@/components/loading/loading";
-import { useNavigate, useParams } from "react-router-dom";
 import { RecentSales } from "./_components/recent-sales";
 // import { getGraphRevenue } from "@/actions/get-graph-revenue";
-import { useWarnings } from "@/hooks/use-warnings";
 import { PORTAL_URL } from "@/config/url-config";
 import { CompareChart } from "@/components/compare-chart";
 import { useCompareAnalytics } from "@/hooks/use-compare-analytics";
 import { formatPrice } from "@/lib/format-price";
-import currentMonth from "@/lib/get-current-month";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import CardBadge from "./_components/card-badge";
 import { copyText } from "@/lib/copy-text";
-import { useTranslation } from "react-i18next";
 import SalesSkeleton from "./_components/skeleton";
 
 const DashboardPage = () => {
   const { course_id } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //  Get the graph data
   // State to store the graph data
@@ -57,7 +41,7 @@ const DashboardPage = () => {
   const {
     data: compareAnalytics,
     isLoading: analyticsLoading,
-    isError: error,
+    // isError: error,
   } = useCompareAnalytics();
 
   const { t } = useTranslation();
@@ -95,7 +79,7 @@ const DashboardPage = () => {
     return <SalesSkeleton />;
   }
 
-  console.log("warnings", enrollments);
+  // console.log("warnings", enrollments);
 
   return (
     <>

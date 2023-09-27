@@ -1,12 +1,10 @@
-import * as z from "zod";
 import { useState } from "react";
+import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Trash } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -16,10 +14,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import axios from "axios";
-import { ApiAlert } from "@/components/ui/api-alert";
-import { BackButton } from "@/components/back-button";
-import { useNavigate, useParams } from "react-router-dom";
 
 // Form validator
 const formSchema = z.object({
@@ -40,8 +34,8 @@ export const PaymobSettingsForm = ({ initialData }) => {
   });
 
   //   Submit function
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmit = async () => {
+    // console.log(data);
 
     try {
       setLoading(true);

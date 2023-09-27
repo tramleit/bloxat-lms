@@ -1,10 +1,10 @@
+import { Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Check } from "lucide-react";
-import React from "react";
+// import React from "react";
 import { Icons } from "@/components/icons";
-import { useTranslation } from "react-i18next";
 
 const PlanCard = ({
   duration,

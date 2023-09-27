@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { formatPrice } from "@/lib/format-price";
+// import { formatPrice } from "@/lib/format-price";
 
 export function RecentSales({ recentData }) {
   return (

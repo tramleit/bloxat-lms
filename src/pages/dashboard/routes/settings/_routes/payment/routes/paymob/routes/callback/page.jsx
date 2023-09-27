@@ -1,14 +1,14 @@
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Check } from "lucide-react";
+import toast from "react-hot-toast";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, CreditCard } from "lucide-react";
-import React, { useState } from "react";
 import { ApiAlert } from "@/components/ui/api-alert";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
-import toast from "react-hot-toast";
 import { Icons } from "@/components/icons";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
-import { useTranslation } from "react-i18next";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const PaymobCallbackPage = () => {
   const { course_id } = useParams();

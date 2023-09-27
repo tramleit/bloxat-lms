@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 const ActiveCard = ({
   planName,
@@ -18,7 +16,7 @@ const ActiveCard = ({
   // To check the current language
   const currentLanguage = i18n.language;
 
-  console.log("currentLanguage", currentLanguage);
+  // console.log("currentLanguage", currentLanguage);
 
   return (
     <>

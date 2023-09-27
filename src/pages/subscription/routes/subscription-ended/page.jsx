@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Loading from "@/components/loading/loading";
 import PlanCard from "@/components/plan-card";
 import {
@@ -8,7 +9,6 @@ import {
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { startPaymentProcess } from "@/hooks/use-paymob";
 import Logo from "@/assets/images/logo/bloxat-blue.webp";
-import { useTranslation } from "react-i18next";
 
 const SubscriptionEndedPage = () => {
   const { t } = useTranslation();
@@ -52,7 +52,7 @@ const SubscriptionEndedPage = () => {
 
   const formattedDate = date.toLocaleString("en-US", options);
 
-  console.log(formattedDate); // Output: "September 16, 2024, 8:05 PM"
+  // console.log(formattedDate); // Output: "September 16, 2024, 8:05 PM"
 
   if (!currentUser) {
     return (

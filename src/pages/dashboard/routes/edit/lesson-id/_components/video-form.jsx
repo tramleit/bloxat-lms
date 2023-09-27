@@ -1,19 +1,21 @@
-import * as z from "zod";
-import { useRef } from "react";
-import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import * as z from "zod";
+// import { useRef } from "react";
+// import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import {
-  ImageIcon,
+  // ImageIcon,
   Pencil,
-  PlusIcon,
-  UploadCloud,
-  Youtube,
+  // PlusIcon,
+  // UploadCloud,
+  // Youtube,
 } from "lucide-react";
-import useCourseContentStore from "@/store/courses/course-content";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
+// import useCourseContentStore from "@/store/courses/course-content";
 import {
   Form,
   FormField,
@@ -22,13 +24,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import VideoPlayer from "./video-player";
 import { Icons } from "@/components/icons";
 import YoutubeIcon from "@/assets/images/icons/youtube.webp";
 import VimeoIcon from "@/assets/images/icons/vimeo.webp";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   lesson_video_url: z.string().min(1, {

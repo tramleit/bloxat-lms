@@ -1,5 +1,3 @@
-import React from "react";
-
 const ResourceIcon = ({ icon, color, label }) => {
   return (
     <div className="flex flex-row items-center py-0.5">

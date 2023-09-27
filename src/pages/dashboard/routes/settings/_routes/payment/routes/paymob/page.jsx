@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { BackButton } from "@/components/back-button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
@@ -8,12 +10,10 @@ import { ApiAlert } from "@/components/ui/api-alert";
 import { Button } from "@/components/ui/button";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
 import Loading from "@/components/loading/loading";
-import toast from "react-hot-toast";
 import { EditConnectionModal } from "@/components/modals/paymob-integration/edit-connection";
 import CardsIcon from "@/assets/images/icons/all-cards.webp";
 import WalletsIcon from "@/assets/images/icons/wallets.webp";
 import useIsMobile from "@/hooks/use-is-mobile";
-import { useTranslation } from "react-i18next";
 
 const PaymobPage = () => {
   const { course_id } = useParams();

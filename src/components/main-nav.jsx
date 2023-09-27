@@ -49,7 +49,7 @@ export function MainNav({ className }) {
     // },
   ];
 
-  console.log("routes[0].href", routes[1].active);
+  // console.log("routes[0].href", routes[1].active);
   // console.log("pathname:", pathname);
 
   // useEffect(() => {}, []);

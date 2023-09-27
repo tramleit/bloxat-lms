@@ -1,5 +1,10 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { BackButton } from "@/components/back-button";
 import {
   Form,
@@ -12,14 +17,9 @@ import {
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
 import Loading from "@/components/loading/loading";
-import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 // Form validator
 const formSchema = z.object({
@@ -89,7 +89,7 @@ const InstapayPage = () => {
 
   //   Submit function
   const onSubmit = async (values) => {
-    console.log("Form submitted with values:", values);
+    // console.log("Form submitted with values:", values);
 
     // check if the values are the same as the current
     if (

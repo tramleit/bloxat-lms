@@ -1,8 +1,8 @@
-import { AlignJustify, Menu } from "lucide-react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "@/assets/images/logo/bloxat-blue.webp";
 import { Separator } from "@/components/ui/separator";
-import { Link, useLocation, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const MobileSideMenu = () => {

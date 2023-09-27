@@ -1,18 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { GripVertical,} from "lucide-react";
+import { useTranslation } from "react-i18next";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Edit, GripVertical, Plus, Trash } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
-import { AddLessonModal } from "../modals/add-lesson-modal";
-import { useTranslation } from "react-i18next";
 
 const LessonTile = ({ lesson }) => {
   const { t } = useTranslation();

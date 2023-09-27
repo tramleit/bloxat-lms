@@ -1,5 +1,4 @@
 import Lottie from "lottie-react-web";
-import React from "react";
 import turnLandscape from "@/assets/lotties/turn-landscape.json";
 
 const RotateDeviceModal = () => {

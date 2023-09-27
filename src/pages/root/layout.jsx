@@ -1,8 +1,8 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 import LanguageInitializer from "@/hooks/language-init";
 // import { redirect } from "next/navigation";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function SetupLayout({ children }) {
   const navigate = useNavigate();

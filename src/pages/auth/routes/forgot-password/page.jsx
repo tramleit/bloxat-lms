@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import PinInput from "react-pin-input";
-import { useTheme } from "next-themes";
-import { Icons } from "@/components/icons";
 import toast from "react-hot-toast";
+import { useTheme } from "next-themes";
 import axios from "axios";
+import PinInput from "react-pin-input";
+import { Icons } from "@/components/icons";
 import { BASE_URL } from "@/config/api-base-config";
 
 const ForgotPassword = () => {
@@ -60,7 +60,7 @@ const ForgotPassword = () => {
 
       toast.success("Check your email!");
 
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setLoading(false);
     } catch (err) {
       // Handle any errors and notify accordingly
@@ -72,9 +72,9 @@ const ForgotPassword = () => {
   };
 
   const verifyOTPMethod = async (email, otp) => {
-    console.log("Email:", email);
-    console.log("OTP:", otp);
-    console.log("Hash:", otpHash);
+    // console.log("Email:", email);
+    // console.log("OTP:", otp);
+    // console.log("Hash:", otpHash);
     const token = JSON.parse(localStorage.getItem("bxAuthToken"));
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -88,12 +88,12 @@ const ForgotPassword = () => {
         hash: otpHash, // Use the otpHash parameter
       });
 
-      console.log("Response:", response); // Debugging
+      // console.log("Response:", response); // Debugging
 
       if (response.status === 200) {
-        console.log("Email:", email);
-        console.log("OTP:", otp);
-        console.log("Hash:", otpHash); // This should be the same as the parameter
+        // console.log("Email:", email);
+        // console.log("OTP:", otp);
+        // console.log("Hash:", otpHash); // This should be the same as the parameter
 
         setAllowedToReset(true);
 

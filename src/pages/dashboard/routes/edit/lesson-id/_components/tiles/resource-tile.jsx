@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+import { GripVertical, Trash } from "lucide-react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import toast from "react-hot-toast";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import useResourcesStore from "@/store/resources/resources-store";
-import { GripVertical, Trash, Trash2 } from "lucide-react";
-import { useState } from "react";
-import toast from "react-hot-toast";
 
 const ResourceTile = ({ title, icon, color, link, resourceId }) => {
   //   const { title } = props;
@@ -41,10 +41,12 @@ const ResourceTile = ({ title, icon, color, link, resourceId }) => {
       setDeleteLoading(true); // Set loading state to true
 
       // Call the deleteSection function from the store, passing the moduleId as an argument
-      const deleted = await resourcesStore.deleteResource(resourceId);
+      // const deleted = await resourcesStore.deleteResource(resourceId);
+
+      await resourcesStore.deleteResource(resourceId);
 
       // Optionally, handle the deleted section or trigger other actions
-      console.log("Deleted lesson:", deleted);
+      // console.log("Deleted lesson:", deleted);
 
       toast.success("Deleted!");
 

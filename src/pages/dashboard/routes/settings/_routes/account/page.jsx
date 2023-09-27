@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, CreditCard, Languages } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { Box, Check, CreditCard, Languages } from "lucide-react";
 import EditAccountForm from "./components/edit-account-form";
 import UploadForm from "./components/upload-form";
 import useCourseStore from "@/store/courses/courses-store";
-import Loading from "@/components/loading/loading";
 import useBillingStore from "@/store/billing/billing-store";
-import { useNavigate, useParams } from "react-router-dom";
 import LanguageSwitch from "./components/language-switch";
-import { useTranslation } from "react-i18next";
 import AccountSkeleton from "./components/skeleton";
 
 const AccountPage = () => {

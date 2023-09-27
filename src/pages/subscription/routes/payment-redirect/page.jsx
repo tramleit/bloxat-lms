@@ -1,5 +1,5 @@
-import SuccessCard from "./components/success-card";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import SuccessCard from "./components/success-card";
 import Loading from "@/components/loading/loading";
 import TryAgainCard from "./components/try-again-card";
 import Logo from "@/assets/images/logo/bloxat-blue.webp";

@@ -1,9 +1,10 @@
 import * as React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {
-  BoxIcon,
+  // BoxIcon,
   CreditCard,
   DollarSign,
-  Edit2,
+  // Edit2,
   Languages,
   Pencil,
   PencilRuler,
@@ -12,7 +13,7 @@ import {
   User,
   Users,
 } from "lucide-react";
-
+import { useTranslation } from "react-i18next";
 import {
   CommandDialog,
   CommandEmpty,
@@ -24,8 +25,6 @@ import {
 } from "@/components/ui/command";
 import { Input } from "@/components/ui/input";
 import { useCreateModal } from "@/hooks/use-create-modal";
-import { useNavigate, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export function MainSearch() {
   // const params = useParams();

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Pencil } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { AddIntegrationIdModal } from "@/components/modals/paymob-integration/add-integration-id-modal";
 import { EditIntegrationIdModal } from "@/components/modals/paymob-integration/edit-integration-id";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { Edit, Pencil } from "lucide-react";
 import { EditIntegrationIFrameModal } from "@/components/modals/paymob-integration/edit-integration-iframe";
-import { useTranslation } from "react-i18next";
 
 const MethodCard = ({
   title,
@@ -44,7 +44,7 @@ const MethodCard = ({
       setOpenAdd(true);
     }
   };
-  console.log("NOW", isEnabled);
+  // console.log("NOW", isEnabled);
 
   return (
     <>

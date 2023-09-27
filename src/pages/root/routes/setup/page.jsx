@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useTranslation } from "react-i18next";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import axios from "axios";
-import { toast } from "react-hot-toast";
-import jwt_decode from "jwt-decode";
 import { BASE_URL } from "@/config/api-base-config";
 import { DAYS_FOR_TRIAL } from "@/config/subscription-config";
 import SetupHeader from "../../_components/setup-header";
 import Bottom from "../../_components/Bottom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
-import { useTranslation } from "react-i18next";
 
 const SetupPage = () => {
   const { t } = useTranslation();
@@ -94,8 +94,8 @@ const SetupPage = () => {
           }
         );
 
-        console.log("Response Status:", response.status);
-        console.log("Response Data:", response.data);
+        // console.log("Response Status:", response.status);
+        // console.log("Response Data:", response.data);
 
         if (response.status === 200) {
           toast.success("Set!");

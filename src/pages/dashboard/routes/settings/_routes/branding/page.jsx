@@ -1,12 +1,16 @@
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import * as z from "zod";
-import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
+import { ExternalLink } from "lucide-react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { BackButton } from "@/components/back-button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Eye } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -22,13 +26,8 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { BASE_URL } from "@/config/api-base-config";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import toast from "react-hot-toast";
 import { Icons } from "@/components/icons";
-import { useNavigate, useParams } from "react-router-dom";
 import { PORTAL_URL } from "@/config/url-config";
-import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   // label: z.string().min(1),
@@ -76,12 +75,12 @@ const BrandingPage = () => {
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-    console.log({
-      brand_name: currentUser?.brand_name,
-      brand_slug: currentUser?.brand_slug,
-      brand_logo_light: logoLightMode,
-      brand_logo_dark: logoDarkMode,
-    });
+    // console.log({
+    //   brand_name: currentUser?.brand_name,
+    //   brand_slug: currentUser?.brand_slug,
+    //   brand_logo_light: logoLightMode,
+    //   brand_logo_dark: logoDarkMode,
+    // });
 
     // Ensure that a token exists before making the request
     if (token) {
@@ -106,8 +105,8 @@ const BrandingPage = () => {
           }
         );
 
-        console.log("Response Status:", response.status);
-        console.log("Response Data:", response.data);
+        // console.log("Response Status:", response.status);
+        // console.log("Response Data:", response.data);
 
         if (response.status === 200) {
           toast.success("Uploaded!");

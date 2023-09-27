@@ -2,12 +2,12 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
+  // DialogDescription,
+  // DialogHeader,
+  // DialogTitle,
 } from "@/components/ui/dialog";
 
-export const MinimalModal = ({  isOpen, onClose, children }) => {
+export const MinimalModal = ({ isOpen, onClose, children }) => {
   const onChange = (open) => {
     if (!open) {
       onClose();

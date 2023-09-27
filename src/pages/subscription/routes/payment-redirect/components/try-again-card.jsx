@@ -1,7 +1,7 @@
+import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react-web";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import Lottie from "lottie-react-web";
-import { useNavigate } from "react-router-dom";
 import alert from "@/assets/lotties/alert.json";
 
 const TryAgainCard = () => {

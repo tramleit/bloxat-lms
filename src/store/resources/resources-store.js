@@ -11,12 +11,14 @@ const useResourcesStore = create((set) => ({
 
     try {
       // Make a POST request to the API using Axios
-      const response = await axios.post(`${BASE_URL}/resources`, resourceData);
+      // const response = await axios.post(`${BASE_URL}/resources`, resourceData);
+
+      await axios.post(`${BASE_URL}/resources`, resourceData);
 
       window.location.reload();
 
       // You can choose to handle the response data here if needed
-      console.log("Resource added:", response.data);
+      // console.log("Resource added:", response.data);
 
       // You don't need to update the state if you've removed the 'resources' array
     } catch (error) {
@@ -36,7 +38,7 @@ const useResourcesStore = create((set) => ({
       window.location.reload();
 
       // You can choose to handle the success or any necessary updates here
-      console.log(`Resource with ID ${resourceId} deleted successfully`);
+      // console.log(`Resource with ID ${resourceId} deleted successfully`);
     } catch (error) {
       console.error(`Error deleting resource with ID ${resourceId}:`, error);
     }

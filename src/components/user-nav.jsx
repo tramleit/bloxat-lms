@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
+  // DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
@@ -14,8 +16,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useAuthStore from "@/store/auth/auth-store";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import useBillingStore from "@/store/billing/billing-store";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 
 export function UserNav() {
   // const router = useRouter();

@@ -1,12 +1,10 @@
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react-web";
 import { useCurrentUser } from "@/hooks/use-current-user";
 // import useCourseStore from "@/store/courses/courses-store";
-import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
-import { useNavigate, useParams } from "react-router-dom";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 import Logo from "@/assets/images/logo/bloxat-blue.webp";
-import Lottie from "lottie-react-web";
 import loading from "@/assets/lotties/loading.json";
 
 const RootPage = () => {

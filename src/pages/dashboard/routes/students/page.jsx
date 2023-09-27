@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import useStudentsStore from "@/store/students/students-store";
 import { DataTable } from "@/components/ui/data-table";
 import { Input } from "@/components/ui/input";
-import Loading from "@/components/loading/loading";
-import { useParams } from "react-router-dom";
+// import Loading from "@/components/loading/loading";
 import { StudentsClient } from "./_components/client";
 import { columns } from "./_components/columns";
-import { useTranslation } from "react-i18next";
 import StudentsSkeleton from "./_components/skeleton";
 
 const StudentsPage = () => {
@@ -62,7 +62,7 @@ const StudentsPage = () => {
             onChange={(e) => {
               setSearch(e.target.value);
               setPage(0);
-              console.log(search);
+              // console.log(search);
               // fetchGuide(e.target.value);
             }}
             className="max-w-sm"

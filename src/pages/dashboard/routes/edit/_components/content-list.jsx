@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import SectionTile from "./tiles/section-tile";
-import { Grid, GripVertical } from "lucide-react";
+// import { cn } from "@/lib/utils";
 import { DndContext, closestCenter } from "@dnd-kit/core";
+// import { Grid, GripVertical } from "lucide-react";
 import {
   arrayMove,
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import SectionTile from "./tiles/section-tile";
 
-export const ContentList = ({ items, onReorder, onEdit, updateUI }) => {
+export const ContentList = ({ items, onReorder, updateUI }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [modules, setModules] = useState(items);
 

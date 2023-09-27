@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
+import { Link } from "lucide-react";
 import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import ResourceTile from "./tiles/resource-tile";
-import { Link } from "lucide-react";
 
 // Separate component for displaying a list of resources
 export const ResourceList = ({ resources }) => {

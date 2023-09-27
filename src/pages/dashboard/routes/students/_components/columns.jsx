@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CellAction } from "./cell-action";
-import { cn } from "@/lib/utils";
 
 // import { ColumnDef } from "@tanstack/react-table";
 

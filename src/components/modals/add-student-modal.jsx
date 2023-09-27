@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 // import { Modal } from "@/components/ui/modal";
+import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Icons } from "@/components/icons";
 import { RefreshCcw } from "lucide-react";
-import toast from "react-hot-toast";
 import useCreateUserStore from "@/store/auth/create-user-store";
 import useStudentsStore from "@/store/students/students-store";
-import { useParams } from "react-router-dom";
 import PhoneInputComponent from "@/pages/auth/_components/phone-input";
 
 export const AddStudentModal = ({ isOpen, onClose, coursePrice, currency }) => {
@@ -83,14 +83,14 @@ export const AddStudentModal = ({ isOpen, onClose, coursePrice, currency }) => {
         phone_number: phoneNumber,
       });
 
-      console.log("User response:", userResponse?.user_id); // Log the user response
+      // console.log("User response:", userResponse?.user_id); // Log the user response
 
       // Check if userResponse contains the user_id
       if (userResponse) {
         const userId = userResponse?.user_id;
 
         // Step 2: Enroll the user in a course
-        console.log("Enrolling user with ID:", userId, parseInt(course_id));
+        // console.log("Enrolling user with ID:", userId, parseInt(course_id));
 
         const enrollmentResult = await enrollUserStore.enrollUser(
           userId,
@@ -101,7 +101,7 @@ export const AddStudentModal = ({ isOpen, onClose, coursePrice, currency }) => {
 
         if (enrollmentResult) {
           // Enrollment successful
-          console.log("User enrolled successfully.");
+          // console.log("User enrolled successfully.");
           toast.success("Student Added!");
           // Reload the current page
           window.location.reload();

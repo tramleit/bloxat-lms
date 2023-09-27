@@ -13,7 +13,7 @@ const useUserDeletionStore = create((set) => ({
       // You may want to refetch the enrollments after deletion
       // Call fetchEnrollments method or update the state as needed
 
-      console.log("Enrollment deleted successfully");
+      // console.log("Enrollment deleted successfully");
       // Refresh the page after deletion
       window.location.reload();
     } catch (error) {

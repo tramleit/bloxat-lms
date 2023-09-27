@@ -1,12 +1,12 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Trash } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { Trash } from "lucide-react";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 export const LessonActions = ({ courseId, lessonId }) => {
   const { t } = useTranslation();

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { MinimalModal } from "@/components/ui/minimal-modal";
+// import { Button } from "@/components/ui/button";
+import { useParams } from "react-router-dom";
 import { Copy, Eye } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { MinimalModal } from "@/components/ui/minimal-modal";
 import { PORTAL_URL } from "@/config/url-config";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { copyText } from "@/lib/copy-text";
 import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
-import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const ViewPortalModal = ({ isOpen, onClose, brandSlug }) => {
   const { t } = useTranslation();

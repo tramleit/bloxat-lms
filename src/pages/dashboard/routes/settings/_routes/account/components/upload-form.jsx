@@ -1,19 +1,16 @@
-// "use client";
-
+import { useState } from "react";
 import * as z from "zod";
-import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import useUserStore from "@/store/user/user-store";
 import toast from "react-hot-toast";
+import useUserStore from "@/store/user/user-store";
 import AvatarUpload from "./avatar-upload-button";
 
 const formSchema = z.object({
@@ -22,7 +19,7 @@ const formSchema = z.object({
 });
 
 const UploadForm = ({ currentUser }) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(null);
 
   const userStore = useUserStore();
@@ -30,7 +27,7 @@ const UploadForm = ({ currentUser }) => {
   const onAvatarUrlSave = (url) => {
     // Update the avatar_url property in the user store
     userStore.updateAvatarUrl(currentUser?.user_id, url);
-    console.log(currentUser?.user_id, url);
+    // console.log(currentUser?.user_id, url);
   };
 
   const initialData = {

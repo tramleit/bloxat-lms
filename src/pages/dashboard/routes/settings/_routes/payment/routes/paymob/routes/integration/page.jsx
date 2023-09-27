@@ -1,7 +1,11 @@
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import NextButton from "../components/next-button";
 import {
   Form,
@@ -12,12 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
-import toast from "react-hot-toast";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
-import { useTranslation } from "react-i18next";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Form validator
 const formSchema = z.object({
@@ -48,7 +48,7 @@ const PaymobIntegrationPage = () => {
 
   //   Submit function
   const onSubmit = async (values) => {
-    console.log("Form submitted with values:", values);
+    // console.log("Form submitted with values:", values);
 
     // Check if all fields are empty then show that at least one should be there
     if (values.onlineCard === "" && values.mobileWallet === "") {

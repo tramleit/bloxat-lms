@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 import {
   Form,
   FormControl,
@@ -13,7 +14,6 @@ import {
 import { Button } from "@/components/ui/button";
 import Modal from "@/components/ui/modal";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
 import { Icons } from "@/components/icons";
 

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { BackButton } from "@/components/back-button";
 import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import ProviderCard from "./components/provider_card";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
-import Loading from "@/components/loading/loading";
-import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router-dom";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
 import InstapayLogo from "@/assets/images/icons/instapay.webp";
 import { CurrencySwitch } from "./components/currency-switch";
-import { useTranslation } from "react-i18next";
 import PaymentSkeleton from "./components/skeleton";
 
 const PaymentPage = () => {

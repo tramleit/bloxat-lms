@@ -1,15 +1,15 @@
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, HelpCircle, MessagesSquare, Video } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import useTourStore from "@/store/tour.store";
-import { useTour } from "@reactour/tour";
-import { Box, HelpCircle, MessagesSquare, Video } from "lucide-react";
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+// import { useTour } from "@reactour/tour";
 
 const SupportHover = () => {
   const { course_id } = useParams();

@@ -37,7 +37,7 @@ export const EditConnectionModal = ({ isOpen, onClose, initialApiKey }) => {
 
   //   Submit function
   const onSubmit = async (values) => {
-    console.log("Form submitted with values:", values);
+    // console.log("Form submitted with values:", values);
 
     // Check if the value is the same
     if (values.apiKey == initialApiKey) {

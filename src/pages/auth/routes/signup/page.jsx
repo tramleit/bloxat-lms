@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
+import Lottie from "lottie-react-web";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 // import { buttonVariants } from "@/registry/new-york/ui/button"
 // import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 // import Lottie from "lottie-react-web";
 // import { buttonVariants } from "@/registry/new-york/ui/button"
 // import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"
 import rotate from "@/assets/lotties/rotate.json";
 import { SignupForm } from "../../_components/signup-form";
-import Lottie from "lottie-react-web";
 import Logo from "@/assets/images/logo/bloxat-yellow.webp";
 import LogoBlue from "@/assets/images/logo/bloxat-blue.webp";
 

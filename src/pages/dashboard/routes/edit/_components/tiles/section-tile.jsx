@@ -1,4 +1,17 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Edit, GripVertical, Loader2, Plus, Trash } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { DndContext, closestCenter } from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useTranslation } from "react-i18next";
 import {
   Accordion,
   AccordionContent,
@@ -7,25 +20,12 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Edit, GripVertical, Loader2, Plus, Trash } from "lucide-react";
-import {
-  SortableContext,
-  arrayMove,
-  useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
 import { AddLessonModal } from "../modals/add-lesson-modal";
 import LessonTile from "./lesson-tile";
-import { DndContext, closestCenter } from "@dnd-kit/core";
-import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
-import toast from "react-hot-toast";
 import { useEffect } from "react";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { EditSectionModal } from "../modals/edit-section-modal";
-import { useTranslation } from "react-i18next";
 
 const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
   const { t } = useTranslation();
@@ -50,13 +50,13 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
   // Section editing title state
   const [editSection, setEditSection] = useState(false);
 
-  console.log(lessons);
+  // console.log(lessons);
 
   const [isUpdating, setIsUpdating] = useState(false);
 
   // reorder lessons
   const onLessonsReorder = async (updateData) => {
-    console.log("updateData", updateData);
+    // console.log("updateData", updateData);
 
     try {
       setIsUpdating(true);
@@ -65,19 +65,23 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
 
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      const res = await axios.put(
-        `${BASE_URL}/reorder/modules/${moduleId}/lessons`,
-        {
-          list: updateData,
-        }
-      );
+      // const res = await axios.put(
+      //   `${BASE_URL}/reorder/modules/${moduleId}/lessons`,
+      //   {
+      //     list: updateData,
+      //   }
+      // );
+
+      await axios.put(`${BASE_URL}/reorder/modules/${moduleId}/lessons`, {
+        list: updateData,
+      });
 
       toast.success("Lessons reordered");
 
       // update the state instead of fetching the data
       // setLessonsState(res.data);
 
-      console.log("LESSON STATE", res.data);
+      // console.log("LESSON STATE", res.data);
     } catch {
       toast.error("Something went wrong");
     } finally {
@@ -90,7 +94,7 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
     try {
       if (lessonsState?.length != 0) {
         toast.error("Delete the lessons in the section first!");
-        console.log("sdfsdfsdfsd");
+        // console.log("sdfsdfsdfsd");
       } else {
         setIsUpdating(true);
 
@@ -98,7 +102,9 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
 
         axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-        const res = await axios.delete(`${BASE_URL}/modules/${moduleId}`);
+        // const res = await axios.delete(`${BASE_URL}/modules/${moduleId}`);
+
+        await axios.delete(`${BASE_URL}/modules/${moduleId}`);
 
         toast.success("Section deleted");
 
@@ -106,7 +112,7 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
         // setLessonsState(res.data);
         window.location.reload();
 
-        console.log("LESSON STATE", res.data);
+        // console.log("LESSON STATE", res.data);
       }
     } catch {
       toast.error("Something went wrong");
@@ -227,7 +233,7 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
                       strategy={verticalListSortingStrategy}
                     >
                       {/* Lesson Tiles */}
-                      {lessonsState?.map((item, i) => (
+                      {lessonsState?.map((item) => (
                         <LessonTile key={item?.id} lesson={item} />
                       ))}
                     </SortableContext>

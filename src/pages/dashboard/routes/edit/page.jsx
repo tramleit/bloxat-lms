@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import useCourseContentStore from "@/store/courses/course-content";
-import Loading from "@/components/loading/loading";
-import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react";
 import { TitleForm } from "./_components/title-form";
 import { DescriptionForm } from "./_components/description-form";
 import { Separator } from "@/components/ui/separator";
@@ -12,11 +11,8 @@ import { PriceForm } from "./_components/price-form";
 import { ContentForm } from "./_components/content-form";
 import { Banner } from "@/components/banner";
 import { Actions } from "./_components/actions";
-import { cn } from "@/lib/utils";
 import useLandscapeMode from "@/hooks/use-landscape-mode";
-import StartTourModal from "@/components/modals/start-tour-modal";
 import RotateDeviceModal from "@/components/modals/rotate-device-modal";
-import { useTranslation } from "react-i18next";
 import EditSkeleton from "./_components/skeleton";
 // import useGlobalStore from "@/store/global-state";
 

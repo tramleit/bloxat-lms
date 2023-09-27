@@ -1,14 +1,14 @@
+import { useEffect, useRef, useState } from "react";
+import { ImagePlus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { ImagePlus, Trash } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cloudName, uploadPreset } from "@/config/cloudinary-config";
-import { useTranslation } from "react-i18next";
 
 const AvatarUpload = ({
   disabled,
   onChange,
-  onSave,
+  // onSave,
   value,
   currentUser,
   folder,
@@ -36,7 +36,7 @@ const AvatarUpload = ({
       function (error, result) {
         if (!error && result && result.event === "success") {
           // Handle the successful upload here
-          console.log("Upload successful:", result.info.secure_url);
+          // console.log("Upload successful:", result.info.secure_url);
 
           onUpload(result);
           // You can perform additional actions here, such as updating the UI
@@ -54,7 +54,7 @@ const AvatarUpload = ({
     return null;
   }
 
-  console.log("value", value?.length);
+  // console.log("value", value?.length);
 
   return (
     <div className="flex flex-row items-center space-x-5">

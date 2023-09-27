@@ -3,17 +3,18 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Copy, Server } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const textMap = {
-  public: "Public",
-  admin: "Admin",
-};
+// const textMap = {
+//   public: "Public",
+//   admin: "Admin",
+// };
 
-const variantMap = {
-  public: "secondary",
-  admin: "destructive",
-};
+// const variantMap = {
+//   public: "secondary",
+//   admin: "destructive",
+// };
 
-export const ApiAlert = ({ title, description, variant = "public" }) => {
+// export const ApiAlert = ({ title, description, variant = "public" }) => {
+export const ApiAlert = ({ title, description }) => {
   // Copy function
   const onCopy = () => {
     navigator.clipboard.writeText(description);

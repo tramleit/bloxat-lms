@@ -1,4 +1,7 @@
 import { useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import {
   Select,
   SelectContent,
@@ -7,13 +10,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { supportedCurrencies } from "@/lib/currencies-supported-list";
-import toast from "react-hot-toast";
-import axios from "axios";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
-import { useTranslation } from "react-i18next";
 
 export const CurrencySwitch = () => {
   const currentUser = useCurrentUser();
@@ -42,16 +42,24 @@ export const CurrencySwitch = () => {
       const token = JSON.parse(localStorage.getItem("bxAuthToken"));
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      const response = await axios.put(
+      // const response = await axios.put(
+      //   `${BASE_URL}/users/brand/currency/${currentUser?.user_id}`,
+      //   {
+      //     brand_currency: value,
+      //   }
+      // );
+
+      await axios.put(
         `${BASE_URL}/users/brand/currency/${currentUser?.user_id}`,
         {
           brand_currency: value,
         }
       );
+
       toast.success("Currency updated!");
       setLoading(false);
 
-      console.log(response.data);
+      // console.log(response.data);
     } catch {
       toast.error("Something went wrong");
       setLoading(false);

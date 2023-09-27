@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
-import * as z from "zod";
 import { useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useController, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { Link, Loader2, Plus } from "lucide-react";
+import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
-import { Link, Loader2, Pencil, Plus } from "lucide-react";
 import {
   Form,
   FormField,
@@ -14,11 +16,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import toast from "react-hot-toast";
 import { BASE_URL } from "@/config/api-base-config";
 import { Icons } from "@/components/icons";
-import Editor from "@/components/editor";
-import ResourceTile from "./tiles/resource-tile";
+// import Editor from "@/components/editor";
+// import ResourceTile from "./tiles/resource-tile";
 import { Label } from "@/components/ui/label";
 import { Select } from "@/components/ui/select";
 import {
@@ -27,12 +28,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useEffect } from "react";
 import ResourceIcon from "./resource-icon";
 import {
-  SortableContext,
+  // SortableContext,
   arrayMove,
-  verticalListSortingStrategy,
+  // verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { ResourceList } from "./resources-list";
@@ -101,7 +101,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
       // setResourcesState(response.data);
       // Add the new resources to the resourceState
       setResourcesState((prevLessons) => [...prevLessons, response.data]);
-      console.log("response.data", response.data);
+      // console.log("response.data", response.data);
     } catch {
       toast.error("Something went wrong");
     }
@@ -110,7 +110,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
   // Reorder resources
   // on reorder function -> reorder modules
   const onReorder = async (updateData) => {
-    console.log("updateData", updateData);
+    // console.log("updateData", updateData);
 
     try {
       setIsUpdating(true);
@@ -134,7 +134,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
     }
   };
 
-  console.log("resourcesState", resourcesState);
+  // console.log("resourcesState", resourcesState);
 
   return (
     <DndContext

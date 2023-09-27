@@ -1,18 +1,14 @@
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "@/components/navbar";
 import { useCurrentUser } from "@/hooks/use-current-user";
+import LanguageInitializer from "@/hooks/language-init";
 // import useCourseStore from "@/store/courses/courses-store";
 import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
-import { useNavigate, useParams } from "react-router-dom";
-import { useTour } from "@reactour/tour";
-import useTourStore from "@/store/tour.store";
-import { HelpCircle } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+
 import { CompletionStepsHover } from "./_components/completion-steps-hover";
-import { cn } from "@/lib/utils";
 import SupportHover from "./_components/support-hover";
-import LanguageInitializer from "@/hooks/language-init";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 
 export default function DashboardLayout({ children }) {
