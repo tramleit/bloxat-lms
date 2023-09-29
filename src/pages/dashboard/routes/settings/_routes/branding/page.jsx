@@ -71,6 +71,15 @@ const BrandingPage = () => {
 
   //  UPDATE LOGOS
   const onSubmit = async () => {
+    if (
+      brandName == currentUser?.brand_name &&
+      logoLightMode == currentUser?.brand_logo_light &&
+      logoDarkMode == currentUser?.brand_logo_dark
+    ) {
+      toast.success("Updated!");
+      return;
+    }
+
     const token = JSON.parse(localStorage.getItem("bxAuthToken")); // Retrieve the token from local storage
 
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -95,8 +104,12 @@ const BrandingPage = () => {
           {
             brand_name: brandName ? brandName : currentUser?.brand_name,
             brand_slug: currentUser?.brand_slug,
-            brand_logo_light: logoLightMode,
-            brand_logo_dark: logoDarkMode,
+            brand_logo_light: logoLightMode
+              ? logoLightMode
+              : currentUser?.brand_logo_light,
+            brand_logo_dark: logoDarkMode
+              ? logoDarkMode
+              : currentUser?.brand_logo_dark,
             trial_end: currentUser?.trial_end,
           },
           // Headers
@@ -109,7 +122,7 @@ const BrandingPage = () => {
         // console.log("Response Data:", response.data);
 
         if (response.status === 200) {
-          toast.success("Uploaded!");
+          toast.success("Updated!");
           window.location.reload();
         } else {
           toast.error("Something went wrong.");
