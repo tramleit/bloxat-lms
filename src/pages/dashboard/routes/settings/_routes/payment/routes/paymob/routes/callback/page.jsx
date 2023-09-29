@@ -9,6 +9,8 @@ import { ApiAlert } from "@/components/ui/api-alert";
 import usePaymentMethodsStore from "@/store/payment-methods/payment-methods-store";
 import { Icons } from "@/components/icons";
 import PaymobLogo from "@/assets/images/icons/paymob.webp";
+import { BASE_URL } from "@/config/api-base-config";
+import { PORTAL_URL } from "@/config/url-config";
 
 const PaymobCallbackPage = () => {
   const { course_id } = useParams();
@@ -77,12 +79,12 @@ const PaymobCallbackPage = () => {
           <div className="space-y-8 w-full">
             <ApiAlert
               title="Transaction Processed Callback"
-              description="https://octopus-app-fypbq.ondigitalocean.app/api/v1/subscriptions"
+              description={`${BASE_URL}/subscriptions`}
               variant="public"
             />
             <ApiAlert
               title="Transaction Response Callback"
-              description="https://bloxat.app/payment-redirect"
+              description={`${PORTAL_URL}/payment-redirect`}
               variant="public"
             />
             <Button
