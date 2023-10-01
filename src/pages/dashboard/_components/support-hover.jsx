@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Box, HelpCircle, MessagesSquare, Video } from "lucide-react";
+import {
+  Box,
+  HelpCircle,
+  MessagesSquare,
+  //  Video
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Popover,
@@ -31,6 +36,11 @@ const SupportHover = () => {
 
   const closePopover = () => {
     setIsOpen(false);
+  };
+
+  // 👇️ open link in new tab
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -70,17 +80,19 @@ const SupportHover = () => {
                   {t("Start tour (Setup)")}
                 </div>
                 {/* Videos */}
-                <div
+                {/* <div
                   className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
                   onClick={() => {}}
                 >
                   <Video className="h-4 w-4 mr-2" />
                   {t("Video tutorials")}
-                </div>
+                </div> */}
                 {/* Whatsapp */}
                 <div
                   className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
-                  onClick={() => {}}
+                  onClick={() => {
+                    openInNewTab("https://wa.me/+12175709214");
+                  }}
                 >
                   <MessagesSquare className="h-4 w-4 mr-2" />
                   Whatsapp

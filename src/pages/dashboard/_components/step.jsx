@@ -19,7 +19,7 @@ const Step = ({
   const currentUser = useCurrentUser();
 
   return (
-    <div className="flex flex-col items-center justify-center ml-10">
+    <div className="flex flex-col items-center justify-center ml-10 text-center">
       <div className="flex flex-col items-center space-y-2 mb-2">
         <span
           className={cn(
