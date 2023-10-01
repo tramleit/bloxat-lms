@@ -2,6 +2,8 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,7 +19,6 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { Icons } from "@/components/icons";
 import SetupHeader from "../../_components/setup-header";
 import { generateRandomSlug } from "@/lib/generate-random-slug";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 // Form validation
 const formSchema = z.object({
@@ -74,9 +75,11 @@ const CreateFirstCourse = () => {
       // If the API request is successful, navigate to another route
       // router.push("/success-route"); // Replace 'success-route' with your desired route
     } catch (error) {
-      console.error("Error adding course:", error);
+      toast.error("Course name already exists. Enter a new name");
+      // console.error("Error adding course:", error);
       // Handle errors here, e.g., show an error message
     } finally {
+      toast.error("Course name already exists. Enter a new name");
       // Set loading to false after the request is complete
       // form.setIsSubmitting(false);
     }

@@ -79,7 +79,7 @@ const PaymobCallbackPage = () => {
           <div className="space-y-8 w-full">
             <ApiAlert
               title="Transaction Processed Callback"
-              description={`${BASE_URL}/subscriptions`}
+              description={`${BASE_URL}/paymob/enroll`}
               variant="public"
             />
             <ApiAlert
