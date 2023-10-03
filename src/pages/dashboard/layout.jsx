@@ -8,7 +8,7 @@ import useGetCourseStore from "@/store/courses/get-course-store";
 import Loading from "@/components/loading/loading";
 
 import { CompletionStepsHover } from "./_components/completion-steps-hover";
-import SupportHover from "./_components/support-hover";
+import SupportHover from "../../components/support-hover";
 // import { useAlreadyHasCourse } from "@/hooks/use-already-has-course";
 
 export default function DashboardLayout({ children }) {
@@ -139,7 +139,7 @@ export default function DashboardLayout({ children }) {
       {/* Account completion bottom overlay */}
       <CompletionStepsHover />
       {/* Support Floating on the bottom right */}
-      <SupportHover />
+      <SupportHover showTour={true} />
       {/* Actual pages */}
       {children}
     </>

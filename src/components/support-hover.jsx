@@ -16,7 +16,7 @@ import {
 import useTourStore from "@/store/tour.store";
 // import { useTour } from "@reactour/tour";
 
-const SupportHover = () => {
+const SupportHover = ({ showTour }) => {
   const { course_id } = useParams();
   const navigate = useNavigate();
 
@@ -68,17 +68,20 @@ const SupportHover = () => {
 
               <div className="grid gap-2 text-sm">
                 {/* Tour */}
-                <div
-                  className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
-                  onClick={() => {
-                    closePopover();
-                    navigate(`/${course_id}`);
-                    enableShowStartTourModal();
-                  }}
-                >
-                  <Box className="h-4 w-4 mr-2" />
-                  {t("Start tour (Setup)")}
-                </div>
+                {showTour && (
+                  <div
+                    className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
+                    onClick={() => {
+                      closePopover();
+                      navigate(`/${course_id}`);
+                      enableShowStartTourModal();
+                    }}
+                  >
+                    <Box className="h-4 w-4 mr-2" />
+                    {t("Start tour (Setup)")}
+                  </div>
+                )}
+
                 {/* Videos */}
                 {/* <div
                   className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"

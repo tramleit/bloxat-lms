@@ -89,7 +89,7 @@ export function SignupForm({ className, ...props }) {
               </Label>
               <Input
                 id="firstName"
-                placeholder="Seif"
+                placeholder=""
                 type="name"
                 autoCapitalize="none"
                 autoComplete="name"
@@ -104,7 +104,7 @@ export function SignupForm({ className, ...props }) {
               </Label>
               <Input
                 id="lastName"
-                placeholder="Radwane"
+                placeholder=""
                 type="name"
                 autoCapitalize="none"
                 autoComplete="name"

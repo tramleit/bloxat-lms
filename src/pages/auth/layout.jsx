@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SupportHover from "@/components/support-hover";
 
 const AuthLayout = ({ children }) => {
   const navigate = useNavigate();
@@ -19,7 +20,14 @@ const AuthLayout = ({ children }) => {
     }
   }, []); // The empty dependency array ensures this effect runs only once
 
-  return <div>{children}</div>;
+  return (
+    <div>
+      {" "}
+      {/* Support Floating on the bottom right */}
+      <SupportHover showTour={false} />
+      {children}
+    </div>
+  );
 };
 
 export default AuthLayout;
