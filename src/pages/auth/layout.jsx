@@ -24,7 +24,7 @@ const AuthLayout = ({ children }) => {
     <div>
       {" "}
       {/* Support Floating on the bottom right */}
-      <SupportHover showTour={false} />
+      <SupportHover showRequiresAuth={false} />
       {children}
     </div>
   );

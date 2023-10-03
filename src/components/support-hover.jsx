@@ -3,7 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   HelpCircle,
+  Mail,
   MessagesSquare,
+  Puzzle,
   //  Video
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -16,7 +18,7 @@ import {
 import useTourStore from "@/store/tour.store";
 // import { useTour } from "@reactour/tour";
 
-const SupportHover = ({ showTour }) => {
+const SupportHover = ({ showRequiresAuth }) => {
   const { course_id } = useParams();
   const navigate = useNavigate();
 
@@ -41,6 +43,16 @@ const SupportHover = ({ showTour }) => {
   // 👇️ open link in new tab
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  // For support email
+  const handleEmailClick = () => {
+    const emailAddress = "support@bloxat.com";
+
+    const mailtoLink = `mailto:${emailAddress}`;
+
+    // Open the default email client
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -68,7 +80,7 @@ const SupportHover = ({ showTour }) => {
 
               <div className="grid gap-2 text-sm">
                 {/* Tour */}
-                {showTour && (
+                {showRequiresAuth && (
                   <div
                     className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
                     onClick={() => {
@@ -90,6 +102,20 @@ const SupportHover = ({ showTour }) => {
                   <Video className="h-4 w-4 mr-2" />
                   {t("Video tutorials")}
                 </div> */}
+
+                {/* Request a feature */}
+                {showRequiresAuth && (
+                  <div
+                    className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
+                    onClick={() => {
+                      openInNewTab("https://forms.gle/prfd17NMuUBYEeZP8");
+                    }}
+                  >
+                    <Puzzle className="h-4 w-4 mr-2" />
+                    Request a feature
+                  </div>
+                )}
+
                 {/* Whatsapp */}
                 <div
                   className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
@@ -99,6 +125,16 @@ const SupportHover = ({ showTour }) => {
                 >
                   <MessagesSquare className="h-4 w-4 mr-2" />
                   Whatsapp
+                </div>
+                {/* Email */}
+                <div
+                  className="flex flex-row items-center justify-start hover:bg-[#fafafa] dark:hover:bg-[#1e1e1e] py-2 px-4 rounded-md transition cursor-pointer"
+                  onClick={() => {
+                    handleEmailClick();
+                  }}
+                >
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email
                 </div>
               </div>
             </div>

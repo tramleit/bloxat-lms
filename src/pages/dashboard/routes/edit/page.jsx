@@ -66,7 +66,7 @@ const EditCoursePage = () => {
 
   const completionText = `(${completedFields}/${totalFields})`;
 
-  console.log(courseContent);
+  // console.log(courseContent);
 
   // check if it's complete so we can publish the course
   const isComplete = requiredFields.every(Boolean);
@@ -165,7 +165,7 @@ const EditCoursePage = () => {
                 updateUI={(newState) => {
                   // Update the ui with the new title
                   setThumbnailState(newState);
-                  console.log("newState", newState);
+                  // console.log("newState", newState);
                 }}
               />
               <PriceForm
@@ -174,7 +174,7 @@ const EditCoursePage = () => {
                 updateUI={(newState) => {
                   // Update the ui with the new title
                   setPriceState(newState);
-                  console.log("newState", newState);
+                  // console.log("newState", newState);
                 }}
               />
             </div>
@@ -197,7 +197,7 @@ const EditCoursePage = () => {
                 updateUI={(newState) => {
                   // Update the ui with the new title
                   setLessonsState(newState);
-                  console.log("newState", newState);
+                  // console.log("newState", newState);
                 }}
               />
             </div>

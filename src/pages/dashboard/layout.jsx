@@ -139,7 +139,7 @@ export default function DashboardLayout({ children }) {
       {/* Account completion bottom overlay */}
       <CompletionStepsHover />
       {/* Support Floating on the bottom right */}
-      <SupportHover showTour={true} />
+      <SupportHover showRequiresAuth={true} />
       {/* Actual pages */}
       {children}
     </>
