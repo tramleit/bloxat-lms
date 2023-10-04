@@ -49,7 +49,7 @@ const EditLessonIdPage = () => {
 
   return (
     <div className="page-fade p-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between ">
         <div className="w-full">
           {/* <Link
             to={`/${course_id}/edit`}
@@ -126,6 +126,7 @@ const EditLessonIdPage = () => {
           <VideoForm initialData={lessonData} lessonId={lesson_id} />
         </div>
       </div>
+      <div className="h-14" />
     </div>
   );
 };

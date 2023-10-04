@@ -1,35 +1,48 @@
-import ReactPlayer from "react-player";
+// VideoPlayer.jsx
+import { useEffect, useRef } from "react";
+import videojs from "video.js";
+import "videojs-youtube";
+import "video.js/dist/video-js.css";
 
 const VideoPlayer = ({ url }) => {
-  // Configure the YouTube player to hide branding
-  const youtubeConfig = {
-    playerVars: {
-      modestbranding: 1,
-      autoplay: 1, // Autoplay for YouTube
-      fs: 0, // Hide fullscreen button for YouTube
-    },
-  };
+  const videoRef = useRef();
 
-  // Configure the Vimeo player to hide branding
-  const vimeoConfig = {
-    controls: true,
-    autoplay: true, // Autoplay for Vimeo
-  };
+  useEffect(() => {
+    const player = videojs(videoRef.current, {
+      techOrder: ["youtube"],
+      sources: [{ type: "video/youtube", src: url }],
+      controls: true,
+      youtube: {
+        // Additional YouTube specific options
+        modestBranding: true, // Hides the YouTube logo
+        showinfo: 0, // Hides video information like title and uploader
+      },
+    });
 
-  // Determine the video source type
-  const sourceType = url.includes("youtube.com") ? "youtube" : "vimeo";
+    player.on("error", (error) => {
+      console.error("Video.js Player Error:", error);
+    });
+
+    ["play", "pause", "ended"].forEach((event) => {
+      player.on(event, () => {
+        console.log(`Video.js Player Event: ${event}`);
+      });
+    });
+
+    return () => {
+      if (player) {
+        player.dispose();
+      }
+    };
+  }, [url]);
 
   return (
-    <div className="relative aspect-video">
-      <div className="absolute inset-0 flex items-center justify-center bg-transparent lg:h-[15%] md:h-[20%] h-[30%] flex-col gap-y-2 text-secondary"></div>
-
-      <ReactPlayer
-        url={url}
-        controls={true}
-        width="100%"
-        height="100%"
-        config={sourceType === "youtube" ? youtubeConfig : vimeoConfig}
-      />
+    <div data-vjs-player>
+      {/* Overlay */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <p className="text-white text-2xl"></p>
+      </div>
+      <video ref={videoRef} className="video-js vjs-16-9" />
     </div>
   );
 };
