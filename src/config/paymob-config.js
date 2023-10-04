@@ -10,7 +10,7 @@ export const PAYMOB_API_KEY =
 
 //////////////////////////////////////////////////////////////////
 // Live mode
-export const CARD_INTEGRATION_ID = 2015311;
+export const CARD_INTEGRATION_ID = 2650991;
 
 export const IFRAME_ID = 369734;
 
