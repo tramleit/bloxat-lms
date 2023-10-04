@@ -8,10 +8,13 @@ import { Separator } from "@/components/ui/separator";
 import { LessonTitleForm } from "./_components/lesson-title-form";
 import { LessonDescriptionForm } from "./_components/lesson-description-form";
 import { VideoForm } from "./_components/video-form";
+
 import { ResourcesForm } from "./_components/resources-form";
 import { LessonActions } from "./_components/lesson-actions";
 import { BackButton } from "@/components/back-button";
 import LessonSkeleton from "./_components/skeleton";
+
+// const VideoForm = lazy(() => import("./_components/video-form"));
 
 const EditLessonIdPage = () => {
   const { t } = useTranslation();
