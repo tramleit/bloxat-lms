@@ -38,7 +38,8 @@ const PaymentRedirect = () => {
       {success == "true" && pending == "false" && (
         <SuccessCard endDate={currentUser?.subscription_end} />
       )}
-      {success == "false" && pending == "true" && <TryAgainCard />}
+      {(success == "false" && pending == "true") ||
+        (success == "false" && pending == "false" && <TryAgainCard />)}
 
       {/* if the router query has success = true */}
       {/* Success */}
