@@ -4,15 +4,15 @@ export const PAYMOB_API_KEY =
 
 //////////////////////////////////////////////////////////////////
 // Test mode
-// export const CARD_INTEGRATION_ID = 4179213;
+export const CARD_INTEGRATION_ID = 4179213;
 
-// export const IFRAME_ID = 369734;
+export const IFRAME_ID = 369734;
 
 //////////////////////////////////////////////////////////////////
 // Live mode
-export const CARD_INTEGRATION_ID = 2650991;
+// export const CARD_INTEGRATION_ID = 2650991;
 
-export const IFRAME_ID = 369734;
+// export const IFRAME_ID = 369734;
 
 //////////////////////////////////////////////////////////////////
 // Transaction processed callback
