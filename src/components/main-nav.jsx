@@ -24,7 +24,7 @@ export function MainNav({ className }) {
     // },
     {
       href: `/${course_id}`,
-      label: t("Quick"),
+      label: t("Home"),
       active: pathname === `/${course_id}`,
     },
     {
@@ -81,7 +81,7 @@ export function MainNav({ className }) {
             {route.active && (
               <div
                 className={cn(
-                  "bg-blueBlox w-[35px] h-[3px] absolute bottom-0",
+                  "bg-blueBlox w-[38px] h-[3px] absolute bottom-0",
                   route.label === "Students"
                     ? "w-[60px]"
                     : route.label === "Settings" && "w-[55px]"

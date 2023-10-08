@@ -20,7 +20,7 @@ const MobileSideMenu = () => {
     // },
     {
       href: `/${course_id}`,
-      label: "✨ Quick",
+      label: "✨ Home",
       active: pathname === `/${course_id}`,
     },
     {
