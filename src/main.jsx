@@ -6,8 +6,13 @@ import "react-phone-input-2/lib/material.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { ThemeProvider } from "@/providers/theme-provider.jsx";
 import { TourProvider } from "@reactour/tour";
+import ReactGA from "react-ga4";
 import steps from "@/lib/tour-steps";
 import TourNextButton from "@/components/tour-next-button.jsx";
+
+// Google Analytics
+const TRACKING_ID = "G-C5WX75N6Z1";
+ReactGA.initialize(TRACKING_ID);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider attribute="class" defaultTheme="light">
