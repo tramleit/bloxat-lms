@@ -13,6 +13,7 @@ import TourNextButton from "@/components/tour-next-button.jsx";
 // Google Analytics
 const TRACKING_ID = "G-C5WX75N6Z1";
 ReactGA.initialize(TRACKING_ID);
+ReactGA.send({ hitType: "pageview", page: window.location.pathname });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ThemeProvider attribute="class" defaultTheme="light">
