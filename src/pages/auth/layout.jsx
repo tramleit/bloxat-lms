@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import SupportHover from "@/components/support-hover";
+// import SupportHover from "@/components/support-hover";
 
 const AuthLayout = ({ children }) => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const AuthLayout = ({ children }) => {
     <div>
       {" "}
       {/* Support Floating on the bottom right */}
-      <SupportHover showRequiresAuth={false} />
+      {/* <SupportHover showRequiresAuth={false} /> */}
       {children}
     </div>
   );

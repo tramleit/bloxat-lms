@@ -1,5 +1,6 @@
 // import * as React from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,8 @@ import { BASE_URL } from "@/config/api-base-config";
 import useAuthStore from "@/store/auth/auth-store";
 
 export function SignupForm({ className, ...props }) {
+  const { t } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(false);
 
   //   For phone input
@@ -85,7 +88,7 @@ export function SignupForm({ className, ...props }) {
             {/* First Name */}
             <div className="grid gap-1">
               <Label htmlFor="firstName" className="mb-1">
-                First Name
+                {t("First Name")}
               </Label>
               <Input
                 id="firstName"
@@ -100,7 +103,7 @@ export function SignupForm({ className, ...props }) {
             {/* Last Name */}
             <div className="grid gap-1">
               <Label htmlFor="lastName" className="mb-1">
-                Last Name
+                {t("Last Name")}
               </Label>
               <Input
                 id="lastName"
@@ -117,7 +120,7 @@ export function SignupForm({ className, ...props }) {
           {/* Email */}
           <div className="grid gap-1">
             <Label htmlFor="email" className="mb-1">
-              Email
+              {t("Email")}
             </Label>
             <Input
               id="email"
@@ -138,7 +141,7 @@ export function SignupForm({ className, ...props }) {
 
           <div className="grid gap-1">
             <Label htmlFor="password" className="mb-1">
-              Password
+              {t("Password")}
             </Label>
             <Input
               id="password"
@@ -156,7 +159,7 @@ export function SignupForm({ className, ...props }) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Continue
+            {t("Continue")}
           </Button>
         </div>
       </form>

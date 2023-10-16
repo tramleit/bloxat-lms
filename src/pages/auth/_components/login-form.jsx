@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,6 +11,8 @@ import useAuthStore from "@/store/auth/auth-store";
 export function LoginForm({ className, ...props }) {
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuthStore(); // Access the login action from Zustand
+
+  const { t } = useTranslation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +44,7 @@ export function LoginForm({ className, ...props }) {
         <div className="grid gap-6">
           <div className="grid gap-1">
             <Label htmlFor="email" className="mb-1">
-              Email
+              {t("Email")}
             </Label>
             <Input
               id="email"
@@ -55,7 +58,7 @@ export function LoginForm({ className, ...props }) {
           </div>
           <div className="grid gap-1">
             <Label htmlFor="password" className="mb-1">
-              Password
+              {t("Password")}
             </Label>
             <Input
               id="password"
@@ -72,14 +75,14 @@ export function LoginForm({ className, ...props }) {
             href="/forgot-password"
             className="text-sm hover:underline text-blue-500"
           >
-            Forgot password?
+            {t("Forgot password?")}
           </a>
           {/* Button */}
           <Button disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Login
+            {t("Login")}
           </Button>
         </div>
       </form>

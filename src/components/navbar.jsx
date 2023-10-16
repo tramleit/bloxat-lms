@@ -10,6 +10,7 @@ import useCourseStore from "@/store/courses/courses-store";
 import Logo from "@/assets/images/logo/bloxat-colored.webp";
 // import { Button } from "@/components/ui/button";
 import MobileSideMenu from "@/components/mobile-sidemenu";
+import { LanguageToggle } from "@/components/language-toggle";
 
 const Navbar = () => {
   // const param = useParams();
@@ -52,6 +53,7 @@ const Navbar = () => {
         <MainNav className="mx-6" />
         <div className="ml-auto flex items-center space-x-4">
           <MainSearch />
+          <LanguageToggle />
           <ThemeToggle />
           <UserNav />
         </div>
