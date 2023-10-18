@@ -14,6 +14,8 @@ import { EditConnectionModal } from "@/components/modals/paymob-integration/edit
 import CardsIcon from "@/assets/images/icons/all-cards.webp";
 import WalletsIcon from "@/assets/images/icons/wallets.webp";
 import useIsMobile from "@/hooks/use-is-mobile";
+import { BASE_URL } from "@/config/api-base-config";
+import { PORTAL_URL } from "@/config/url-config";
 
 const PaymobPage = () => {
   const { course_id } = useParams();
@@ -205,12 +207,12 @@ const PaymobPage = () => {
             <h2 className="text-xl font-semibold">Integration Callbacks</h2>
             <ApiAlert
               title="Transaction Processed Callback"
-              description="https://octopus-app-fypbq.ondigitalocean.app/api/v1/paymob/enroll"
+              description={`${BASE_URL}/paymob/enroll`}
               variant="public"
             />
             <ApiAlert
               title="Transaction Response Callback"
-              description="https://bloxat.app/payment-redirect"
+              description={`${PORTAL_URL}/payment-redirect`}
               variant="public"
             />
           </div>
