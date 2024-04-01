@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,7 @@ html,
 body,
 :root {
   height: 100%;
+  font-family: "SF Pro Display", sans-serif;
 }
 
 @layer base {

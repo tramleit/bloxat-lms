@@ -21,7 +21,7 @@
   "Go to Plan": "Go to Plan",
   "Ahlan,": "Ahlan,",
   "Create a new course": "Create a new course",
-  "Add & Edit course content": "Add & Edit course content",
+  "Manage content": "Manage content",
   "Payment method": "Payment method",
   "View Portal & Get Link": "View Portal & Get Link",
   "Sales": "Sales",
@@ -241,5 +241,6 @@
   "Forgot password?": "Forgot password?",
   "Login": "Login",
   "Create an account": "Create an account",
-  "Create your Bloxat account": "Create your Bloxat account"
+  "Create your Bloxat account": "Create your Bloxat account",
+  "Switch course": "Switch course"
 }

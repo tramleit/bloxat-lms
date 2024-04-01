@@ -64,7 +64,7 @@ export function MainSearch() {
         <Input
           type="search"
           placeholder={t("Search")}
-          className="md:w-[250px] lg:w-[250px]"
+          className="md:w-[250px] lg:w-[250px] bg-[#0c0c0c] border-[#2b2b2b]"
         />
       </div>
       {/* End Search */}

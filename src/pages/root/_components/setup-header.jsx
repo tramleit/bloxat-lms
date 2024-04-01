@@ -10,7 +10,7 @@ const SetupHeader = () => {
         <img
           src={Logo}
           // className="w-[26px] h-auto mr-4 mix-blend-difference filter brightness-0 invert"
-          className="w-[70px] h-auto mr-4"
+          className="w-[100px] h-auto mr-4"
           alt="Bloxat"
           draggable={false}
         />

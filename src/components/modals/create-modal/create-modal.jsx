@@ -11,7 +11,7 @@ const CreateModal = () => {
   return (
     <Modal
       // title={t("Create course 🧩")}
-      title="Create course 🧩"
+      title="Create course 🚀"
       // description={t("Add a new course and start getting paid.")}
       description="Add a new course and start getting paid."
       isOpen={createModal.isOpen}

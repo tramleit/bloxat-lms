@@ -1,10 +1,3 @@
-import { Check, ChevronsUpDown, PlusCircle } from "lucide-react";
-import { useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -15,13 +8,19 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useCreateModal } from "@/hooks/use-create-modal";
 import { cn } from "@/lib/utils";
-import { useParams } from "react-router-dom";
+import { Check, ChevronDown, PlusCircle } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Skeleton } from "@/components/ui/skeleton";
+import { useParams } from "react-router-dom";
 
-export default function CourseSwicher({ className, loading, items = [] }) {
+export default function ArrowCourseSwicher({ loading, items = [] }) {
   const createModal = useCreateModal();
   const { course_id } = useParams();
   // const navigate = useNavigate();
@@ -55,42 +54,24 @@ export default function CourseSwicher({ className, loading, items = [] }) {
 
   // loading state
   if (loading) {
-    return <Skeleton className="md:w-[250px] w-1/2 h-[20px] bg-[#212121]" />;
+    return (
+      <Button
+        size={"icon"}
+        className="mt-2 w-[40px] h-[40px] rounded-full bg-transparent hover:bg-white/80 dark:hover:bg-black/80"
+      >
+        <ChevronDown className="w-[16px] text-black dark:text-white" />
+      </Button>
+    );
   }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
-          size="sm"
-          role="combobox"
-          aria-expanded={open}
-          aria-label="Select a course"
-          className={cn(
-            "md:w-[250px] w-1/2 justify-between bg-[#0c0c0c] border-[#2b2b2b] hover:bg-[#2b2b2b] hover:text-white text-white",
-            className
-          )}
-          // for tour
-          data-tour="1"
+          size={"icon"}
+          className="mt-2 w-[40px] h-[40px] rounded-full bg-transparent hover:bg-white/80 dark:hover:bg-black/80"
         >
-          {/* it was 200px */}
-          {/* <Box className="mr-2 h-4 w-4 " /> */}
-          <div className="flex items-center justify-center">
-            <div
-              className={cn(
-                "w-3 h-3 rounded-full mr-2",
-                currentCourse?.published
-                  ? "bg-lemonBloxDark "
-                  : "bg-yellowBloxDark "
-              )}
-            />
-          </div>
-          <span className="line-clamp-1 text-start w-full">
-            {" "}
-            {currentCourse?.label}
-          </span>
-          <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+          <ChevronDown className="w-[16px] text-black dark:text-white" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0">

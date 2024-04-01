@@ -73,12 +73,15 @@ export function LoginForm({ className, ...props }) {
           {/* Forgot Password */}
           <a
             href="/forgot-password"
-            className="text-sm hover:underline text-blue-500"
+            className="text-sm hover:underline text-newPurple"
           >
             {t("Forgot password?")}
           </a>
           {/* Button */}
-          <Button disabled={isLoading}>
+          <Button
+            disabled={isLoading}
+            className="bg-newPurple hover:bg-newPurple/80 dark:text-white"
+          >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

@@ -155,7 +155,10 @@ export function SignupForm({ className, ...props }) {
           {/* Forgot Password */}
 
           {/* Button */}
-          <Button disabled={isLoading}>
+          <Button
+            disabled={isLoading}
+            className="bg-newPurple hover:bg-newPurple/80 dark:text-white"
+          >
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

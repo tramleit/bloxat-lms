@@ -93,7 +93,8 @@ const DashboardPage = () => {
             />
             <div className="flex flex-row items-center space-x-3">
               <Button
-                variant="yellow"
+                // variant="yellow"
+                className="bg-newPurple hover:bg-newPurple/80 text-white"
                 onClick={() =>
                   copyText(
                     `${PORTAL_URL}/${currentUser?.brand_slug}/${enrollments?.courseSlug}/checkout`
@@ -147,7 +148,11 @@ const DashboardPage = () => {
                   )}
                 </div>
 
-                <CardBadge label={t("All courses")} color="bg-[#dae6ff]" />
+                <CardBadge
+                  label={t("All courses")}
+                  color="bg-[#dae6ff]"
+                  textColor="text-black"
+                />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -171,7 +176,13 @@ const DashboardPage = () => {
                 {/* <p className="text-sm text-muted-foreground mt-2">
                   This course
                 </p> */}
-                <CardBadge label={t("This course")} color="bg-[#fff3cf]" />
+                <CardBadge
+                  label={t("This course")}
+                  color="bg-[#fff3cf]"
+                  textColor="text-black"
+
+                  // bg-[#fff3cf]
+                />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -199,7 +210,11 @@ const DashboardPage = () => {
                   This course
                 </p> */}
 
-                <CardBadge label={t("This course")} color="bg-[#fff3cf]" />
+                <CardBadge
+                  label={t("This course")}
+                  color="bg-[#fff3cf]"
+                  textColor="text-black"
+                />
               </CardContent>
             </Card>
             {/* End Card */}
@@ -223,7 +238,11 @@ const DashboardPage = () => {
                   This course
                 </p> */}
 
-                <CardBadge label={t("This course")} color="bg-[#fff3cf] " />
+                <CardBadge
+                  label={t("This course")}
+                  color="bg-[#fff3cf]"
+                  textColor="text-black"
+                />
               </CardContent>
             </Card>
             {/* End Card */}

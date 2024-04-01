@@ -21,7 +21,11 @@ export function LanguageToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-[#181818] border-[#181818] text-white hover:bg-[#232323] hover:text-white"
+        >
           {langState === "en" ? <span>EN</span> : <span>AR</span>}
 
           {/* <Languages className="h-[1.2rem] w-[1.2rem] " /> */}

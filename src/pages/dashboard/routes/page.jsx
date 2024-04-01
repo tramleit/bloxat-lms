@@ -14,6 +14,8 @@ import useTourStore from "@/store/tour.store";
 import StartTourModal from "@/components/modals/start-tour-modal";
 import ViewPortalModal from "@/components/modals/view-portal-modal";
 import QuickSkeleton from "../_components/skeleton";
+import ArrowCourseSwicher from "@/components/arrow-course-switcher";
+import useCourseStore from "@/store/courses/courses-store";
 
 const QuickPage = () => {
   const { course_id } = useParams();
@@ -29,6 +31,8 @@ const QuickPage = () => {
   // Use the custom hook to fetch warnings
   const { data: warnings, isLoading } = useWarnings(course_id);
 
+  const { courses, loading, fetchMinimalCoursesByUserId } = useCourseStore();
+
   //Start tour modal state check if it's enabled or not
   const showStartTourModal = useTourStore((state) => state.showStartTourModal);
   const enableShowStartTourModal = useTourStore(
@@ -43,6 +47,10 @@ const QuickPage = () => {
   const [openViewModal, setOpenViewModal] = useState(false);
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    fetchMinimalCoursesByUserId();
+  }, []);
 
   // to show the tour modal if first time visit
   useEffect(() => {
@@ -74,7 +82,7 @@ const QuickPage = () => {
           // onConfirm={onConfirm}
         />
       )}
-      <div className="page-fade flex flex-col items-center justify-center lg:h-[80vh] h-[80vh] md:h-screen text-center md:px-0 px-5">
+      <div className="page-fade flex flex-col relative items-center justify-center lg:h-[80vh] h-[80vh] md:h-screen text-center md:px-0 px-5">
         {/* <h1 className="text-4xl font-bold tracking-tight">
           Welcome back, {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
@@ -83,9 +91,17 @@ const QuickPage = () => {
           {t("Ahlan,")} {currentUser?.first_name}!{" "}
           <span className="wave">👋</span>
         </h2>
-        <h1 className="text-4xl font-bold tracking-tight md:w-[550px] ">
-          {course?.title}
-        </h1>
+        <div className="flex flex-row justify-center items-center space-x-0 md:w-[550px]">
+          <h1 className="text-4xl font-bold tracking-tight">{course?.title}</h1>
+          <ArrowCourseSwicher loading={loading} items={courses} />
+
+          {/* <Button
+            size={"icon"}
+            className="mt-2 w-[40px] h-[40px] rounded-full bg-transparent hover:bg-white/80 dark:hover:bg-black/80"
+          >
+            <ChevronDown className="w-[16px] text-black dark:text-white" />
+          </Button> */}
+        </div>
         {/* <p className="text-muted-foreground mt-3">
           Quickly access what you need
         </p> */}
@@ -95,7 +111,7 @@ const QuickPage = () => {
             // variant="yellow"
 
             size="xl"
-            className="w-full"
+            className="w-full bg-newPurpleLight text-black hover:bg-newPurpleLight/80"
             onClick={() => {
               createModal.onOpen();
             }}
@@ -105,21 +121,21 @@ const QuickPage = () => {
           </Button>
           <Button
             // variant="lemon"
-            variant="blueLight"
+            // variant="blueLight"
             size="xl"
-            className="w-full"
+            className="w-full bg-newLemonLight text-black hover:bg-newLemonLight/80"
             onClick={() => {
               navigate(`/${course_id}/edit`);
             }}
           >
             <Pencil className="h-4 w-4 mr-2" />
-            {t("Add & Edit course content")}
+            {t("Manage content")}
           </Button>
           <Button
-            variant="yellow"
+            // variant="yellow"
             // variant="sky"
             size="xl"
-            className="w-full"
+            className="w-full bg-newBlue text-black hover:bg-newBlue/80"
             onClick={() => {
               navigate(`/${course_id}/settings/payment`);
             }}
@@ -140,11 +156,49 @@ const QuickPage = () => {
               // }}
             >
               <Eye className="h-4 w-4 mr-2" />
-              {t("View Portal & Get Link")}
+              {t("View Portal")}
             </Button>
           </div>
         </div>
       </div>
+      {/* Grid items */}
+      {/* <div className="grid absolute h-20 mt-[24vh] inset-0 grid-cols-3 md:grid-cols-8 gap-0 pointer-events-none z-[1]">
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="border border-gray-100 dark:border-gray-900 h-32 flex justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+
+        <div className="md:flex hidden border border-gray-100 dark:border-gray-900 h-32 justify-center items-center"></div>
+      </div> */}
     </>
   );
 };

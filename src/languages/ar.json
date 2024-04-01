@@ -20,7 +20,7 @@
   "Go to Plan": "انتقل إلى الخطة الحالية",
   "Ahlan,": "أهلاً",
   "Create a new course": "إنشاء كورس جديد",
-  "Add & Edit course content": "إضافة وتعديل محتوى الكورس",
+  "Manage content": "إدارة المحتوى",
   "Payment method": "وسيلة الدفع",
   "View Portal & Get Link": "عرض المنصة والحصول على الرابط",
   "Sales": "المبيعات",
@@ -240,5 +240,6 @@
   "Forgot password?": "نسيت كلمة المرور؟",
   "Login": "تسجيل الدخول",
   "Create an account": "إنشاء حساب",
-  "Create your Bloxat account": "أنشئ حسابك على بلوكسات"
+  "Create your Bloxat account": "أنشئ حسابك على بلوكسات",
+  "Switch course": "تبديل الكورس"
 }

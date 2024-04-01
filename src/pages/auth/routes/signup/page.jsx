@@ -112,7 +112,7 @@ const Signup = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="h-[20px] w-auto"
+              className="h-[30px] w-auto"
               // width={0}
               // height={900}
               draggable={false}

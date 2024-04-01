@@ -24,7 +24,7 @@ export function MainNav({ className }) {
     // },
     {
       href: `/${course_id}`,
-      label: t("Home"),
+      label: t("Course"),
       active: pathname === `/${course_id}`,
     },
     {
@@ -71,10 +71,8 @@ export function MainNav({ className }) {
           <Link
             to={route.href}
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
-              route.active
-                ? "text-black dark:text-white"
-                : "text-muted-foreground"
+              "text-sm font-medium transition-colors hover:text-white",
+              route.active ? "text-white" : "text-white/60"
             )}
           >
             <span> {route.label}</span>
@@ -84,6 +82,8 @@ export function MainNav({ className }) {
                   "bg-blueBlox w-[38px] h-[3px] absolute bottom-0",
                   route.label === "Students"
                     ? "w-[60px]"
+                    : route.label === "Course"
+                    ? "w-[48px]"
                     : route.label === "Settings" && "w-[55px]"
                 )}
               />

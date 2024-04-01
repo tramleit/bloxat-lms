@@ -51,9 +51,12 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         // BLUES
-        blueBlox: "#1364ff",
-        blueBloxLight: "#3f80fe",
-        blueBloxDark: "#0a56e7",
+        // blueBlox: "#1364ff",
+        // blueBloxLight: "#3f80fe",
+        // blueBloxDark: "#0a56e7",
+        blueBlox: "#8473FF",
+        blueBloxLight: "#8473FF",
+        blueBloxDark: "#8473FF",
         // LEMONS
         lemonBlox: "#e5ff96",
         lemonBloxLight: "#e9fcb0",
@@ -62,6 +65,7 @@ module.exports = {
         yellowBlox: "#ffe084",
         yellowBloxLight: "#ffe8a2",
         yellowBloxDark: "#edcc6b",
+
         // PURPLES
         purpleBlox: "#987bef",
         purpleBloxLight: "#b6a0f8",
@@ -75,6 +79,12 @@ module.exports = {
         lemon: "#E7FD90",
         sky: "#CCFCFF",
         purple: "#A38FFF",
+        // NEW
+        newPurple: "#8473FF",
+        newPurpleLight: "#CFC9FF",
+        newLemon: "#DDFF55",
+        newLemonLight: "#E5FFC8",
+        newBlue: "#F1FDFF",
       },
       borderRadius: {
         lg: "var(--radius)",
