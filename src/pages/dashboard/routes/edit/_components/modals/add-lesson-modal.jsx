@@ -162,7 +162,7 @@ export const AddLessonModal = ({
         <Button
           disabled={isLoading}
           onClick={handleCreateLesson}
-          className="space-x-2"
+          className="bg-blueBlox hover:bg-blueBloxLight text-white space-x-2"
         >
           {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
           <span>Add</span>

@@ -77,7 +77,10 @@ export const LessonDescriptionForm = ({ initialData, lessonId }) => {
       <div className="font-medium flex items-center justify-between">
         {t("Lesson Description")}
         {!data?.description && !isEditing && (
-          <Button onClick={toggleEdit} variant="yellow">
+          <Button
+            onClick={toggleEdit}
+            className="bg-blueBlox hover:bg-blueBloxLight text-white"
+          >
             <Plus className="h-4 w-4 mr-2" />
             {t("Add")}
           </Button>

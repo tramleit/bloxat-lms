@@ -6,11 +6,15 @@ import { Separator } from "@/components/ui/separator";
 import SettingsCard from "./components/settings-card";
 import { AppearanceForm } from "./components/appearance-form";
 import useIsMobile from "@/hooks/use-is-mobile";
+import ViewPortalButton from "@/components/view-portal-button";
+import { useCurrentUser } from "@/hooks/use-current-user";
 
 const SettingsPage = () => {
   const { t } = useTranslation();
   const { course_id } = useParams();
   const navigate = useNavigate();
+
+  const currentUser = useCurrentUser();
 
   const isMobile = useIsMobile();
 
@@ -23,6 +27,7 @@ const SettingsPage = () => {
               title={t("Settings")}
               description={t("Set up payment methods, branding, and more.")}
             />
+            <ViewPortalButton brandSlug={currentUser?.brand_slug} />
           </div>
           <Separator />
           {/* Content */}

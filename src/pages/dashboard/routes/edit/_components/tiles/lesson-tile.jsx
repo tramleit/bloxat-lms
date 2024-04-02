@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { GripVertical,} from "lucide-react";
+import { GripVertical } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
@@ -49,7 +49,7 @@ const LessonTile = ({ lesson }) => {
               {/* Edit button */}
               <div>
                 <Button
-                  variant="yellow"
+                  // variant="yellow"
                   size="sm"
                   onClick={() => {
                     navigate(`/${course_id}/edit/${lesson?.lesson_id}`);

@@ -243,7 +243,7 @@ const SectionTile = ({ moduleId, moduleOrder, title, lessons, updateUI }) => {
                 <div className="mt-6">
                   <Button
                     onClick={() => setAddLessonOpen(true)}
-                    className="space-x-2"
+                    className="bg-blueBlox hover:bg-blueBloxLight text-white space-x-2"
                   >
                     <Plus className="h-4 w-4" />
                     <span>{t("Add Lesson")}</span>

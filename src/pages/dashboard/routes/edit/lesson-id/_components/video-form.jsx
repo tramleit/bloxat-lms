@@ -5,6 +5,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
+  Code2,
   // ImageIcon,
   Pencil,
   // PlusIcon,
@@ -120,6 +121,8 @@ export const VideoForm = ({ initialData, lessonId }) => {
                 className="w-[40px] h-auto"
                 draggable={false}
               />
+              <span>{t("or")}</span>
+              <Code2 className="h-8 w-8" />
             </div>
             <Form {...form}>
               <form
@@ -148,7 +151,8 @@ export const VideoForm = ({ initialData, lessonId }) => {
                   <Button
                     disabled={!isValid || isSubmitting}
                     type="submit"
-                    variant="yellow"
+                    // variant="yellow"
+                    className="bg-blueBlox hover:bg-blueBloxLight text-white"
                   >
                     {isSubmitting && (
                       <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
@@ -159,7 +163,7 @@ export const VideoForm = ({ initialData, lessonId }) => {
               </form>
             </Form>
             <span className="text-sm text-muted-foreground">
-              {t("💡 Add a Video URL from Youtube/ Vimeo")}
+              {t("💡 Add a Video URL from Youtube/ Vimeo/ or Embedded")}
             </span>
           </div>
         </div>

@@ -37,6 +37,7 @@ import {
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { ResourceList } from "./resources-list";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   resource_title: z.string().min(1, {
@@ -171,7 +172,13 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
         <div className="font-medium flex items-center justify-between">
           {t("Add resources")}
           {/*  */}
-          <Button onClick={toggleAdd} variant={!isAdding ? "yellow" : "ghost"}>
+          <Button
+            onClick={toggleAdd}
+            className={cn(
+              !isAdding ? "bg-blueBlox hover:bg-blueBloxLight text-white" : ""
+            )}
+            variant={!isAdding ? "default" : "ghost"}
+          >
             {!isAdding && (
               <>
                 <Plus className="h-4 w-4 mr-2" />
@@ -199,7 +206,7 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-4 mt-4"
             >
-              <div className="flex flex-row items-center space-x-3">
+              <div className="flex flex-row items-center w-full space-x-3">
                 {/* TITLE */}
                 <FormField
                   control={form.control}
@@ -305,7 +312,11 @@ export const ResourcesForm = ({ initialData, lessonId }) => {
               </div>
 
               <div className="flex items-center gap-x-2">
-                <Button disabled={!isValid || isSubmitting} type="submit">
+                <Button
+                  disabled={!isValid || isSubmitting}
+                  type="submit"
+                  className="bg-blueBlox hover:bg-blueBloxLight text-white"
+                >
                   {isSubmitting && (
                     <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                   )}

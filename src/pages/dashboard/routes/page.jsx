@@ -16,6 +16,7 @@ import ViewPortalModal from "@/components/modals/view-portal-modal";
 import QuickSkeleton from "../_components/skeleton";
 import ArrowCourseSwicher from "@/components/arrow-course-switcher";
 import useCourseStore from "@/store/courses/courses-store";
+import { PORTAL_URL } from "@/config/url-config";
 
 const QuickPage = () => {
   const { course_id } = useParams();
@@ -148,12 +149,18 @@ const QuickPage = () => {
               variant="outline"
               size="xl"
               className="w-full"
-              onClick={() => setOpenViewModal(true)}
-
+              // onClick={() => setOpenViewModal(true)}
               // onClick={() => {
               //   // Open portal of the brand in a new tab
               //   window.open(`${PORTAL_URL}/${warnings?.brandSlug}`, "_blank");
               // }}
+              onClick={() => {
+                // Open portal of the brand in a new tab
+                window.open(
+                  `${PORTAL_URL}/${currentUser?.brand_slug}`,
+                  "_blank"
+                );
+              }}
             >
               <Eye className="h-4 w-4 mr-2" />
               {t("View Portal")}

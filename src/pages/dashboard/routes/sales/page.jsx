@@ -23,6 +23,7 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import CardBadge from "./_components/card-badge";
 import { copyText } from "@/lib/copy-text";
 import SalesSkeleton from "./_components/skeleton";
+import ViewPortalButton from "@/components/view-portal-button";
 
 const DashboardPage = () => {
   const { course_id } = useParams();
@@ -92,6 +93,7 @@ const DashboardPage = () => {
               description={t("View your course sales.")}
             />
             <div className="flex flex-row items-center space-x-3">
+              <ViewPortalButton brandSlug={currentUser?.brand_slug} />
               <Button
                 // variant="yellow"
                 className="bg-newPurple hover:bg-newPurple/80 text-white"
