@@ -144,9 +144,9 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
         ) : (
           <Button
             onClick={toggleCreating}
-            variant="ghost"
+            // variant="ghost"
             size="sm"
-            className="border-2  border-blueBloxLight text-blueBloxLight hover:text-white hover:bg-blueBloxLight"
+            className="border-2  bg-blueBlox text-white hover:bg-blueBloxLight"
           >
             <PlusIcon className="h-4 w-4 mr-2" />
             {t("Add a section")}
@@ -176,7 +176,11 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
               )}
             />
 
-            <Button disabled={!isValid || isSubmitting} type="submit">
+            <Button
+              disabled={!isValid || isSubmitting}
+              type="submit"
+              className="bg-blueBlox text-white hover:bg-blueBlox"
+            >
               {isSubmitting && (
                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
               )}
