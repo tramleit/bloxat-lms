@@ -110,9 +110,18 @@ const PlanPage = () => {
             {currentUser?.subscription_end &&
               new Date() < new Date(currentUser.subscription_end) && (
                 <ActiveCard
+                  currentUser={currentUser}
                   title={"Active"}
-                  color={"bg-blueBloxLight"}
-                  textColor={"text-white"}
+                  color={
+                    billingData[0]?.plan === "premium"
+                      ? "bg-blueBloxLight"
+                      : "bg-sky"
+                  }
+                  textColor={
+                    billingData[0]?.plan === "premium"
+                      ? "text-white"
+                      : "text-black"
+                  }
                   planName={`${billingData[0]?.plan.toUpperCase()} subscription`}
                   daysRemaining={remainingDays}
                   showRemaining={remainingDays <= 2 ? true : false}

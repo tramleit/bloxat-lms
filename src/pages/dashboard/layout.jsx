@@ -52,24 +52,25 @@ export default function DashboardLayout({ children }) {
   // Check if free trial ended
   // If Today's date > trial_end .. then we exceeded the trial periond and redirect to the purchase page
   // Check if free trial has ended and redirect to purchase if true .. and check if there's no subscription
-  if (
-    currentUser?.trial_end &&
-    new Date() > new Date(currentUser.trial_end) &&
-    !currentUser?.subscription_end
-  ) {
-    // console.log("today", new Date());
+  // if (
+  //   currentUser?.trial_end &&
+  //   new Date() > new Date(currentUser.trial_end) &&
+  //   !currentUser?.subscription_end
+  // ) {
+  //   // console.log("today", new Date());
 
-    // console.log("trial_end", new Date(currentUser.trial_end));
-    // console.log(new Date() > new Date(currentUser.trial_end));
-    window.location.replace("/trial-ended");
-    return;
-  }
+  //   // console.log("trial_end", new Date(currentUser.trial_end));
+  //   // console.log(new Date() > new Date(currentUser.trial_end));
+  //   window.location.replace("/trial-ended");
+  //   return;
+  // }
 
   // SUBSCRIPTION
   // If Today's date > subscription_end .. then we exceeded the subscription_end periond and redirect to the purchase page
   if (
-    currentUser?.subscription_end &&
-    new Date() > new Date(currentUser.subscription_end)
+    (currentUser?.subscription_end &&
+      new Date() > new Date(currentUser.subscription_end)) ||
+    currentUser?.plan_type == null
   ) {
     // console.log("today", new Date());
 

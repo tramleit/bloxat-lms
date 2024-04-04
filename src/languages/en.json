@@ -231,7 +231,7 @@
   "Your subscription has": "Your subscription has",
   "ended": "ended",
   "on": "on",
-  "Pick a plan to renew": "Pick a plan to renew",
+  "Pick a plan": "Pick a plan",
   "Active plan!": "Active plan!",
   "Your subscription ends on": "Your subscription ends on",
   "Go to my account": "Go to my account",
@@ -242,5 +242,17 @@
   "Login": "Login",
   "Create an account": "Create an account",
   "Create your Bloxat account": "Create your Bloxat account",
-  "Switch course": "Switch course"
+  "Switch course": "Switch course",
+  "🎁 $77 off for the next 6 customers only.": "🎁 $77 off for the next 6 customers only.",
+  "0% transaction fee": "0% transaction fee",
+  "All payment methods": "All payment methods",
+  "1-minute setup": "1-minute setup",
+  "Free unlimited 1 on 1 support​": "Free unlimited 1 on 1 support​",
+  "Add only 5 courses": "Add only 5 courses",
+  "Accepts only 100 students": "Accepts only 100 students",
+  "Unlimited courses": "Unlimited courses",
+  "Unlimited students": "Unlimited students",
+  "One-time payment, then": "One-time payment, then",
+  "it's yours forever.": "it's yours forever.",
+  "Get started": "Get started"
 }
