@@ -146,7 +146,7 @@ export const ContentForm = ({ initialData, courseId, updateUI }) => {
             onClick={toggleCreating}
             // variant="ghost"
             size="sm"
-            className="border-2  bg-blueBlox text-white hover:bg-blueBloxLight"
+            className=" bg-blueBlox text-white hover:bg-blueBloxLight"
           >
             <PlusIcon className="h-4 w-4 mr-2" />
             {t("Add a section")}

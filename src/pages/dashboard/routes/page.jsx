@@ -112,7 +112,7 @@ const QuickPage = () => {
             // variant="yellow"
 
             size="xl"
-            className="w-full bg-newPurpleLight text-black hover:bg-newPurpleLight/80"
+            className="w-full bg-newBlue text-black hover:bg-newBlue/80"
             onClick={() => {
               createModal.onOpen();
             }}
@@ -136,7 +136,7 @@ const QuickPage = () => {
             // variant="yellow"
             // variant="sky"
             size="xl"
-            className="w-full bg-newBlue text-black hover:bg-newBlue/80"
+            className="w-full bg-newPurpleLight text-black hover:bg-newPurpleLight/80"
             onClick={() => {
               navigate(`/${course_id}/settings/payment`);
             }}

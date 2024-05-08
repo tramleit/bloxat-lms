@@ -54,9 +54,9 @@ module.exports = {
         // blueBlox: "#1364ff",
         // blueBloxLight: "#3f80fe",
         // blueBloxDark: "#0a56e7",
-        blueBlox: "#8473FF",
-        blueBloxLight: "#8473FF",
-        blueBloxDark: "#8473FF",
+        blueBlox: "#0080F9",
+        blueBloxLight: "#2796FF",
+        blueBloxDark: "#0872D7",
         // LEMONS
         lemonBlox: "#e5ff96",
         lemonBloxLight: "#e9fcb0",
@@ -81,7 +81,7 @@ module.exports = {
         purple: "#A38FFF",
         // NEW
         newPurple: "#8473FF",
-        newPurpleLight: "#CFC9FF",
+        newPurpleLight: "#E4CFFF",
         newLemon: "#DDFF55",
         newLemonLight: "#E5FFC8",
         newBlue: "#F1FDFF",

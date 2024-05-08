@@ -96,7 +96,7 @@ const DashboardPage = () => {
               <ViewPortalButton brandSlug={currentUser?.brand_slug} />
               <Button
                 // variant="yellow"
-                className="bg-newPurple hover:bg-newPurple/80 text-white"
+                className="bg-blueBlox hover:bg-blueBlox/80 text-white"
                 onClick={() =>
                   copyText(
                     `${PORTAL_URL}/${currentUser?.brand_slug}/${enrollments?.courseSlug}/checkout`
