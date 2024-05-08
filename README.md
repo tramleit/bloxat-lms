@@ -1,4 +1,4 @@
-<h1 align="center">Bloxat LMS 🧱</h1>
+<h1 align="center">Bloxat LMS 🎓</h1>
 
 <p align="center">
   <a href="https://teach.bloxat.app/" rel="noopener" target="_blank"><img  src="cover.webp" alt="Bloxat LMS"></a>
@@ -12,6 +12,9 @@
   <img src="https://img.shields.io/badge/i18next-209CEE?style=flat-square&logo=i18next&logoColor=white" alt="i18next">
   <img src="https://img.shields.io/badge/Recharts-8B0000?style=flat-square&logo=recharts&logoColor=white" alt="Recharts">
   <img src="https://img.shields.io/badge/Zustand-000000?style=flat-square&logo=zustand&logoColor=white" alt="Zustand">
+  <img src="https://img.shields.io/badge/Cloudinary-333333?style=flat-square&logo=cloudinary&logoColor=white" alt="Cloudinary">
+    <img src="https://img.shields.io/badge/Axios-0095D5?style=flat-square&logo=axios&logoColor=white" alt="Axios">
+
 </p>
 
 This repository contains the source code for Bloxat LMS, a Learning Management System designed for efficient education delivery and management.
@@ -29,6 +32,8 @@ To experience Bloxat LMS in action, visit [https://teach.bloxat.app/](https://te
 - 📱 **Responsive Design:** Tailwind CSS ensures a responsive and visually appealing layout across various devices and screen sizes.
 - 📊 **Data Visualization:** Integrates Recharts for visually engaging representation of analytics and learning progress.
 - 🔄 **State Management:** Utilizes Zustand for efficient state management, ensuring smooth performance and scalability.
+- ☁️ **Cloudinary Integration:** Seamlessly integrates with Cloudinary for efficient management and delivery of media assets.
+- 🌙 **Dark and Light Mode:** Offers both dark and light mode options to enhance user experience and accommodate different preferences.
 
 ## Getting Started 👇
 
