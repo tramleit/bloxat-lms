@@ -24,7 +24,6 @@ export function LanguageToggle() {
         <Button
           variant="outline"
           size="icon"
-          className="bg-[#181818] border-[#181818] text-white hover:bg-[#232323] hover:text-white"
         >
           {langState === "en" ? <span>EN</span> : <span>AR</span>}
 

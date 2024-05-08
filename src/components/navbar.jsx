@@ -31,30 +31,24 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="border-b shadow-sm bg-[#181818] z-[99]">
+    <div className="border-b shadow-sm z-[99]">
+      {/* bg-[#181818] */}
       <div className="flex h-16 items-center px-4 ">
         {/* Menu for mobile */}
         <MobileSideMenu />
         <Link to={`/${course_id}`}>
           <img
             src={Logo}
-            className="md:flex hidden w-[100px] h-auto mr-6 mix-blend-difference filter brightness-0 invert cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
+            className="md:flex hidden w-[80px] h-auto mr-6 mix-blend-difference filter brightness-0 invert cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
             alt="Bloxat"
             draggable={false}
           />
           <img
             src={MobileLogo}
-            className="flex md:hidden w-[26px] h-auto mr-3 mix-blend-difference filter brightness-0 invert cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
+            className="flex md:hidden w-[32px] h-auto mr-3 cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
             alt="Bloxat"
             draggable={false}
           />
-          {/* 
-          <img
-            src={Logo}
-            className="w-[80px] h-auto mr-6 cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
-            alt="Bloxat"
-            draggable={false}
-          /> */}
         </Link>
         <CourseSwicher loading={loading} items={courses} />
         <MainNav className="mx-6" />

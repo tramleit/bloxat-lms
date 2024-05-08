@@ -71,8 +71,8 @@ export function MainNav({ className }) {
           <Link
             to={route.href}
             className={cn(
-              "text-sm font-medium transition-colors hover:text-white",
-              route.active ? "text-white" : "text-white/60"
+              "text-sm font-medium transition-colors hover:text-blueBlox",
+              route.active ? "text-blueBlox" : "text-foreground/60"
             )}
           >
             <span> {route.label}</span>

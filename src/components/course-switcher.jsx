@@ -55,7 +55,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
 
   // loading state
   if (loading) {
-    return <Skeleton className="md:w-[250px] w-1/2 h-[20px] bg-[#212121]" />;
+    return <Skeleton className="md:w-[250px] w-1/2 h-[20px]" />;
   }
 
   return (
@@ -68,7 +68,7 @@ export default function CourseSwicher({ className, loading, items = [] }) {
           aria-expanded={open}
           aria-label="Select a course"
           className={cn(
-            "md:w-[250px] w-1/2 justify-between bg-[#0c0c0c] border-[#2b2b2b] hover:bg-[#2b2b2b] hover:text-white text-white",
+            "md:w-[250px] w-1/2 justify-between ",
             className
           )}
           // for tour

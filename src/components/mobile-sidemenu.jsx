@@ -48,7 +48,7 @@ const MobileSideMenu = () => {
   return (
     <Sheet>
       <SheetTrigger className="md:hidden pr-3 hover:opacity-75 transition">
-        <Menu className="h-5 w-5 flex md:hidden items-center justify-center rounded-full text-white" />
+        <Menu className="h-5 w-5 flex md:hidden items-center justify-center rounded-full" />
       </SheetTrigger>
       <SheetContent side="left" className="p-0 bg-white dark:bg-black w-72">
         {/* Side menu content */}
@@ -56,7 +56,7 @@ const MobileSideMenu = () => {
           <Link to={`/${course_id}`}>
             <img
               src={Logo}
-              className="w-[90px] mix-blend-difference filter brightness-0 invert h-auto mr-6  cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
+              className="w-[80px] mix-blend-difference filter brightness-0 invert h-auto mr-6  cursor-pointer hover:scale-105 transition-all duration-150 ease-in-out"
               //    mix-blend-difference filter brightness-0 invert
               alt="Bloxat"
               draggable={false}
