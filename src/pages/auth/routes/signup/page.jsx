@@ -13,8 +13,8 @@ import { buttonVariants } from "@/components/ui/button";
 // import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"
 import rotate from "@/assets/lotties/rotate.json";
 import { SignupForm } from "../../_components/signup-form";
-import Logo from "@/assets/images/logo/bloxat-yellow.webp";
-import LogoBlue from "@/assets/images/logo/bloxat-blue.webp";
+import Logo from "@/assets/images/logo/bloxat-white.webp";
+import LogoDark from "@/assets/images/logo/bloxat-black.webp";
 
 import useIsMobile from "@/hooks/use-is-mobile";
 import { Button } from "@/components/ui/button";
@@ -85,7 +85,7 @@ const Signup = () => {
             <img
               src={Logo}
               alt="Logo"
-              className="h-[30px] w-auto"
+              className="h-[22px] w-auto"
               // width={0}
               // height={900}
               draggable={false}
@@ -98,7 +98,7 @@ const Signup = () => {
               {/* Mobile only visible logo */}
               {isMobile && (
                 <img
-                  src={LogoBlue}
+                  src={LogoDark}
                   className="w-[100px] h-auto mb-3"
                   alt="Bloxat Logo"
                   draggable={false}
