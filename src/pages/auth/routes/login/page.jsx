@@ -1,19 +1,20 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import Lottie from "lottie-react-web";
-import { cn } from "@/lib/utils";
-import { changeLanguage } from "@/config/i18n";
 import { buttonVariants } from "@/components/ui/button";
+import { changeLanguage } from "@/config/i18n";
+import { cn } from "@/lib/utils";
+import Lottie from "lottie-react-web";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 // import { useEffect, useState } from "react";
+import LogoDark from "@/assets/images/logo/bloxat-black.webp";
+import Logo from "@/assets/images/logo/bloxat-white.webp";
 import rotate from "@/assets/lotties/rotate.json";
 import { LoginForm } from "../../_components/login-form";
-import Logo from "@/assets/images/logo/bloxat-white.webp";
-import LogoDark from "@/assets/images/logo/bloxat-black.webp";
 
-import useIsMobile from "@/hooks/use-is-mobile";
-import { Button } from "@/components/ui/button";
 import SupportHover from "@/components/support-hover";
+import { Button } from "@/components/ui/button";
+import useIsMobile from "@/hooks/use-is-mobile";
+import DemoUser from "@/components/demo-user";
 // import Lottie from "lottie-react-web";
 // import { buttonVariants } from "@/registry/new-york/ui/button"
 // import { UserAuthForm } from "@/app/examples/authentication/components/user-auth-form"
@@ -113,6 +114,7 @@ const Login = () => {
               </h1>
             </div>
             <LoginForm />
+            <DemoUser />
           </div>
         </div>
       </div>
