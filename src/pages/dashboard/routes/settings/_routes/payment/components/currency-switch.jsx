@@ -69,7 +69,7 @@ export const CurrencySwitch = () => {
   };
 
   return (
-    <div className="flex flex-row items-center space-x-3">
+    <div className="md:flex hidden flex-row items-center space-x-3">
       <span className="text-sm font-semibold">{t("Currency")} </span>
       <div className="grid gap-2">
         {/* SELECT CURRENCY */}
